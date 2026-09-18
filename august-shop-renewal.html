@@ -1,0 +1,1140 @@
+<title>AUGUST SHOP Renewal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Shippori+Mincho+B1:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap">
+
+<style>
+/* ============================================================
+   AUGUST SHOP — renewal design mock
+   藍黒 × 生成り × 燻し真鍮。単一ワールドで設計（サイト実装を想定）。
+   ============================================================ */
+:root{
+  --ink:#0F151C;
+  --ink-2:#161F2A;
+  --ink-3:#1F2B38;
+  --paper:#EFECE4;
+  --paper-2:#E4E0D6;
+  --brass:#A8833F;
+  --brass-lt:#C9A969;
+  --bengara:#9A3F2E;
+  --line-green:#06C755;
+
+  --on-ink:#C5CCD4;
+  --on-ink-dim:#8794A2;
+  --on-paper:#242A32;
+  --on-paper-dim:#5A646F;
+
+  --rule-on-ink:rgba(168,131,63,.32);
+  --rule-on-paper:rgba(36,42,50,.14);
+
+  --f-display:"Bodoni Moda","Didot","Times New Roman",serif;
+  --f-mincho:"Shippori Mincho B1","Yu Mincho","YuMincho","Hiragino Mincho ProN",serif;
+  --f-body:"Zen Kaku Gothic New","Yu Gothic","YuGothic","Hiragino Sans",Meiryo,sans-serif;
+
+  --maxw:1180px;
+  --gut:clamp(20px,5vw,64px);
+  --sec-y:clamp(72px,10vw,140px);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--on-ink);
+  font-family:var(--f-body);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:.02em;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure,blockquote{margin:0;}
+ul{list-style:none;padding:0;}
+:focus-visible{outline:2px solid var(--brass-lt);outline-offset:3px;}
+
+/* ---------- shared layout ---------- */
+.wrap{width:min(100% - var(--gut)*2, var(--maxw));margin-inline:auto;}
+.band{padding-block:var(--sec-y);position:relative;}
+.band--ink{background:var(--ink);color:var(--on-ink);}
+.band--ink2{background:var(--ink-2);color:var(--on-ink);}
+.band--paper{background:var(--paper);color:var(--on-paper);}
+
+.eyebrow{
+  font-family:var(--f-display);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:var(--brass);
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:0 0 18px;
+}
+.eyebrow::after{
+  content:"";
+  flex:0 0 46px;
+  height:1px;
+  background:currentColor;
+  opacity:.55;
+}
+.sec-title{
+  font-family:var(--f-mincho);
+  font-weight:600;
+  font-size:clamp(26px,3.6vw,42px);
+  line-height:1.5;
+  letter-spacing:.06em;
+  text-wrap:balance;
+  margin-bottom:.6em;
+}
+.band--paper .sec-title{color:#1A2029;}
+.lede{
+  max-width:38em;
+  font-size:15px;
+  line-height:2.15;
+  color:var(--on-ink-dim);
+}
+.band--paper .lede{color:var(--on-paper-dim);}
+.sec-head{margin-bottom:clamp(36px,5vw,64px);}
+
+/* ---------- photo placeholder ---------- */
+.shot{
+  position:relative;
+  border-radius:1px;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 22% 18%, rgba(201,169,105,.14), transparent 58%),
+    linear-gradient(152deg,#1E2C3C 0%,#141D28 40%,#0B1016 100%);
+  box-shadow:inset 0 0 0 1px rgba(201,169,105,.2);
+  isolation:isolate;
+}
+.shot::after{
+  content:"";
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.5'/></svg>");
+  opacity:.17;
+  mix-blend-mode:overlay;
+  pointer-events:none;
+}
+.shot__tag{
+  position:absolute;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--f-display);
+  font-size:10px;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:rgba(201,169,105,.62);
+  text-align:center;
+  line-height:2.2;
+  white-space:nowrap;
+  z-index:1;
+}
+.shot--paper{
+  background:
+    radial-gradient(120% 90% at 78% 12%, rgba(154,63,46,.10), transparent 62%),
+    linear-gradient(152deg,#DFDACD 0%,#D4CEBF 52%,#C6BFAE 100%);
+  box-shadow:inset 0 0 0 1px rgba(36,42,50,.14);
+}
+.shot--paper .shot__tag{color:rgba(36,42,50,.44);}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:56px;
+  padding:0 34px;
+  font-family:var(--f-body);
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.14em;
+  border:1px solid transparent;
+  border-radius:1px;
+  transition:background-color .35s ease,color .35s ease,border-color .35s ease,transform .35s ease;
+  cursor:pointer;
+}
+.btn:hover{transform:translateY(-2px);}
+.btn--line{background:var(--line-green);color:#08130C;font-weight:700;}
+.btn--line:hover{background:#05b44e;}
+.btn--ghost{border-color:rgba(201,169,105,.55);color:var(--brass-lt);}
+.btn--ghost:hover{background:rgba(201,169,105,.12);border-color:var(--brass-lt);}
+.btn--dark{background:#1A2029;color:var(--paper);}
+.btn--dark:hover{background:#0F151C;}
+.btn--outline-dark{border-color:rgba(36,42,50,.3);color:#242A32;}
+.btn--outline-dark:hover{background:rgba(36,42,50,.06);border-color:rgba(36,42,50,.55);}
+.btn__arrow{font-family:var(--f-display);font-size:16px;line-height:1;}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-head{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:80;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  padding:0 clamp(16px,3.4vw,40px);
+  height:84px;
+  transition:background-color .45s ease,height .45s ease,box-shadow .45s ease;
+}
+.site-head.is-stuck{
+  height:66px;
+  background:rgba(15,21,28,.94);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--rule-on-ink);
+}
+.brand{display:flex;flex-direction:column;line-height:1;gap:5px;}
+.brand__mark{
+  font-family:var(--f-display);
+  font-size:clamp(17px,2vw,21px);
+  font-weight:500;
+  letter-spacing:.3em;
+  color:var(--paper);
+}
+.brand__sub{
+  font-size:9px;
+  letter-spacing:.3em;
+  color:var(--brass);
+  font-family:var(--f-body);
+}
+.nav{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:clamp(14px,2vw,30px);
+}
+.nav a{
+  font-size:12.5px;
+  letter-spacing:.12em;
+  color:rgba(239,236,228,.84);
+  position:relative;
+  padding-block:6px;
+  transition:color .3s ease;
+}
+.nav a::after{
+  content:"";
+  position:absolute;left:0;bottom:0;
+  width:100%;height:1px;
+  background:var(--brass-lt);
+  transform:scaleX(0);
+  transform-origin:right;
+  transition:transform .35s ease;
+}
+.nav a:hover{color:#fff;}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left;}
+.head-cta{
+  display:inline-flex;align-items:center;gap:9px;
+  height:42px;padding:0 20px;
+  background:var(--line-green);color:#08130C;
+  font-size:12.5px;font-weight:700;letter-spacing:.08em;
+  border-radius:1px;
+  transition:background-color .3s ease;
+}
+.head-cta:hover{background:#05b44e;}
+@media (max-width:900px){
+  .nav{display:none;}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:min(96svh,860px);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  overflow:hidden;
+  background:var(--ink);
+}
+.hero__cloth{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(74% 56% at 78% 6%,  rgba(72,108,148,.50), transparent 64%),
+    radial-gradient(86% 72% at 10% 88%, rgba(28,50,76,.72), transparent 68%),
+    radial-gradient(52% 44% at 44% 36%, rgba(96,132,170,.26), transparent 72%),
+    radial-gradient(40% 30% at 62% 72%, rgba(154,63,46,.16), transparent 76%),
+    linear-gradient(168deg,#1B2B3C 0%,#13202D 44%,#0A0F16 100%);
+  animation:drift 26s ease-in-out infinite alternate;
+}
+@keyframes drift{
+  from{transform:scale(1.06) translate3d(0,0,0);}
+  to{transform:scale(1.14) translate3d(-2.2%,-1.6%,0);}
+}
+.hero__weave{
+  position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.028) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(0deg,  rgba(0,0,0,.14) 0 1px, transparent 1px 3px);
+  opacity:.9;
+}
+.hero__grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23g)' opacity='.6'/></svg>");
+  opacity:.14;mix-blend-mode:overlay;
+}
+.hero__veil{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(11,16,23,.62) 0%, rgba(11,16,23,.28) 34%, rgba(11,16,23,.82) 78%, rgba(15,21,28,1) 100%);
+}
+.hero__inner{
+  position:relative;
+  width:min(100% - var(--gut)*2, var(--maxw));
+  margin-inline:auto;
+  padding-block:clamp(52px,8vh,92px) clamp(24px,3.5vh,40px);
+}
+.hero__rule{
+  width:1px;height:clamp(48px,8vh,88px);
+  background:linear-gradient(to bottom, transparent, var(--brass));
+  margin-bottom:26px;
+}
+.hero__kicker{
+  font-family:var(--f-mincho);
+  font-size:clamp(13px,1.5vw,15px);
+  letter-spacing:.34em;
+  color:var(--brass-lt);
+  margin-bottom:22px;
+}
+.hero__title{
+  font-family:var(--f-display);
+  font-weight:400;
+  font-size:clamp(44px,9vw,116px);
+  line-height:.94;
+  letter-spacing:.04em;
+  color:var(--paper);
+  margin-bottom:6px;
+}
+.hero__title em{
+  display:block;
+  font-style:italic;
+  font-size:.42em;
+  letter-spacing:.14em;
+  color:var(--brass-lt);
+  margin-top:.34em;
+}
+.hero__copy{
+  font-family:var(--f-mincho);
+  font-size:clamp(16px,2.1vw,23px);
+  line-height:2;
+  letter-spacing:.09em;
+  color:#E6E2D8;
+  margin:30px 0 12px;
+  max-width:26em;
+  text-wrap:balance;
+}
+.hero__note{font-size:13.5px;color:var(--on-ink-dim);max-width:30em;}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px;}
+.hero__stats{
+  position:relative;
+  border-top:1px solid var(--rule-on-ink);
+  margin-top:clamp(36px,5vh,62px);
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+}
+.hero__stats div{
+  padding:22px 8px 0;
+  display:flex;flex-direction:column;gap:4px;
+}
+.hero__stats div + div{border-left:1px solid var(--rule-on-ink);padding-left:clamp(14px,3vw,34px);}
+.stat__n{
+  font-family:var(--f-display);
+  font-size:clamp(24px,4vw,40px);
+  font-weight:500;
+  color:var(--paper);
+  line-height:1.1;
+  font-variant-numeric:tabular-nums;
+}
+.stat__n small{font-size:.42em;letter-spacing:.14em;margin-left:.4em;color:var(--brass-lt);}
+.stat__l{font-size:11.5px;letter-spacing:.16em;color:var(--on-ink-dim);}
+@media (max-width:520px){
+  .hero__stats{grid-template-columns:1fr;}
+  .hero__stats div{flex-direction:row;align-items:baseline;gap:14px;padding:14px 0 0;}
+  .hero__stats div + div{border-left:0;border-top:1px solid var(--rule-on-ink);padding-left:0;}
+}
+
+/* ============================================================
+   CONCEPT
+   ============================================================ */
+.concept{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(32px,6vw,84px);
+  align-items:center;
+}
+.concept__body p + p{margin-top:1.4em;}
+.concept .shot{aspect-ratio:4/5;max-height:620px;}
+.sign{
+  margin-top:34px;
+  font-family:var(--f-display);
+  font-style:italic;
+  font-size:19px;
+  color:var(--brass);
+  letter-spacing:.08em;
+}
+@media (max-width:860px){
+  .concept{grid-template-columns:minmax(0,1fr);}
+  .concept .shot{aspect-ratio:4/3;}
+}
+
+/* ============================================================
+   STRENGTH
+   ============================================================ */
+.strengths{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--rule-on-paper);
+}
+.strength{
+  padding:clamp(28px,3.4vw,44px) clamp(20px,2.4vw,36px);
+  border-bottom:1px solid var(--rule-on-paper);
+  display:flex;flex-direction:column;gap:14px;
+}
+.strength + .strength{border-left:1px solid var(--rule-on-paper);}
+.strength__n{
+  font-family:var(--f-display);
+  font-size:13px;
+  letter-spacing:.3em;
+  color:var(--bengara);
+  font-variant-numeric:tabular-nums;
+}
+.strength__t{
+  font-family:var(--f-mincho);
+  font-size:clamp(18px,2.1vw,23px);
+  font-weight:600;
+  line-height:1.65;
+  letter-spacing:.04em;
+  color:#1A2029;
+}
+.strength__d{font-size:14px;line-height:2.05;color:var(--on-paper-dim);}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.chip{
+  font-size:11px;letter-spacing:.1em;
+  padding:5px 11px;
+  border:1px solid rgba(36,42,50,.2);
+  color:var(--on-paper-dim);
+  border-radius:1px;
+}
+@media (max-width:860px){
+  .strengths{grid-template-columns:1fr;}
+  .strength + .strength{border-left:0;}
+}
+
+/* ============================================================
+   FLOW
+   ============================================================ */
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule-on-ink);}
+.step{
+  background:var(--ink-2);
+  padding:clamp(26px,3vw,40px) clamp(20px,2.2vw,32px) clamp(30px,3.4vw,44px);
+  display:flex;flex-direction:column;gap:16px;
+  position:relative;
+}
+.step__n{
+  font-family:var(--f-display);
+  font-size:clamp(34px,4.4vw,52px);
+  line-height:1;
+  color:rgba(201,169,105,.34);
+  font-variant-numeric:tabular-nums;
+}
+.step__t{
+  font-family:var(--f-mincho);
+  font-size:17.5px;font-weight:600;line-height:1.7;letter-spacing:.05em;color:var(--paper);
+}
+.step__d{font-size:13.5px;line-height:2;color:var(--on-ink-dim);}
+.step__d strong{color:var(--brass-lt);font-weight:500;}
+.step ul{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--on-ink-dim);}
+.step ul li{padding-left:14px;position:relative;}
+.step ul li::before{content:"";position:absolute;left:0;top:.85em;width:6px;height:1px;background:var(--brass);}
+@media (max-width:980px){.flow{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.flow{grid-template-columns:1fr;}}
+
+.flow-note{
+  margin-top:28px;
+  display:flex;flex-wrap:wrap;gap:10px 26px;
+  font-size:12.5px;color:var(--on-ink-dim);
+  border-left:2px solid var(--bengara);
+  padding:10px 0 10px 18px;
+}
+
+/* ============================================================
+   BRANDS
+   ============================================================ */
+.brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--rule-on-paper);}
+.bcat{
+  min-width:0;
+  background:var(--paper);
+  padding:clamp(26px,3vw,40px);
+  display:flex;flex-direction:column;gap:14px;
+  transition:background-color .4s ease;
+}
+.bcat:hover{background:var(--paper-2);}
+.bcat__en{
+  font-family:var(--f-display);
+  font-size:clamp(20px,2.4vw,28px);
+  font-weight:500;letter-spacing:.14em;
+  color:#1A2029;
+}
+.bcat__jp{
+  font-size:12px;letter-spacing:.24em;color:var(--bengara);
+  margin-top:-8px;
+}
+.bcat__list{
+  display:flex;
+  flex-wrap:wrap;
+  column-gap:.5em;
+  row-gap:.35em;
+  font-size:13px;line-height:2.1;color:var(--on-paper-dim);
+  letter-spacing:.01em;
+  min-width:0;
+}
+.bcat__list span{white-space:nowrap;display:inline-flex;gap:.5em;}
+.bcat__list span::after{content:"／";color:rgba(36,42,50,.28);}
+.bcat__list span:last-child::after{content:none;}
+.brands-foot{
+  margin-top:clamp(32px,4vw,52px);
+  display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px;
+  justify-content:space-between;
+}
+.brands-foot p{font-size:13.5px;color:var(--on-paper-dim);max-width:34em;}
+@media (max-width:760px){.brand-grid{grid-template-columns:1fr;}}
+
+/* ============================================================
+   PRICE
+   ============================================================ */
+.price-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:1px;
+  background:var(--rule-on-ink);
+  border:1px solid var(--rule-on-ink);
+}
+@media (max-width:980px){.price-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (max-width:460px){.price-grid{grid-template-columns:minmax(0,1fr);}}
+.price{
+  background:var(--ink);
+  padding:clamp(22px,2.4vw,30px);
+  display:flex;flex-direction:column;gap:10px;
+}
+.price .shot{aspect-ratio:1/1;margin-bottom:6px;}
+.price__b{
+  font-family:var(--f-display);
+  font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-lt);
+}
+.price__m{font-size:13.5px;color:var(--on-ink);line-height:1.8;}
+.price__v{
+  margin-top:auto;
+  padding-top:12px;
+  border-top:1px solid var(--rule-on-ink);
+  font-family:var(--f-display);
+  font-size:clamp(22px,2.6vw,29px);
+  font-weight:500;
+  color:var(--paper);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.02em;
+}
+.price__v small{font-family:var(--f-body);font-size:11px;letter-spacing:.14em;color:var(--on-ink-dim);margin-left:8px;}
+.disclaim{
+  margin-top:24px;font-size:12px;line-height:2;color:var(--on-ink-dim);
+  border-left:2px solid var(--rule-on-ink);padding-left:16px;
+}
+
+/* ============================================================
+   TIPS
+   ============================================================ */
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,36px);}
+.tip{display:flex;flex-direction:column;gap:14px;}
+.tip .shot{aspect-ratio:3/2;}
+.tip__t{
+  font-family:var(--f-mincho);font-size:17px;font-weight:600;letter-spacing:.05em;color:#1A2029;
+}
+.tip__d{font-size:13.5px;line-height:2.05;color:var(--on-paper-dim);}
+@media (max-width:760px){.tips{grid-template-columns:1fr;}}
+
+/* ============================================================
+   SHOPS
+   ============================================================ */
+.shops{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule-on-ink);}
+.shop{
+  background:var(--ink-2);
+  padding:clamp(24px,2.6vw,34px);
+  display:flex;flex-direction:column;gap:10px;
+  transition:background-color .4s ease;
+}
+.shop:hover{background:var(--ink-3);}
+.shop__n{
+  font-family:var(--f-display);font-size:17px;letter-spacing:.16em;color:var(--paper);
+}
+.shop__d{font-size:13px;line-height:1.95;color:var(--on-ink-dim);}
+.shop__go{
+  margin-top:auto;padding-top:14px;
+  font-size:11.5px;letter-spacing:.2em;color:var(--brass-lt);
+  display:flex;align-items:center;gap:8px;
+}
+@media (max-width:860px){.shops{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:460px){.shops{grid-template-columns:1fr;}}
+
+/* ============================================================
+   COMPANY
+   ============================================================ */
+.company{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,80px);align-items:start;}
+.spec{width:100%;border-collapse:collapse;font-size:14px;}
+.spec th,.spec td{
+  text-align:left;padding:15px 0;vertical-align:top;
+  border-bottom:1px solid var(--rule-on-paper);
+}
+.spec th{
+  width:8.5em;font-weight:500;letter-spacing:.14em;font-size:12px;color:var(--bengara);
+  padding-right:18px;
+}
+.spec td{color:var(--on-paper);line-height:1.9;}
+.company .shot{aspect-ratio:5/4;max-height:460px;}
+.license{
+  margin-top:20px;font-size:12px;letter-spacing:.06em;color:var(--on-paper-dim);
+  border:1px solid var(--rule-on-paper);padding:14px 18px;line-height:1.9;
+}
+@media (max-width:860px){
+  .company{grid-template-columns:minmax(0,1fr);}
+  .company .shot{aspect-ratio:4/3;}
+}
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.final{
+  position:relative;
+  background:
+    radial-gradient(70% 90% at 78% 20%, rgba(46,72,104,.42), transparent 64%),
+    linear-gradient(160deg,#141E2A,#0C1219);
+  padding-block:clamp(72px,10vw,128px);
+  text-align:center;
+  overflow:hidden;
+}
+.final::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g2'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='200' height='200' filter='url(%23g2)' opacity='.6'/></svg>");
+  opacity:.1;mix-blend-mode:overlay;
+}
+.final .wrap{position:relative;}
+.final .eyebrow{justify-content:center;}
+.final .eyebrow::before{content:"";flex:0 0 46px;height:1px;background:currentColor;opacity:.55;}
+.final h2{
+  font-family:var(--f-mincho);font-weight:600;
+  font-size:clamp(24px,3.6vw,40px);line-height:1.6;letter-spacing:.07em;
+  color:var(--paper);text-wrap:balance;
+}
+.final p{margin-top:22px;font-size:14.5px;color:var(--on-ink-dim);line-height:2.1;}
+.final .hero__actions{justify-content:center;}
+.lineid{
+  margin-top:30px;
+  display:inline-flex;align-items:center;gap:14px;
+  border:1px solid var(--rule-on-ink);padding:12px 22px;
+  font-family:var(--f-display);letter-spacing:.2em;font-size:15px;color:var(--brass-lt);
+}
+.lineid span{font-family:var(--f-body);font-size:11px;letter-spacing:.2em;color:var(--on-ink-dim);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-foot{background:#0A0F15;color:var(--on-ink-dim);padding-block:clamp(48px,6vw,76px) 34px;}
+.foot-top{
+  display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(28px,4vw,56px);
+  padding-bottom:36px;border-bottom:1px solid rgba(201,169,105,.18);
+}
+.foot-brand .brand__mark{font-size:22px;}
+.foot-brand p{margin-top:16px;font-size:13px;line-height:2;}
+.foot-col h4{
+  font-family:var(--f-display);font-size:11px;letter-spacing:.3em;color:var(--brass);
+  margin-bottom:16px;font-weight:500;
+}
+.foot-col ul{display:flex;flex-direction:column;gap:10px;font-size:13px;}
+.foot-col a:hover{color:var(--paper);}
+.foot-bot{
+  padding-top:24px;
+  display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;
+  font-size:11.5px;letter-spacing:.06em;
+}
+.mocknote{
+  margin-top:26px;
+  font-size:11.5px;line-height:2;
+  color:rgba(133,146,160,.85);
+  border-left:2px solid var(--bengara);padding-left:16px;
+  max-width:46em;
+}
+@media (max-width:760px){.foot-top{grid-template-columns:1fr;}}
+
+/* ---------- mobile sticky CTA ---------- */
+.mobile-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;
+  display:none;
+  background:rgba(10,15,21,.96);
+  backdrop-filter:blur(8px);
+  border-top:1px solid var(--rule-on-ink);
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  gap:10px;
+}
+.mobile-cta .btn{flex:1;min-height:48px;padding:0 14px;font-size:13px;}
+@media (max-width:900px){.mobile-cta{display:flex;}body{padding-bottom:78px;}}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.22,.7,.3,1),transform .9s cubic-bezier(.22,.7,.3,1);}
+.js .rv.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition-duration:.01ms !important;}
+  .js .rv{opacity:1;transform:none;}
+  html{scroll-behavior:auto;}
+}
+</style>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-head" id="siteHead">
+  <a class="brand" href="#top">
+    <span class="brand__mark">AUGUST SHOP</span>
+    <span class="brand__sub">ブランド古着 買取専門</span>
+  </a>
+  <nav class="nav">
+    <a href="#concept">買取について</a>
+    <a href="#flow">査定の流れ</a>
+    <a href="#brands">取扱ブランド</a>
+    <a href="#price">買取価格例</a>
+    <a href="#shops">販売中アイテム</a>
+    <a href="#company">会社概要</a>
+  </nav>
+  <a class="head-cta" href="#cta">LINEで査定</a>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero__cloth" aria-hidden="true"></div>
+  <div class="hero__weave" aria-hidden="true"></div>
+  <div class="hero__grain" aria-hidden="true"></div>
+  <div class="hero__veil" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <div class="hero__rule" aria-hidden="true"></div>
+    <p class="hero__kicker">ブランド古着・ヴィンテージ 高価買取</p>
+    <h1 class="hero__title">AUGUST<em>SHOP</em></h1>
+    <p class="hero__copy">写真を送るだけ。<br>得意なブランドに特化しているから、<br>この価格が出せる。</p>
+    <p class="hero__note">デザイナーズ、アーカイブ、ワーク、ブーツ、革小物まで。LINEで写真を送れば24時間以内に査定金額をお返しします。</p>
+    <div class="hero__actions">
+      <a class="btn btn--line" href="#cta">LINEでかんたん査定<span class="btn__arrow">→</span></a>
+      <a class="btn btn--ghost" href="#brands">お買取ブランドを見る</a>
+    </div>
+
+    <div class="hero__stats">
+      <div>
+        <span class="stat__n">24<small>H</small></span>
+        <span class="stat__l">以内に概算査定を返信</span>
+      </div>
+      <div>
+        <span class="stat__n">300<small>+</small></span>
+        <span class="stat__l">取扱ブランド</span>
+      </div>
+      <div>
+        <span class="stat__n">4<small>CH</small></span>
+        <span class="stat__l">自社販路で高価買取</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONCEPT ===================== -->
+<section class="band band--ink2" id="concept">
+  <div class="wrap concept rv">
+    <div class="concept__body">
+      <p class="eyebrow">Concept</p>
+      <h2 class="sec-title">作りの良いものを、<br>次の持ち主へ。</h2>
+      <p class="lede">一枚の服が誰かの手に渡るたび、その服の時間は伸びていきます。AUGUST SHOP は、デザイナーズからワーク、ヴィンテージ、レザークラフトの素材まで、「作りの良いもの」を見極めて next owner へ繋ぐ買取専門店です。</p>
+      <p class="lede" style="margin-top:1.4em;">買い取ったアイテムは、ヤフオク・楽天・メルカリ・BASE の自社販路で私たち自身が売り切ります。中間業者を挟まないぶん、査定額はそのままお客様へお戻しできます。</p>
+      <p class="sign">August Shop — since Atsugi, Kanagawa</p>
+    </div>
+    <figure class="shot" aria-label="店舗什器とラックにかかったアイテムの写真">
+      <figcaption class="shot__tag">Photo<br>店内ラック／取扱アイテム</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== STRENGTH ===================== -->
+<section class="band band--paper" id="strength">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Why August</p>
+      <h2 class="sec-title">高く買える理由は、<br>3つだけです。</h2>
+    </div>
+    <div class="strengths rv">
+      <article class="strength">
+        <span class="strength__n">01</span>
+        <h3 class="strength__t">得意なブランドに<br>絞っている</h3>
+        <p class="strength__d">総合買取店のように何でも扱うのではなく、相場を追い続けているジャンルだけを深く扱います。だからディテール違いや年代の差まで拾って値付けができます。</p>
+        <div class="chips"><span class="chip">アーカイブ</span><span class="chip">ワーク／ミリタリー</span><span class="chip">レザー</span><span class="chip">ヴィンテージデニム</span></div>
+      </article>
+      <article class="strength">
+        <span class="strength__n">02</span>
+        <h3 class="strength__t">売り先を<br>自社で持っている</h3>
+        <p class="strength__d">ヤフオク・楽天・メルカリ・BASE の4販路で日々販売しています。転売先に卸すのではなく自分たちで売り切るため、卸値ではなく実売価格から逆算した査定が可能です。</p>
+        <div class="chips"><span class="chip">ヤフオク!</span><span class="chip">楽天市場</span><span class="chip">メルカリ</span><span class="chip">BASE</span></div>
+      </article>
+      <article class="strength">
+        <span class="strength__n">03</span>
+        <h3 class="strength__t">LINEで完結する<br>ストレスのない査定</h3>
+        <p class="strength__d">写真を送るだけ、24時間以内に概算査定。梱包が面倒なら発送キットをお送りします。送料・査定料・キャンセル返送料はすべて無料です。</p>
+        <div class="chips"><span class="chip">査定料 0円</span><span class="chip">送料 0円</span><span class="chip">返送料 0円</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FLOW ===================== -->
+<section class="band band--ink" id="flow">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Flow</p>
+      <h2 class="sec-title">LINE査定の流れ</h2>
+      <p class="lede">友だち追加から入金まで、最短3営業日。店頭に持ち込む必要はありません。</p>
+    </div>
+
+    <div class="flow rv">
+      <article class="step">
+        <span class="step__n">01</span>
+        <h3 class="step__t">LINEで友だち追加</h3>
+        <p class="step__d">QRコードを読み取るか、ID <strong>@776yyqfq</strong> で検索してください。</p>
+      </article>
+      <article class="step">
+        <span class="step__n">02</span>
+        <h3 class="step__t">アイテムの写真を送る</h3>
+        <ul>
+          <li>アイテム全体</li>
+          <li>ブランドタグ／品質表示</li>
+          <li>付属品（あれば）</li>
+        </ul>
+        <p class="step__d">キズや汚れがある場合は、その箇所がわかる写真も添えてください。</p>
+      </article>
+      <article class="step">
+        <span class="step__n">03</span>
+        <h3 class="step__t">査定を確認して発送</h3>
+        <p class="step__d"><strong>24時間以内</strong>に概算査定をお送りします。ご納得いただけたら着払いで発送、または発送キットをお届けします。</p>
+        <p class="step__d">身分証明書（氏名・生年月日・現住所が確認できるもの）のコピーを同封、またはLINEで画像をお送りください。</p>
+      </article>
+      <article class="step">
+        <span class="step__n">04</span>
+        <h3 class="step__t">ご指定口座へお支払い</h3>
+        <p class="step__d">現品確認後に確定査定をご連絡し、成立から<strong>3営業日以内</strong>にお振込みします。</p>
+        <p class="step__d">金額にご納得いただけない場合は、無料で返送いたします。</p>
+      </article>
+    </div>
+
+    <div class="flow-note rv">
+      <span>※ ご依頼人とお名前の異なる口座へはお振込みできません。</span>
+      <span>※ 古物営業法に基づき、お取引時に本人確認を行っております。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BRANDS ===================== -->
+<section class="band band--paper" id="brands">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Brands</p>
+      <h2 class="sec-title">買取強化ブランド</h2>
+      <p class="lede">下記はお取り扱いブランドの一部です。掲載のないブランド、ノーブランドのヴィンテージ古着、レザークラフト素材の買取も承っています。</p>
+    </div>
+
+    <div class="brand-grid rv">
+      <article class="bcat">
+        <h3 class="bcat__en">Designer</h3>
+        <p class="bcat__jp">モード・デザイナーズ</p>
+        <p class="bcat__list"><span>コムデギャルソン</span><span>ヨウジヤマモト</span><span>マルタンマルジェラ</span><span>サカイ</span><span>アンダーカバー</span><span>ジュンヤワタナベ</span><span>ドリスヴァンノッテン</span><span>イッセイミヤケ</span><span>ラフシモンズ</span><span>ソロイスト</span><span>ノワールケイニノミヤ</span><span>ナンバーナイン</span></p>
+      </article>
+
+      <article class="bcat">
+        <h3 class="bcat__en">Outdoor &amp; Work</h3>
+        <p class="bcat__jp">アウトドア・ワーク</p>
+        <p class="bcat__list"><span>パタゴニア</span><span>ノースフェイス</span><span>アクロニウム</span><span>カナダグース</span><span>モンクレール</span><span>バブアー</span><span>エンジニアードガーメンツ</span><span>ニードルス</span><span>ネイバーフッド</span><span>ワコマリア</span><span>ダブルタップス</span><span>ビズビム</span><span>ナイジェルケーボン</span></p>
+      </article>
+
+      <article class="bcat">
+        <h3 class="bcat__en">Japanese Archive</h3>
+        <p class="bcat__jp">国内アーカイブ・定番</p>
+        <p class="bcat__list"><span>コモリ</span><span>オーラリー</span><span>ヤエカ</span><span>マーガレットハウエル</span><span>ポータークラシック</span><span>キャピタル</span><span>ハイク</span><span>ミナペルホネン</span><span>45R</span><span>テアトラ</span><span>シオタ</span><span>アプレッセ</span></p>
+      </article>
+
+      <article class="bcat">
+        <h3 class="bcat__en">Shoes &amp; Boots</h3>
+        <p class="bcat__jp">シューズ・ブーツ</p>
+        <p class="bcat__list"><span>オールデン</span><span>ジョンロブ</span><span>エドワードグリーン</span><span>クロケット＆ジョーンズ</span><span>チャーチ</span><span>トリッカーズ</span><span>パラブーツ</span><span>レッドウィング</span><span>ウエスコ</span><span>エンダースキーマ</span><span>グイディ</span><span>ヴィバーグ</span></p>
+      </article>
+
+      <article class="bcat">
+        <h3 class="bcat__en">Bag &amp; Leather</h3>
+        <p class="bcat__jp">バッグ・革小物</p>
+        <p class="bcat__list"><span>ワイルドスワンズ</span><span>ポーター</span><span>大峡製鞄</span><span>万双</span><span>ガンゾ</span><span>ココマイスター</span><span>ヘルツ</span><span>ホワイトハウスコックス</span><span>グレンロイヤル</span><span>ヴァレクストラ</span><span>エルメス</span><span>ロエベ</span><span>ブリーフィング</span></p>
+      </article>
+
+      <article class="bcat">
+        <h3 class="bcat__en">Vintage &amp; Leather</h3>
+        <p class="bcat__jp">ヴィンテージ・レザー</p>
+        <p class="bcat__list"><span>リアルマッコイズ</span><span>フリーホイーラーズ</span><span>ルイスレザー</span><span>エアロレザー</span><span>ショット</span><span>バンソン</span><span>シュガーケーン</span><span>ウエアハウス</span><span>フラットヘッド</span><span>ラングリッツレザー</span><span>ダブルアールエル</span><span>リーバイス</span><span>バズリクソンズ</span></p>
+      </article>
+    </div>
+
+    <div class="brands-foot rv">
+      <p>ア行〜ワ行の全ブランドリストもご用意しています。判断に迷うアイテムは、まずLINEで写真をお送りください。</p>
+      <a class="btn btn--outline-dark" href="#cta">お買取ブランドリスト<span class="btn__arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICE ===================== -->
+<section class="band band--ink" id="price">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Price</p>
+      <h2 class="sec-title">買取価格の一例</h2>
+      <p class="lede">状態・付属品・サイズ・そのときの相場によって金額は変動します。最新の価格はLINEでお問い合わせください。</p>
+    </div>
+
+    <div class="price-grid rv">
+      <article class="price">
+        <figure class="shot" aria-label="コモリ ウールジャケットの写真"><figcaption class="shot__tag">Photo</figcaption></figure>
+        <p class="price__b">COMOLI</p>
+        <p class="price__m">B.D.U ジャケット／ウール</p>
+        <p class="price__v">¥40,000<small>買取</small></p>
+      </article>
+      <article class="price">
+        <figure class="shot" aria-label="レッドウィングのブーツの写真"><figcaption class="shot__tag">Photo</figcaption></figure>
+        <p class="price__b">RED WING</p>
+        <p class="price__m">クラシックチェルシー 3190／US8.5D</p>
+        <p class="price__v">¥30,800<small>買取</small></p>
+      </article>
+      <article class="price">
+        <figure class="shot" aria-label="ワイルドスワンズの財布の写真"><figcaption class="shot__tag">Photo</figcaption></figure>
+        <p class="price__b">WILDSWANS</p>
+        <p class="price__m">ENVELOPE／シェルコードバン</p>
+        <p class="price__v">¥46,000<small>買取</small></p>
+      </article>
+      <article class="price">
+        <figure class="shot" aria-label="ルイスレザーのライダースの写真"><figcaption class="shot__tag">Photo</figcaption></figure>
+        <p class="price__b">Lewis Leathers</p>
+        <p class="price__m">ライトニング 391／ホースハイド</p>
+        <p class="price__v">¥98,000<small>買取</small></p>
+      </article>
+      <article class="price">
+        <figure class="shot" aria-label="オールデンの靴の写真"><figcaption class="shot__tag">Photo</figcaption></figure>
+        <p class="price__b">ALDEN</p>
+        <p class="price__m">990 クリッパーオックス／バリーラスト</p>
+        <p class="price__v">¥110,000<small>買取</small></p>
+      </article>
+      <article class="price">
+        <figure class="shot" aria-label="マルタンマルジェラのコートの写真"><figcaption class="shot__tag">Photo</figcaption></figure>
+        <p class="price__b">Maison Margiela</p>
+        <p class="price__m">アーカイブ期 ステレオタイプコート</p>
+        <p class="price__v">¥72,000<small>買取</small></p>
+      </article>
+      <article class="price">
+        <figure class="shot" aria-label="パタゴニアのフリースの写真"><figcaption class="shot__tag">Photo</figcaption></figure>
+        <p class="price__b">patagonia</p>
+        <p class="price__m">レトロX ボマージャケット／90s</p>
+        <p class="price__v">¥26,000<small>買取</small></p>
+      </article>
+      <article class="price">
+        <figure class="shot" aria-label="リーバイスのデニムの写真"><figcaption class="shot__tag">Photo</figcaption></figure>
+        <p class="price__b">Levi's</p>
+        <p class="price__m">501XX 大戦モデル／復刻 W32</p>
+        <p class="price__v">¥33,000<small>買取</small></p>
+      </article>
+    </div>
+
+    <p class="disclaim rv">※ 本ページはリニューアル用のデザインモックです。掲載している価格・写真枠はレイアウト確認用のサンプルで、実際の買取価格ではありません。</p>
+  </div>
+</section>
+
+<!-- ===================== TIPS ===================== -->
+<section class="band band--paper" id="tips">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Photo Tips</p>
+      <h2 class="sec-title">写真を撮るときの<br>3つのポイント</h2>
+      <p class="lede">写真の写り方だけで査定額が変わることがあります。難しいことはありません、この3点だけ意識してください。</p>
+    </div>
+    <div class="tips rv">
+      <figure class="tip">
+        <div class="shot shot--paper" aria-label="全体が写るように平置きした服の作例写真"><span class="shot__tag">Photo<br>全体・平置き</span></div>
+        <figcaption>
+          <h3 class="tip__t">全体を、明るい場所で</h3>
+          <p class="tip__d">床やベッドに平置きして真上から。自然光の入る窓際だと色が正確に出ます。畳んだままだとシルエットが判断できません。</p>
+        </figcaption>
+      </figure>
+      <figure class="tip">
+        <div class="shot shot--paper" aria-label="ブランドタグと品質表示のアップ写真"><span class="shot__tag">Photo<br>タグ・品質表示</span></div>
+        <figcaption>
+          <h3 class="tip__t">タグは寄りでピントを</h3>
+          <p class="tip__d">ブランドタグと品質表示（サイズ・素材・生産国）が読める距離で。年代やラインの特定に直結する、いちばん重要な一枚です。</p>
+        </figcaption>
+      </figure>
+      <figure class="tip">
+        <div class="shot shot--paper" aria-label="スレやダメージ箇所のアップ写真"><span class="shot__tag">Photo<br>ダメージ箇所</span></div>
+        <figcaption>
+          <h3 class="tip__t">ダメージは隠さない</h3>
+          <p class="tip__d">キズ・汚れ・リペア跡は先にお知らせいただくほうが、確定査定とのズレがなくなります。付属品があれば一緒に並べて撮影を。</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SHOPS ===================== -->
+<section class="band band--ink2" id="shops">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Selling Now</p>
+      <h2 class="sec-title">販売中アイテム</h2>
+      <p class="lede">買い取ったアイテムは、4つの販路で私たち自身が販売しています。どんなものを、いくらで売っているのか。査定額の根拠はここにあります。</p>
+    </div>
+    <div class="shops rv">
+      <a class="shop" href="#cta">
+        <span class="shop__n">Yahoo! Auction</span>
+        <span class="shop__d">ヤフオク!<br>ヴィンテージ・アーカイブ中心。</span>
+        <span class="shop__go">ストアを見る →</span>
+      </a>
+      <a class="shop" href="#cta">
+        <span class="shop__n">Rakuten</span>
+        <span class="shop__d">楽天市場<br>定番ブランドと季節アウター。</span>
+        <span class="shop__go">ストアを見る →</span>
+      </a>
+      <a class="shop" href="#cta">
+        <span class="shop__n">Mercari</span>
+        <span class="shop__d">メルカリ<br>タイムセールを随時開催。</span>
+        <span class="shop__go">ストアを見る →</span>
+      </a>
+      <a class="shop" href="#cta">
+        <span class="shop__n">BASE</span>
+        <span class="shop__d">BASE / PAY ID<br>レザークラフト素材も取扱い。</span>
+        <span class="shop__go">ストアを見る →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMPANY ===================== -->
+<section class="band band--paper" id="company">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Company</p>
+      <h2 class="sec-title">会社概要</h2>
+    </div>
+    <div class="company rv">
+      <div>
+        <table class="spec">
+          <tbody>
+            <tr><th>会社名</th><td>株式会社SGN<br><span style="font-family:var(--f-display);letter-spacing:.1em;">SGN Co., Ltd.</span></td></tr>
+            <tr><th>代表取締役</th><td>前原 將臣</td></tr>
+            <tr><th>所在地</th><td>〒243-0032<br>神奈川県厚木市恩名1-20-27 プチヒルズ4F</td></tr>
+            <tr><th>TEL</th><td>046-259-6189</td></tr>
+            <tr><th>Email</th><td>info@august-shop.net</td></tr>
+            <tr><th>営業時間</th><td>10:00〜19:00（土・日・祝日を除く）</td></tr>
+            <tr><th>事業内容</th><td>ブランド古着・服飾雑貨・レザークラフト素材の買取および販売</td></tr>
+          </tbody>
+        </table>
+        <p class="license">古物商許可証　第452740013242号／神奈川県公安委員会</p>
+      </div>
+      <figure class="shot shot--paper" aria-label="店舗外観または作業風景の写真">
+        <figcaption class="shot__tag">Photo<br>店舗外観／検品風景</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final" id="cta">
+  <div class="wrap">
+    <p class="eyebrow">Free Assessment</p>
+    <h2>まずは一枚、<br>写真を送ってみてください。</h2>
+    <p>査定料・送料・キャンセル時の返送料はすべて無料です。<br>売るかどうかは、金額を見てから決めていただいて構いません。</p>
+    <div class="hero__actions">
+      <a class="btn btn--line" href="#cta">LINEで友だち追加<span class="btn__arrow">→</span></a>
+      <a class="btn btn--ghost" href="#company">メールで問い合わせる</a>
+    </div>
+    <p class="lineid">@776yyqfq <span>LINE ID</span></p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand__mark">AUGUST SHOP</span>
+        <p>ブランド古着・ヴィンテージ・レザークラフト素材の買取専門店。<br>神奈川県厚木市より、全国から宅配買取を承っています。</p>
+      </div>
+      <div class="foot-col">
+        <h4>Buying</h4>
+        <ul>
+          <li><a href="#concept">買取について</a></li>
+          <li><a href="#flow">LINE査定の流れ</a></li>
+          <li><a href="#brands">取扱ブランド</a></li>
+          <li><a href="#price">買取価格の一例</a></li>
+          <li><a href="#tips">写真を撮るときのポイント</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Shop &amp; Info</h4>
+        <ul>
+          <li><a href="#shops">販売中アイテム</a></li>
+          <li><a href="#company">会社概要</a></li>
+          <li><a href="#cta">お問い合わせ</a></li>
+          <li><a href="#cta">プライバシーポリシー</a></li>
+          <li><a href="#cta">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© AUGUST SHOP / SGN Co., Ltd.</span>
+      <span>古物商許可 第452740013242号（神奈川県公安委員会）</span>
+    </div>
+    <p class="mocknote">このページは august-shop.net のリニューアル用デザインモックです。写真枠はすべてプレースホルダー、買取価格はサンプル値で、実際の価格・実績ではありません。会社概要は現行サイトの掲載情報を転記しています。</p>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a class="btn btn--line" href="#cta">LINEで査定</a>
+  <a class="btn btn--ghost" href="#brands">ブランド一覧</a>
+</div>
+
+<script>
+(function(){
+  var head = document.getElementById('siteHead');
+  var onScroll = function(){
+    if (window.scrollY > 60) { head.classList.add('is-stuck'); }
+    else { head.classList.remove('is-stuck'); }
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var targets = document.querySelectorAll('.rv');
+  if (reduce || !('IntersectionObserver' in window)) {
+    targets.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {rootMargin:'0px 0px -12% 0px', threshold:0.08});
+  targets.forEach(function(el){ io.observe(el); });
+
+  // safety net: never leave content hidden if the observer never fires
+  window.setTimeout(function(){
+    targets.forEach(function(el){ el.classList.add('in'); });
+  }, 2500);
+})();
+</script>
