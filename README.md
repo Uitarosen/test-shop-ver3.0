@@ -1,65 +1,56 @@
-# AUGUST SHOP — 公式サイト（静的サイト）
+# AUGUST SHOP ウェブサイト
 
-`august-static-mock ver1.1` のアセットをベースに構築した、そのまま公開できる静的サイトです。
-ビルドツールは不要で、ファイルをそのままサーバーへアップロードすれば動作します。
-
-## 構成
+静的サイトです。ビルド不要で、`index.html` と `assets/` をそのままサーバーの公開ディレクトリに置けば動きます。
 
 ```
-.
-├── index.html          トップページ（1カラムLP / 全セクション）
-├── privacy.html        プライバシーポリシー
-├── 404.html            エラーページ（noindex）
-├── robots.txt
-├── sitemap.xml
-└── assets/
-    ├── style.css       全ページ共通スタイル
-    ├── app.js          ローダー / ドロワー / スクロール演出
-    ├── favicon.svg     ファビコン（Aモノグラム）
-    ├── apple-touch-icon.png
-    └── *.jpg / *.png   写真素材・ロゴ・LINE QR
+index.html          ページ本体（HTML / CSS / JS をすべて内包）
+assets/img/*.jpg    画像
 ```
 
-## ローカル確認
+## 公開手順
 
-```bash
-python3 -m http.server 4173
+1. レンタルサーバーなら FTP で `public_html`（または `www`）直下にアップロード
+2. Netlify / Cloudflare Pages / Vercel ならこのフォルダごとドラッグ＆ドロップ
+3. 独自ドメイン（august-shop.net）を向ける
+
+## 公開前に差し替えるもの
+
+| 場所 | 内容 |
+| --- | --- |
+| `index.html` 内の `[住所を差し込み]` | 店舗住所（販売についてセクション、フッター、JSON-LD の3か所） |
+| `[最寄駅からの案内を差し込み]` | 最寄駅からのアクセス |
+| `[対応している決済方法を差し込み]` | 決済方法 |
+| `[許可番号を差し込み]` | 古物商許可番号 |
+| `[LINE IDを差し込み]` | LINE公式アカウントのID。友だち追加URL（`https://line.me/R/ti/p/@xxxx`）があれば、LINE査定カードにリンクを貼ってください |
+| `[買取専用メールアドレスを差し込み]` | 買取専用のメールアドレス |
+| `assets/img/*.jpg` | 仮素材（Unsplash）の写真。店内3点はご支給画像ですが解像度が低いため、高解像度版への差し替えを推奨します |
+
+## 買取フォームの送信先
+
+現状はフロント側のバリデーションのみで、送信先が未設定です。`index.html` の
+
+```html
+<form id="buyform" novalidate action="" method="post" enctype="multipart/form-data">
 ```
 
-→ http://localhost:4173
+の `action` に送信先を設定すると、そのまま POST されます。選択肢は主に3つです。
 
-## モックから変更した点
+- **フォーム送信サービス**（最短）：Formspree、Tally、SSGFORM など。発行されたURLを `action` に入れるだけ。写真添付にも対応するプランを選んでください
+- **サーバーのPHP**：`action="/send.php"` にして、`mail()` や PHPMailer で買取専用アドレスへ転送
+- **Google フォーム**：入力項目をGoogleフォーム側に作り、`action` をそのエンドポイントに
 
-- モック配布用の「テーマZIP ダウンロード」ボタン／フローティングバッジを削除
-- `<head>` を刷新：canonical / OGP / Twitter Card / favicon / 構造化データ（schema.org `Store`）
-- 下層ページを追加：`privacy.html`、`404.html`（ヘッダー・ドロワー・フッターはトップと共通）
-- 画像に `width` / `height` / `loading="lazy"` を付与（CLS 対策・初期表示の軽量化）。ヒーロー画像のみ `fetchpriority="high"` で先読み
-- アクセシビリティ：スキップリンク、`:focus-visible` のアウトライン、ドロワーの `aria-expanded` / `aria-hidden` / フォーカストラップ・フォーカス復帰
-- SP（〜680px）でヒーローの SCROLL 表示がボタンと重なっていたため非表示に
-- 実リンクを設定：LINE 友だち追加（`@776yyqfq`）、Instagram（`@august_shop`）、プライバシーポリシー
+どれを選んでも、送信後の完了メッセージは `index.html` 末尾のスクリプト内 `formstatus` の文言を書き換えてください。
 
-## 公開前に差し替えが必要な項目（TODO）
+## Instagram の自動取り込み
 
-| 箇所 | 内容 |
-|---|---|
-| 各ファイルの `https://august-shop.net/` | 本番ドメインに合わせて canonical / OGP / sitemap / robots を修正 |
-| `index.html` ONLINE STORE / フッター SNS | ヤフオク・楽天市場・メルカリ・BASE の各URL（現在 `href="#"`） |
-| `index.html` SHOP INFO | 地図プレースホルダを Google マップ埋め込みに差し替え、住所・最寄駅を記載 |
-| `privacy.html` | `[　］` 内（所在地・代表者名・古物商許可番号・制定日）を記入 |
-| 未使用 | `assets/hero.png` は現在どこからも参照していません |
+Instagram欄は現在8枚の固定画像です。Instagram Graph API で最新投稿を取り込む場合は、
 
-**法令面の注意**：古物営業法により、古物商はウェブサイト上に許可を受けた公安委員会名・許可番号・
-氏名（名称）の表示が必要です。`privacy.html` に記入欄を用意していますが、フッターまたは
-会社概要への掲載もあわせてご検討ください。オンライン販売を自社サイトで行う場合は
-「特定商取引法に基づく表記」ページも別途必要になります。
+1. サーバーレス関数などで定期的に最新9件（画像URL・パーマリンク）を取得してJSONに保存
+2. `#igGrid` の中身をそのJSONから生成
 
-## デプロイ
+という構成にすると、表示速度を落とさずに自動更新できます。APIの利用自体は無料です。
 
-静的ホスティング（Netlify / Vercel / Cloudflare Pages / S3 / レンタルサーバー等）にそのまま配置できます。
-404 ページを有効にするには、ホスティング側で 404 時の表示先を `/404.html` に設定してください。
-（Netlify / Cloudflare Pages はルート直下の `404.html` を自動で使用します。Apache の場合は
-`.htaccess` に `ErrorDocument 404 /404.html` を追記してください。）
+## 対応環境
 
-## 対応ファイル
-
-- 旧ファイル `august-shop-renewal.html` は今回の構成では使用していません（参考用に残しています）。
+モダンブラウザ全般（Chrome / Safari / Edge / Firefox の最新版）。
+`prefers-reduced-motion` を有効にしている環境ではアニメーションが停止します。

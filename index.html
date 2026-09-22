@@ -1,777 +1,1012 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AUGUST SHOP｜アメカジ・ブランド古着の販売と高価買取</title>
-<meta name="description" content="アメカジ・ブランド古着を中心に、アーカイブ品から本格ヴィンテージまで取り扱う AUGUST SHOP。経験と知識のあるスタッフが一点一点丁寧に査定。宅配買取・LINE査定で全国対応しております。">
-<meta name="keywords" content="古着買取,ブランド古着,アメカジ,ヴィンテージ,宅配買取,LINE査定,AUGUST SHOP">
-<meta name="theme-color" content="#14130f">
-<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AUGUST SHOP</title>
+<meta name="description" content="アメカジ・ブランド古着の買取と販売。アーカイブ品から本格ヴィンテージまで、経験と知識のあるスタッフが一点一点丁寧に査定いたします。宅配買取・LINE査定も承っています。">
 <link rel="canonical" href="https://august-shop.net/">
-
-<!-- OGP / Twitter -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AUGUST SHOP">
-<meta property="og:locale" content="ja_JP">
-<meta property="og:title" content="AUGUST SHOP｜アメカジ・ブランド古着の販売と高価買取">
-<meta property="og:description" content="アーカイブ品から本格ヴィンテージまで。経験と知識のあるスタッフが一点一点丁寧に査定。宅配買取・LINE査定で全国対応しております。">
+<meta property="og:title" content="AUGUST SHOP｜アメカジ・ブランド古着の買取と販売">
+<meta property="og:description" content="長く愛せる一着に、出会える場所を。宅配買取・LINE査定も承っています。">
+<meta property="og:image" content="https://august-shop.net/assets/img/og.jpg">
 <meta property="og:url" content="https://august-shop.net/">
-<meta property="og:image" content="https://august-shop.net/assets/hero_atelier.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="670">
 <meta name="twitter:card" content="summary_large_image">
-
-<!-- Icons -->
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-
+<meta name="theme-color" content="#1C2438">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Zen+Old+Mincho:wght@400;500;700&family=Noto+Sans+JP:wght@200;300;400;500;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/hero_atelier.jpg" fetchpriority="high">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --canvas:#E9E3D6;
+  --canvas-deep:#DED7C7;
+  --ink:#1C2438;
+  --ink-deep:#141A28;
+  --muted:#55596A;
+  --brass:#7A5020;
+  --brass-light:#C9A46A;
+  --line:#C6BDA9;
+  --line-dark:#2C3345;
+  --paper:#FFFFFF;
+  --error:#8E2A1E;
+  --on-dark:#E9E3D6;
+  --on-dark-muted:#B9B3A5;
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Store",
-  "@id": "https://august-shop.net/#store",
-  "name": "AUGUST SHOP",
-  "alternateName": "オーガストショップ",
-  "description": "アメカジ・ブランド古着の販売および買取。宅配買取・LINE査定で全国対応。",
-  "url": "https://august-shop.net/",
-  "image": "https://august-shop.net/assets/hero_atelier.jpg",
-  "logo": "https://august-shop.net/assets/logo.png",
-  "email": "kaitori@august-shop.net",
-  "currenciesAccepted": "JPY",
-  "paymentAccepted": "現金, クレジットカード, 電子マネー, QRコード決済",
-  "parentOrganization": { "@type": "Organization", "name": "SGN Co., Ltd." },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Friday", "Saturday", "Sunday"],
-    "opens": "13:00",
-    "closes": "19:00"
-  }]
+  --gutter:clamp(20px,4.2vw,48px);
+  --maxw:1440px;
+
+  --f-display:clamp(34px,6.1vw,76px);
+  --f-h2:clamp(26px,3.2vw,42px);
+  --f-h3:clamp(20px,1.9vw,30px);
+  --f-h4:17px;
+  --f-body:clamp(15px,1.15vw,17px);
+  --f-small:14px;
+  --f-label:clamp(10px,0.9vw,13px);
+
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+  --latin:"Archivo","Helvetica Neue",Arial,sans-serif;
 }
-</script>
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--canvas);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:var(--f-body);
+  line-height:2.05;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
+}
+img{max-width:100%;display:block;}
+[hidden]{display:none!important;}
+.br-sp{display:inline;}
+@media (min-width:560px){.br-sp{display:none;}}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4,p,figure,dl,dd{margin:0;}
+h1,h2,h3{text-wrap:balance;line-height:1.4;font-weight:700;}
+ul{margin:0;padding:0;list-style:none;}
+:where(a,button,input,select,textarea,summary):focus-visible{
+  outline:2px solid var(--brass);outline-offset:3px;
+}
+[id]{scroll-margin-top:92px;}
+
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter);}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:12px 18px;z-index:200;}
+.skip:focus{left:8px;top:8px;}
+
+.label{font-family:var(--latin);font-size:var(--f-label);font-weight:700;letter-spacing:.26em;color:var(--brass);text-transform:uppercase;}
+.on-photo .label,.on-ink .label{color:var(--brass-light);}
+.lede{color:var(--muted);}
+.on-ink .lede,.on-photo .lede{color:var(--on-dark-muted);}
+.u{border-bottom:1px solid currentColor;padding-bottom:3px;}
+.link{font-size:15px;font-weight:500;display:inline-block;transition:color .2s;}
+.link:hover{color:var(--brass);}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:15px;font-weight:700;line-height:1;
+  padding:18px 32px;border:1px solid transparent;cursor:pointer;
+  transition:background-color .2s,color .2s,border-color .2s,transform .2s;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn--primary{background:var(--ink);color:#fff;}
+.btn--primary:hover{background:var(--ink-deep);color:#fff;}
+.btn--ghost{border-color:var(--ink);color:var(--ink);}
+.btn--ghost:hover{background:var(--ink);color:#fff;}
+.btn--light{background:var(--canvas);color:var(--ink);}
+.btn--light:hover{background:#fff;color:var(--ink);}
+.btn--outline-light{border-color:rgba(233,227,214,.7);color:var(--on-dark);}
+.btn--outline-light:hover{background:var(--on-dark);color:var(--ink);}
+.btn--lg{padding:21px 42px;font-size:16px;}
+.btn--sm{padding:13px 20px;font-size:14px;}
+.btn[disabled]{background:var(--line);color:#5C574D;border-color:transparent;cursor:not-allowed;transform:none;}
+
+/* ---------- header ---------- */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding-top:env(safe-area-inset-top,0px);
+  color:var(--on-dark);
+  border-bottom:1px solid rgba(233,227,214,.16);
+  transition:background-color .35s,color .35s,border-color .35s;
+}
+.site-header__inner{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  height:68px;
+}
+.site-header.is-solid{
+  background:var(--canvas);color:var(--ink);border-bottom-color:var(--line);
+}
+.brand{display:flex;align-items:baseline;gap:11px;}
+.brand__name{font-family:var(--latin);font-weight:800;font-size:19px;letter-spacing:.03em;}
+.brand__tag{font-family:var(--latin);font-weight:600;font-size:10px;letter-spacing:.26em;color:var(--brass-light);transition:color .35s;}
+.site-header.is-solid .brand__tag{color:var(--brass);}
+
+.nav{display:none;align-items:center;gap:clamp(14px,1.8vw,30px);}
+.nav a{font-size:14px;font-weight:500;transition:color .2s;}
+.nav a:hover{color:var(--brass-light);}
+.site-header.is-solid .nav a:hover{color:var(--brass);}
+.nav .btn--light{background:var(--canvas);color:var(--ink);}
+.site-header.is-solid .nav .btn--light{background:var(--ink);color:#fff;}
+.site-header.is-solid .nav .btn--outline-light{border-color:var(--ink);color:var(--ink);}
+.site-header.is-solid .nav .btn--outline-light:hover{background:var(--ink);color:#fff;}
+
+.burger{
+  width:44px;height:44px;padding:0;background:none;border:0;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:7px;
+}
+.burger span{display:block;width:24px;height:1.5px;background:currentColor;transition:transform .3s,opacity .3s;}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(4.25px) rotate(45deg);}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-4.25px) rotate(-45deg);}
+
+.menu{
+  position:fixed;inset:0;z-index:99;background:var(--ink-deep);color:var(--on-dark);
+  padding:calc(96px + env(safe-area-inset-top,0px)) var(--gutter) 40px;
+  display:flex;flex-direction:column;gap:6px;overflow-y:auto;
+}
+.menu a{font-size:22px;font-weight:700;padding:14px 0;border-bottom:1px solid var(--line-dark);}
+.menu__cta{display:flex;flex-direction:column;gap:12px;margin-top:26px;}
+.menu__cta .btn{width:100%;}
+
+@media (min-width:1000px){
+  .site-header__inner{height:88px;}
+  .brand__name{font-size:21px;}
+  .brand__tag{font-size:11px;}
+  .nav{display:flex;}
+  .burger{display:none;}
+  .menu{display:none!important;}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--ink-deep);color:var(--on-dark);isolation:isolate;}
+.hero__media{position:absolute;inset:0;z-index:-2;}
+.hero__media img{width:100%;height:100%;object-fit:cover;}
+.hero__scrim{
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(178deg,rgba(10,13,22,.80) 0%,rgba(10,13,22,.42) 34%,rgba(10,13,22,.86) 100%);
+}
+@media (min-width:1000px){
+  .hero__scrim{background:linear-gradient(96deg,rgba(10,13,22,.86) 0%,rgba(10,13,22,.64) 44%,rgba(10,13,22,.20) 76%,rgba(10,13,22,.46) 100%);}
+}
+.hero__inner{
+  position:relative;
+  padding-block:calc(150px + env(safe-area-inset-top,0px)) 120px;
+  min-height:min(640px,86vh);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero__eyebrow{display:flex;align-items:center;gap:16px;}
+.hero__eyebrow .rule{width:clamp(32px,4vw,56px);height:1px;background:var(--brass-light);flex-shrink:0;}
+.hero h1{
+  margin-top:24px;font-size:var(--f-display);line-height:1.26;letter-spacing:.005em;color:#fff;
+}
+.hero__lede{margin-top:24px;max-width:34em;color:#D5CFC2;}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;}
+.hero__meta{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;
+  margin-top:44px;font-size:var(--f-small);color:#D5CFC2;
+}
+.hero__meta .dot{width:1px;height:14px;background:rgba(233,227,214,.4);display:none;}
+.hero__vertical{
+  display:none;position:absolute;right:calc(var(--gutter) - 4px);top:50%;transform:translateY(-50%);
+  writing-mode:vertical-rl;font-family:var(--latin);font-size:12px;font-weight:600;
+  letter-spacing:.34em;color:rgba(233,227,214,.72);
+}
+.hero__scroll{
+  display:none;position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  flex-direction:column;align-items:center;gap:12px;
+}
+.hero__scroll span{font-family:var(--latin);font-size:10px;font-weight:700;letter-spacing:.32em;color:rgba(233,227,214,.72);}
+.hero__scroll i{width:1px;height:64px;background:linear-gradient(180deg,rgba(233,227,214,.7),rgba(233,227,214,0));}
+@media (min-width:1000px){
+  .hero__inner{min-height:min(820px,90vh);padding-block:190px 150px;}
+  .hero__lede{max-width:32em;}
+  .hero__meta .dot{display:block;}
+  .hero__vertical,.hero__scroll{display:flex;}
+}
+.hero__media img{animation:heroZoom 22s ease-out forwards;transform-origin:52% 50%;}
+@keyframes heroZoom{from{transform:scale(1.08);}to{transform:scale(1);}}
+@media (prefers-reduced-motion:reduce){.hero__media img{animation:none;}}
+
+/* ---------- generic section ---------- */
+.section{padding-block:clamp(56px,7vw,104px);}
+.section--deep{background:var(--canvas-deep);}
+.section--rule{border-top:1px solid var(--line);}
+.on-ink{background:var(--ink);color:var(--on-dark);}
+.section__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px;}
+.section__head h2{font-size:var(--f-h2);}
+h2 + .lede{margin-top:16px;}
+
+/* ---------- about ---------- */
+.about{display:grid;gap:0;}
+.about__text{padding-block:clamp(52px,6.5vw,104px);}
+.about__text h2{font-size:var(--f-h2);line-height:1.6;}
+.about__text p{margin-top:26px;max-width:38em;}
+.about__text p + p{color:var(--on-dark-muted);}
+.about__media img{width:100%;height:clamp(240px,42vw,100%);min-height:240px;object-fit:cover;}
+@media (min-width:1000px){
+  .about{grid-template-columns:minmax(0,1fr) 520px;align-items:stretch;}
+  .about__text{padding-right:72px;}
+  .about__media img{height:100%;min-height:520px;}
+}
+
+/* ---------- brands ---------- */
+.brands{position:relative;overflow:hidden;background:var(--ink-deep);color:var(--on-dark);isolation:isolate;padding-block:clamp(38px,4.6vw,62px);}
+.brands__media{position:absolute;inset:0;z-index:-2;}
+.brands__media img{width:100%;height:100%;object-fit:cover;}
+.brands::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(16,21,33,.87);}
+.marquee{overflow:hidden;}
+.marquee__track{
+  display:flex;width:max-content;gap:clamp(24px,3vw,48px);align-items:center;
+  font-family:var(--latin);font-size:clamp(19px,2.2vw,29px);font-weight:600;white-space:nowrap;
+  animation:marquee 46s linear infinite;
+}
+.marquee--alt .marquee__track{animation-duration:62s;animation-direction:reverse;color:rgba(233,227,214,.5);}
+.marquee + .marquee{margin-top:16px;}
+.marquee__track span[aria-hidden="true"]{color:var(--brass-light);}
+.marquee--alt .marquee__track span[aria-hidden="true"]{color:inherit;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion:reduce){.marquee__track{animation:none;}}
+.brands__note{margin-top:clamp(24px,3vw,40px);font-size:var(--f-small);color:var(--on-dark-muted);}
+
+/* ---------- buy methods ---------- */
+.methods{display:grid;gap:clamp(40px,5vw,56px);margin-top:clamp(32px,4vw,48px);}
+@media (min-width:860px){.methods{grid-template-columns:1fr 1fr;}}
+.method img{width:100%;height:clamp(200px,26vw,320px);object-fit:cover;}
+.method .label{display:block;margin-top:26px;}
+.method h3{margin-top:12px;font-size:var(--f-h3);}
+.method p{margin-top:18px;color:var(--muted);}
+.method__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+
+/* ---------- statement ---------- */
+.statement{position:relative;overflow:hidden;background:var(--ink-deep);color:var(--on-dark);isolation:isolate;}
+.statement__media{position:absolute;inset:0;z-index:-2;}
+.statement__media img{width:100%;height:100%;object-fit:cover;}
+.statement::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(178deg,rgba(10,13,22,.62),rgba(10,13,22,.88));
+}
+@media (min-width:1000px){
+  .statement::before{background:linear-gradient(90deg,rgba(10,13,22,.90) 0%,rgba(10,13,22,.66) 52%,rgba(10,13,22,.22) 100%);}
+}
+.statement__inner{padding-block:clamp(72px,9vw,128px);}
+.statement h2{font-size:var(--f-h2);line-height:1.55;color:#fff;}
+.statement p{margin-top:22px;max-width:32em;color:#D5CFC2;}
+
+/* ---------- notes ---------- */
+.notes{display:grid;gap:clamp(26px,4vw,88px);}
+@media (min-width:860px){.notes{grid-template-columns:300px 1fr;}}
+.notes__items{display:grid;gap:clamp(26px,4vw,64px);}
+@media (min-width:1000px){.notes__items{grid-template-columns:1fr 1.4fr;}}
+.notes h3{font-size:var(--f-h4);}
+.notes p{margin-top:14px;color:var(--muted);}
+
+/* ---------- instagram ---------- */
+.ig__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;}
+.ig__account{display:flex;align-items:center;gap:14px;}
+.ig__account span:first-child{font-family:var(--latin);font-size:16px;font-weight:700;}
+.ig__grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;
+  margin-top:clamp(24px,3vw,48px);
+}
+@media (min-width:640px){.ig__grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}}
+@media (min-width:1000px){.ig__grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;}}
+.ig__grid a{display:block;overflow:hidden;background:var(--line);}
+.ig__grid img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .5s ease;}
+.ig__grid a:hover img{transform:scale(1.04);}
+.ig__more{margin-top:clamp(24px,3vw,44px);}
+
+/* ---------- services ---------- */
+.services{display:grid;gap:clamp(44px,5vw,0px);}
+@media (min-width:860px){
+  .services{grid-template-columns:1fr 1fr;gap:0;}
+  .service:first-child{padding-right:72px;border-right:1px solid var(--line);}
+  .service:last-child{padding-left:72px;}
+}
+.service img{width:100%;height:clamp(220px,26vw,360px);object-fit:cover;}
+.service__name{margin-top:28px;font-family:var(--latin);font-size:clamp(28px,3vw,34px);font-weight:800;letter-spacing:.02em;}
+.service p{margin-top:18px;color:var(--muted);}
+.service__foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:24px;}
+.soon{font-family:var(--latin);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--muted);}
+
+/* ---------- store ---------- */
+.store{display:grid;gap:clamp(32px,4vw,56px);}
+@media (min-width:860px){.store{grid-template-columns:280px minmax(0,1fr);}}
+@media (min-width:1180px){.store{grid-template-columns:280px minmax(0,1fr) 360px;}}
+.store__intro h2{font-size:var(--f-h2);line-height:1.5;}
+.store__intro p{margin-top:18px;font-size:15px;color:var(--muted);}
+.store dl{display:grid;grid-template-columns:auto;}
+@media (min-width:520px){.store dl{grid-template-columns:130px 1fr;column-gap:28px;}}
+.store dt{padding-top:20px;font-size:15px;font-weight:700;border-top:1px solid var(--line);}
+.store dd{padding-bottom:20px;font-size:16px;color:var(--muted);}
+@media (min-width:520px){
+  .store dt{padding-block:20px;}
+  .store dd{padding-block:20px;border-top:1px solid var(--line);}
+}
+.store__photo img{width:100%;height:clamp(260px,44vw,520px);object-fit:cover;}
+
+/* ---------- form ---------- */
+.formsec{background:var(--canvas-deep);border-top:1px solid var(--line);}
+.formgrid{display:grid;gap:clamp(40px,5vw,64px);margin-top:clamp(32px,4vw,52px);}
+@media (min-width:980px){.formgrid{grid-template-columns:minmax(0,1fr) 340px;}}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+.field > label,.fieldset > legend{font-size:14px;font-weight:700;}
+.req{color:var(--error);font-size:12px;margin-left:6px;}
+.opt{color:var(--muted);font-size:12px;margin-left:6px;font-weight:500;}
+.field input[type="text"],.field input[type="tel"],.field input[type="email"],.field select,.field textarea{
+  font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper);
+  border:1px solid var(--muted);padding:14px;width:100%;line-height:1.6;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:2px solid var(--brass);outline-offset:2px;border-color:var(--brass);
+}
+.field textarea{resize:vertical;min-height:110px;}
+.field .hint{font-size:12px;color:var(--muted);line-height:1.8;}
+.field .err{font-size:12px;font-weight:700;color:var(--error);}
+.field[data-invalid="true"] input,.field[data-invalid="true"] select,.field[data-invalid="true"] textarea{border:2px solid var(--error);}
+.row{display:grid;gap:0 20px;}
+@media (min-width:640px){.row{grid-template-columns:1fr 1fr;}}
+.fieldset{border:0;padding:0;margin:0 0 22px;}
+.fieldset legend{padding:0;margin-bottom:10px;}
+.choices{display:flex;flex-wrap:wrap;gap:10px;}
+.choice{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--paper);padding:13px 18px;font-size:15px;cursor:pointer;}
+.choice input{accent-color:var(--brass);width:17px;height:17px;}
+.choice:has(input:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);}
+.drop{border:1px dashed var(--muted);background:var(--paper);padding:22px;text-align:center;}
+.drop input{font-size:14px;}
+.agree{display:flex;align-items:flex-start;gap:11px;font-size:15px;line-height:1.9;}
+.agree input{margin-top:6px;accent-color:var(--brass);width:18px;height:18px;flex-shrink:0;}
+.form__submit{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:8px;}
+.form__note{font-size:13px;color:var(--muted);}
+.formstatus{margin-top:20px;padding:20px;border-left:3px solid var(--brass);background:var(--paper);font-size:15px;line-height:1.95;}
+.aside{display:flex;flex-direction:column;gap:26px;}
+.card{background:var(--paper);padding:26px;}
+.card--line{background:var(--brass);color:#fff;}
+.card--line h3{font-size:19px;}
+.card--line ol{margin:16px 0 0;padding-left:1.15em;font-size:14px;line-height:2;}
+.card--line .id{margin-top:18px;font-family:var(--latin);font-size:15px;font-weight:700;border-top:1px solid rgba(255,255,255,.4);padding-top:16px;}
+.card h3{font-size:var(--f-h4);}
+.card p{margin-top:12px;font-size:14px;color:var(--muted);}
+.card--line p{color:rgba(255,255,255,.88);}
+
+/* ---------- final cta ---------- */
+.cta{background:var(--ink);color:var(--on-dark);}
+.cta__inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px;padding-block:clamp(56px,7vw,104px);}
+.cta h2{font-size:var(--f-h2);line-height:1.45;color:var(--on-dark);}
+.cta p{margin-top:20px;color:var(--on-dark-muted);font-size:16px;}
+.cta__buttons{display:flex;flex-direction:column;gap:14px;min-width:min(100%,260px);}
+
+/* ---------- footer ---------- */
+.footer{background:var(--ink-deep);color:var(--on-dark);padding-block:clamp(48px,5vw,64px) 0;}
+.footer__top{display:grid;gap:36px;}
+@media (min-width:860px){.footer__top{grid-template-columns:1fr auto;}}
+.footer__name{font-family:var(--latin);font-weight:800;font-size:23px;letter-spacing:.03em;}
+.footer address{margin-top:16px;font-style:normal;font-size:14px;line-height:2;color:#9C9689;}
+.footer__links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 48px;}
+@media (min-width:860px){.footer__links{grid-template-columns:repeat(3,auto);gap:15px 72px;}}
+.footer__links a{font-size:14px;transition:color .2s;}
+.footer__links a:hover{color:var(--brass-light);}
+.footer__bottom{
+  margin-top:clamp(32px,4vw,48px);padding-block:24px calc(24px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--line-dark);
+  font-family:var(--latin);font-size:12px;color:#8C867E;
+}
+@media (max-width:859px){.footer__bottom{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px));}}
+
+/* ---------- persistent cta ---------- */
+.dock{position:fixed;z-index:90;left:0;right:0;bottom:0;padding:0 12px 0;background:var(--brass);
+  display:flex;gap:10px;align-items:center;
+  padding-block:12px calc(12px + env(safe-area-inset-bottom,0px));
+}
+.dock .btn{flex:1;padding:15px 0;font-size:15px;}
+.dock .btn--white{background:#fff;color:var(--brass);}
+.dock .btn--wire{border-color:#fff;color:#fff;}
+.dock .btn--wire:hover{background:#fff;color:var(--brass);}
+@media (min-width:860px){
+  .dock{
+    left:auto;right:32px;bottom:auto;top:50%;transform:translateY(-50%);
+    width:206px;flex-direction:column;gap:0;padding:0;
+    box-shadow:0 10px 30px rgba(28,36,56,.28);
+    opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;
+  }
+  .dock.is-on{opacity:1;visibility:visible;}
+  .dock .btn{width:100%;padding:17px 20px;justify-content:flex-start;}
+  .dock .btn--white{background:transparent;color:#fff;border-bottom:1px solid rgba(255,255,255,.35);}
+  .dock .btn--white:hover{background:rgba(0,0,0,.14);color:#fff;}
+  .dock .btn--wire{border-color:transparent;color:#fff;}
+  .dock .btn--wire:hover{background:rgba(0,0,0,.14);color:#fff;}
+  .dock .btn:hover{transform:none;}
+}
+
+/* ---------- reveal (JS adds .js to <html>) ---------- */
+.js .reveal{opacity:0;transform:translateY(24px);}
+.js .reveal.is-in{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1);}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;}}
+</style>
 </head>
 <body>
-<a href="#top" class="skipLink">本文へスキップ</a>
+<a class="skip" href="#main">本文へスキップ</a>
 
-<!-- ============ LOADER ============ -->
-<div class="loader" id="loader">
-  <div class="loader__inner">
-    <span class="loader__mark">A</span>
-    <span class="loader__text">AUGUST SHOP</span>
-  </div>
-</div>
-
-<!-- ============ HEADER ============ -->
-<header class="header" id="header">
-  <div class="header__inner">
-    <a href="#top" class="brand">
-      <span class="brand__mark">AUGUST</span>
-      <span class="brand__sub">SHOP<i></i>BRAND USED CLOTHING</span>
+<header class="site-header" id="siteHeader">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#top">
+      <span class="brand__name">AUGUST SHOP</span>
+      <span class="brand__tag">BUY &amp; SELL</span>
     </a>
-
-    <nav class="gnav">
-      <a href="#about">店舗紹介</a>
-      <a href="#category">取扱ブランド</a>
-      <a href="#method">買取方法</a>
-      <a href="#service">サービス</a>
-      <a href="#shopinfo">店舗情報</a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="#buy">買取について</a>
+      <a href="#brands">取り扱いブランド</a>
+      <a href="#restore">restore</a>
+      <a href="#store">販売について</a>
+      <a class="btn btn--light btn--sm" href="#form">買取フォーム</a>
+      <a class="btn btn--outline-light btn--sm" href="#line">LINE査定</a>
     </nav>
-
-    <div class="header__cta">
-      <a href="#line" class="btn btn--line btn--sm">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.9 3 2.8 6.4 2.8 10.6c0 3.8 3.3 7 7.7 7.6.3.1.7.2.8.5.1.3.1.7 0 1l-.1.8c0 .2-.2.9.8.5s5.3-3.1 7.2-5.3c1.3-1.4 1.9-2.9 1.9-5.1C21.1 6.4 17 3 12 3z"/></svg>
-        LINEで査定
-      </a>
-      <button class="burger" id="burger" aria-label="メニューを開く"><span></span><span></span><span></span></button>
-    </div>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="メニューを開く">
+      <span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- ============ DRAWER ============ -->
-<div class="drawer" id="drawer">
-  <div class="drawer__bg"></div>
-  <div class="drawer__panel">
-    <div class="drawer__head">
-      <span class="drawer__logo">AUGUST SHOP</span>
-      <button class="drawer__close" id="drawerClose" aria-label="閉じる">CLOSE</button>
-    </div>
-    <div class="drawer__body">
-      <ul class="drawer__nav">
-        <li><a href="#about"><em>01</em>店舗紹介<span>ABOUT</span></a></li>
-        <li><a href="#category"><em>02</em>取扱ブランド<span>CATEGORY</span></a></li>
-        <li><a href="#method"><em>03</em>買取方法<span>METHOD</span></a></li>
-        <li><a href="#flow"><em>04</em>LINE査定の流れ<span>FLOW</span></a></li>
-        <li><a href="#service"><em>05</em>リペア / オリジナル<span>SERVICE</span></a></li>
-        <li><a href="#shopinfo"><em>06</em>店舗情報<span>SHOP INFO</span></a></li>
-        <li><a href="#company"><em>07</em>会社概要<span>COMPANY</span></a></li>
-      </ul>
-      <div class="drawer__foot">
-        <a href="#line" class="btn btn--line btn--block">LINEで無料査定</a>
-        <a href="mailto:kaitori@august-shop.net" class="btn btn--ghost btn--block">メールで買取相談</a>
-        <p class="drawer__note">営業時間 13:00 - 19:00 / 定休日 水・木</p>
-      </div>
-    </div>
+<div class="menu" id="menu" hidden>
+  <a href="#buy">買取について</a>
+  <a href="#brands">取り扱いブランド</a>
+  <a href="#restore">restore</a>
+  <a href="#store">販売について</a>
+  <a href="#instagram">Instagram</a>
+  <div class="menu__cta">
+    <a class="btn btn--light" href="#form">買取フォーム</a>
+    <a class="btn btn--outline-light" href="#line">LINE査定</a>
   </div>
 </div>
 
-<main id="top">
+<main id="main">
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero__media">
-    <img src="assets/hero_atelier.jpg" alt="アメカジ・ブランド古着" width="1200" height="670" fetchpriority="high" decoding="async">
+  <!-- HERO -->
+  <section class="hero on-photo" id="top">
+    <div class="hero__media"><img src="assets/img/hero.jpg" alt="ラックに掛かったヴィンテージのレザージャケット。" fetchpriority="high" width="1500" height="1000"></div>
     <div class="hero__scrim"></div>
-  </div>
-
-  <div class="hero__body">
-    <p class="hero__eyebrow"><span>AMERICAN CASUAL &amp; VINTAGE</span></p>
-    <h1 class="hero__title">
-      <span class="ln">長く愛せる一着に、</span>
-      <span class="ln">出会える場所へ。</span>
-    </h1>
-    <p class="hero__lead">
-      アーカイブ品から本格ヴィンテージまで。<br>
-      経験と知識のあるスタッフが、一点一点丁寧に査定いたします。
-    </p>
-    <div class="hero__btns">
-      <a href="#line" class="btn btn--line">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.9 3 2.8 6.4 2.8 10.6c0 3.8 3.3 7 7.7 7.6.3.1.7.2.8.5.1.3.1.7 0 1l-.1.8c0 .2-.2.9.8.5s5.3-3.1 7.2-5.3c1.3-1.4 1.9-2.9 1.9-5.1C21.1 6.4 17 3 12 3z"/></svg>
-        LINEで無料査定
-      </a>
-      <a href="#method" class="btn btn--outline-light">買取方法を見る</a>
-    </div>
-  </div>
-
-  <div class="hero__side">
-    <span class="hero__sideText">ARCHIVE &amp; VINTAGE CLOTHING</span>
-  </div>
-
-  <a href="#ticker" class="hero__scroll"><span>SCROLL</span><i></i></a>
-</section>
-
-<!-- ============ TICKER ============ -->
-<div class="ticker" id="ticker">
-  <div class="ticker__row">
-    <div class="ticker__track">
-      <span>ARC'TERYX</span><i></i><span>COMME des GARÇONS</span><i></i><span>Patagonia</span><i></i><span>ACRONYM</span><i></i>
-      <span>C.P. COMPANY</span><i></i><span>STUSSY</span><i></i><span>Levi's</span><i></i><span>Ralph Lauren</span><i></i>
-      <span>ISAMU KATAYAMA</span><i></i><span>agnès b.</span><i></i><span>THE NORTH FACE</span><i></i><span>Maison Margiela</span><i></i>
-      <span>ARC'TERYX</span><i></i><span>COMME des GARÇONS</span><i></i><span>Patagonia</span><i></i><span>ACRONYM</span><i></i>
-      <span>C.P. COMPANY</span><i></i><span>STUSSY</span><i></i><span>Levi's</span><i></i><span>Ralph Lauren</span><i></i>
-      <span>ISAMU KATAYAMA</span><i></i><span>agnès b.</span><i></i><span>THE NORTH FACE</span><i></i><span>Maison Margiela</span><i></i>
-    </div>
-  </div>
-</div>
-
-<!-- ============ CAMPAIGN ============ -->
-<section class="campaign reveal" id="campaign">
-  <div class="wrap">
-    <div class="campaign__head">
-      <div class="sechead sechead--left">
-        <span class="sechead__en">CAMPAIGN</span>
-        <h2 class="sechead__ja">買取UP キャンペーン</h2>
+    <div class="wrap hero__inner">
+      <p class="hero__eyebrow"><span class="rule"></span><span class="label">American Casual &amp; Vintage</span></p>
+      <h1>長く愛せる一着に、<br>出会える場所を。</h1>
+      <p class="hero__lede">アメカジやブランド古着を中心に、アーカイブ品から本格ヴィンテージまで。経験と知識のあるスタッフが、一点一点丁寧に査定いたします。</p>
+      <div class="hero__cta">
+        <a class="btn btn--light btn--lg" href="#form">買取フォーム</a>
+        <a class="btn btn--outline-light btn--lg" href="#line">LINE査定</a>
       </div>
-      <p class="campaign__note">＼ 期間限定のお得な買取強化を実施中 ／</p>
-    </div>
-  </div>
-  <div class="campaign__scroller" id="campaignScroller">
-    <article class="cmpCard">
-      <div class="cmpCard__img"><img src="assets/cat_outer.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-      <div class="cmpCard__body">
-        <span class="cmpCard__tag">10% UP</span>
-        <h3>アウトドア / テック系アウター</h3>
-        <p>ARC'TERYX・Patagonia・ACRONYM 他</p>
-      </div>
-    </article>
-    <article class="cmpCard">
-      <div class="cmpCard__img"><img src="assets/cat_denim.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-      <div class="cmpCard__body">
-        <span class="cmpCard__tag">15% UP</span>
-        <h3>ヴィンテージデニム</h3>
-        <p>Levi's・Lee・WAREHOUSE 他</p>
-      </div>
-    </article>
-    <article class="cmpCard">
-      <div class="cmpCard__img"><img src="assets/cat_accessory.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-      <div class="cmpCard__body">
-        <span class="cmpCard__tag">10% UP</span>
-        <h3>シルバー / インディアンジュエリー</h3>
-        <p>Chrome Hearts・Navajo 他</p>
-      </div>
-    </article>
-    <article class="cmpCard">
-      <div class="cmpCard__img"><img src="assets/cat_boots.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-      <div class="cmpCard__body">
-        <span class="cmpCard__tag">PLUS UP</span>
-        <h3>まとめ売りプラスアップ</h3>
-        <p>5点以上のご依頼で査定額アップ</p>
-      </div>
-    </article>
-    <article class="cmpCard">
-      <div class="cmpCard__img"><img src="assets/cat_sneakers.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-      <div class="cmpCard__body">
-        <span class="cmpCard__tag">10% UP</span>
-        <h3>スニーカー買取強化</h3>
-        <p>NIKE・New Balance・adidas 他</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ============ ABOUT / 店舗紹介 ============ -->
-<section class="about" id="about">
-  <div class="wrap about__grid">
-    <div class="about__text reveal">
-      <div class="sechead sechead--left">
-        <span class="sechead__en">ABOUT US</span>
-        <h2 class="sechead__ja">店舗紹介</h2>
-      </div>
-      <p class="about__lead">
-        アーカイブ品から本格ヴィンテージまで、<br>
-        長く愛せる一着に出会える場所を目指して。
+      <p class="hero__meta">
+        <span>お見積り・配送キット すべて無料</span>
+        <span class="dot"></span>
+        <span>査定の有効期限 1週間</span>
       </p>
-      <p class="about__body">
-        当店ではアメカジやブランド古着を中心に、アーカイブ品から本格ヴィンテージまで幅広く取り扱っております。
-        日常の装いに添えるアイテムを取り揃え、長く愛せる一着に出会える場所を目指しています。
-        洋服だけではなく、オリジナルのシルバーアクセサリーやベルトもご用意しております。
-      </p>
-      <p class="about__body">
-        買取は経験と知識のあるスタッフが一点一点丁寧に査定させていただきますので、高額査定が可能です。
-        宅配買取やLINE査定サービスも行っておりますので、遠方のお客様も是非ご利用ください。
-      </p>
-      <ul class="about__stats">
-        <li><strong>24<small>h</small></strong><span>以内に査定回答</span></li>
-        <li><strong>1<small>週間</small></strong><span>査定金額の有効期限</span></li>
-        <li><strong>0<small>円</small></strong><span>見積り・配送キット</span></li>
-      </ul>
-      <a href="#method" class="link-arrow">買取方法を見る</a>
     </div>
-    <div class="about__media reveal">
-      <img src="assets/brand_story.jpg" alt="AUGUST SHOP の店内" width="1200" height="670" loading="lazy" decoding="async">
-      <span class="about__caption">AUGUST SHOP / Archive &amp; Vintage</span>
-    </div>
-  </div>
-</section>
+    <p class="hero__vertical">ARCHIVE &amp; VINTAGE CLOTHING</p>
+    <p class="hero__scroll"><span>SCROLL</span><i></i></p>
+  </section>
 
-<!-- ============ CATEGORY / 取扱ブランド ============ -->
-<section class="category" id="category">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <span class="sechead__en">CATEGORY</span>
-      <h2 class="sechead__ja">取扱ブランド・アイテム</h2>
-      <p class="sechead__desc">アメカジ・ブランド古着を中心に、アーカイブから本格ヴィンテージまで。<br class="sp">幅広いブランドを高価買取しております。</p>
-    </div>
-
-    <div class="catGrid">
-      <a class="catCard reveal" href="#line">
-        <div class="catCard__img"><img src="assets/cat_wear.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-        <div class="catCard__body">
-          <span class="catCard__en">WEAR</span>
-          <h3>ブランド古着</h3>
-          <p>COMME des GARÇONS / Maison Margiela / sacai / UNDERCOVER / visvim / WTAPS</p>
-        </div>
-      </a>
-      <a class="catCard reveal" href="#line">
-        <div class="catCard__img"><img src="assets/cat_outer.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-        <div class="catCard__body">
-          <span class="catCard__en">OUTDOOR</span>
-          <h3>アウター / テックウェア</h3>
-          <p>ARC'TERYX / Patagonia / ACRONYM / THE NORTH FACE / C.P. COMPANY</p>
-        </div>
-      </a>
-      <a class="catCard reveal" href="#line">
-        <div class="catCard__img"><img src="assets/cat_denim.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-        <div class="catCard__body">
-          <span class="catCard__en">VINTAGE</span>
-          <h3>アメカジ / ヴィンテージ</h3>
-          <p>Levi's / Lee / Ralph Lauren / STUSSY / Champion / MILITARY</p>
-        </div>
-      </a>
-      <a class="catCard reveal" href="#line">
-        <div class="catCard__img"><img src="assets/cat_sneakers.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-        <div class="catCard__body">
-          <span class="catCard__en">SNEAKERS</span>
-          <h3>スニーカー</h3>
-          <p>NIKE / adidas / New Balance / ASICS / SALOMON / CONVERSE ADDICT</p>
-        </div>
-      </a>
-      <a class="catCard reveal" href="#line">
-        <div class="catCard__img"><img src="assets/cat_boots.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-        <div class="catCard__body">
-          <span class="catCard__en">SHOES</span>
-          <h3>シューズ / ブーツ</h3>
-          <p>REDWING / Danner / Paraboot / Dr.Martens / Hender Scheme</p>
-        </div>
-      </a>
-      <a class="catCard reveal" href="#line">
-        <div class="catCard__img"><img src="assets/cat_bag.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-        <div class="catCard__body">
-          <span class="catCard__en">BAG</span>
-          <h3>バッグ / 財布</h3>
-          <p>PORTER / BRIEFING / GREGORY / 土屋鞄 / ISAMU KATAYAMA BACKLASH</p>
-        </div>
-      </a>
-      <a class="catCard reveal" href="#line">
-        <div class="catCard__img"><img src="assets/cat_accessory.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-        <div class="catCard__body">
-          <span class="catCard__en">ACCESSORIES</span>
-          <h3>アクセサリー / シルバー</h3>
-          <p>Chrome Hearts / インディアンジュエリー / LARRY SMITH / TADY&amp;KING</p>
-        </div>
-      </a>
-      <a class="catCard reveal" href="#line">
-        <div class="catCard__img"><img src="assets/cat_watch.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"></div>
-        <div class="catCard__body">
-          <span class="catCard__en">WATCH &amp; EYEWEAR</span>
-          <h3>時計 / 眼鏡</h3>
-          <p>SEIKO / HAMILTON / G-SHOCK / 999.9 / 金子眼鏡 / ayame</p>
-        </div>
-      </a>
-    </div>
-
-    <div class="category__more reveal">
-      <p>＼ ブランドリストにないブランドでも、まずはご相談ください ／</p>
-      <a href="#line" class="btn btn--dark">取扱ブランドリストを見る</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FEATURE ============ -->
-<section class="feature" id="feature">
-  <div class="wrap">
-    <div class="sechead sechead--light reveal">
-      <span class="sechead__en">FEATURE</span>
-      <h2 class="sechead__ja">AUGUST SHOP が選ばれる理由</h2>
-    </div>
-    <div class="featGrid">
-      <div class="featCard reveal">
-        <span class="featCard__no">01</span>
-        <h3>経験と知識のある<br>スタッフによる査定</h3>
-        <p>一点一点を丁寧に拝見し、アーカイブやヴィンテージの価値も正しく見極めます。だからこそ高額査定が可能です。</p>
+  <!-- ABOUT -->
+  <section class="on-ink">
+    <div class="about">
+      <div class="wrap about__text">
+        <h2>日常の装いに、添える一着を。</h2>
+        <p>日常の装いに添えるアイテムを取り揃え、長く愛せる一着に出会える場所を目指しています。洋服だけではなく、オリジナルのシルバーアクセサリーやベルトもご用意しております。</p>
+        <p>買取は経験と知識のあるスタッフが一点一点丁寧に査定させていただきますので、高額査定が可能です。宅配買取やLINE査定サービスも行っておりますので、遠方のお客様も是非ご利用ください。</p>
       </div>
-      <div class="featCard reveal">
-        <span class="featCard__no">02</span>
-        <h3>遠方の方も使える<br>宅配買取・LINE査定</h3>
-        <p>お見積り・配送キットはすべて無料。ご来店が難しい遠方のお客様も、ご自宅から簡単にご利用いただけます。</p>
-      </div>
-      <div class="featCard reveal">
-        <span class="featCard__no">03</span>
-        <h3>洋服だけではない<br>オリジナルアイテム</h3>
-        <p>オリジナルのシルバーアクセサリーやベルトもご用意。日常の装いに添える一点をお選びいただけます。</p>
+      <div class="about__media">
+        <img src="assets/img/shop-about.jpg" alt="ガラス戸のエントランスと、木のカウンター什器。" loading="lazy" width="900" height="967">
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ METHOD / 買取方法 ============ -->
-<section class="method" id="method">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <span class="sechead__en">PURCHASE METHOD</span>
-      <h2 class="sechead__ja">買取方法</h2>
-      <p class="sechead__desc">ご来店での「対面買取」と、全国対応の「宅配買取」をご用意しております。</p>
+  <!-- BRANDS -->
+  <section class="brands" id="brands">
+    <div class="brands__media"><img src="assets/img/brands.jpg" alt="" aria-hidden="true" loading="lazy" width="1400" height="933"></div>
+    <h2 class="wrap label" style="margin-bottom:26px;">Brands</h2>
+    <div class="marquee">
+      <div class="marquee__track">
+        <span>Levi&#39;s</span><span aria-hidden="true">/</span><span>Ralph Lauren</span><span aria-hidden="true">/</span><span>Patagonia</span><span aria-hidden="true">/</span><span>STÜSSY</span><span aria-hidden="true">/</span><span>PORTER CLASSIC</span><span aria-hidden="true">/</span><span>45R</span><span aria-hidden="true">/</span><span>C.P. COMPANY</span><span aria-hidden="true">/</span>
+        <span aria-hidden="true">Levi&#39;s</span><span aria-hidden="true">/</span><span aria-hidden="true">Ralph Lauren</span><span aria-hidden="true">/</span><span aria-hidden="true">Patagonia</span><span aria-hidden="true">/</span><span aria-hidden="true">STÜSSY</span><span aria-hidden="true">/</span><span aria-hidden="true">PORTER CLASSIC</span><span aria-hidden="true">/</span><span aria-hidden="true">45R</span><span aria-hidden="true">/</span><span aria-hidden="true">C.P. COMPANY</span><span aria-hidden="true">/</span>
+      </div>
     </div>
+    <div class="marquee marquee--alt">
+      <div class="marquee__track">
+        <span>COMME des GARÇONS HOMME</span><span aria-hidden="true">/</span><span>ISAMU KATAYAMA BACKLASH</span><span aria-hidden="true">/</span><span>ACRONYM</span><span aria-hidden="true">/</span><span>TEATORA</span><span aria-hidden="true">/</span>
+        <span aria-hidden="true">COMME des GARÇONS HOMME</span><span aria-hidden="true">/</span><span aria-hidden="true">ISAMU KATAYAMA BACKLASH</span><span aria-hidden="true">/</span><span aria-hidden="true">ACRONYM</span><span aria-hidden="true">/</span><span aria-hidden="true">TEATORA</span><span aria-hidden="true">/</span>
+      </div>
+    </div>
+    <p class="wrap brands__note">ブランドリストにないブランドでも、まずはご相談ください。</p>
+  </section>
 
-    <div class="methodGrid">
-      <article class="methodCard reveal">
-        <div class="methodCard__head">
-          <span class="methodCard__en">IN-STORE</span>
+  <!-- BUY METHODS -->
+  <section class="section" id="buy">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <h2>買取は、2つの方法から。</h2>
+        <p class="lede" style="font-size:14px;">お見積り、配送キットすべて無料です。</p>
+      </div>
+      <div class="methods">
+        <article class="method reveal">
+          <img src="assets/img/shop-instore.jpg" alt="紺の建具が続く店内の通路と、奥のカウンター。" loading="lazy" width="1060" height="516">
+          <span class="label">In store</span>
           <h3>対面買取</h3>
-          <p class="methodCard__lead">店頭にてその場で査定・お支払い。スタッフが直接お品物を拝見します。</p>
-        </div>
-        <ul class="methodCard__list">
-          <li>ご本人確認書類をお持ちください</li>
-          <li>買取金額が高額の場合、お振込みになる場合がございます</li>
-          <li>点数が多い場合やご内容により、査定結果が翌日以降になる場合がございます</li>
-        </ul>
-        <div class="methodCard__foot">
-          <a href="#shopinfo" class="link-arrow">店舗情報・アクセスを見る</a>
-        </div>
-      </article>
-
-      <article class="methodCard methodCard--accent reveal">
-        <div class="methodCard__head">
-          <span class="methodCard__en">DELIVERY</span>
+          <p>店頭にお持ちいただければ、その場で査定いたします。買取金額が高額の場合、お振込みになる場合がございます。点数が多い場合やご内容により、査定結果が翌日以降になる場合がございます。</p>
+          <p class="method__cta"><a class="link u" href="#store">店舗へのアクセスを見る</a></p>
+        </article>
+        <article class="method reveal">
+          <img src="assets/img/delivery.jpg" alt="衣類を詰めた宅配買取のダンボール箱。" loading="lazy" width="1000" height="667">
+          <span class="label">Delivery</span>
           <h3>宅配買取</h3>
-          <p class="methodCard__lead">LINE査定、またはメールでのお見積りをご利用いただけます。遠方のお客様におすすめです。</p>
+          <p>お見積り、配送キットすべて無料です。買取フォームならサイト内で申し込みまで完結します。写真で先に金額を知りたい方は、LINE査定をご利用ください。</p>
+          <div class="method__cta">
+            <a class="btn btn--primary" href="#form">買取フォーム</a>
+            <a class="btn btn--ghost" href="#line">LINE査定</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement">
+    <div class="statement__media"><img src="assets/img/statement.jpg" alt="" aria-hidden="true" loading="lazy" width="1400" height="930"></div>
+    <div class="wrap statement__inner">
+      <h2>一点一点、<br class="br-sp">手に取って確かめる。</h2>
+      <p>年式、生地、縫製、状態。相場だけでは決まらないところまで見たうえで、値段をお伝えします。</p>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="section section--deep">
+    <div class="wrap notes">
+      <h2 style="font-size:var(--f-h3);">お申し込みの前に</h2>
+      <div class="notes__items">
+        <div class="reveal">
+          <h3>査定の有効期限</h3>
+          <p>査定の有効期限は1週間です。対面買取、対面以外の買取ともに適用されます。</p>
         </div>
-        <ul class="methodCard__list">
-          <li><b>お見積り・配送キットはすべて無料</b></li>
-          <li>写真を送るだけでお見積り。ご来店は不要です</li>
-          <li>買取専用メールアドレスでのご相談も承ります</li>
-        </ul>
-        <div class="methodCard__foot methodCard__foot--btns">
-          <a href="mailto:kaitori@august-shop.net" class="btn btn--dark btn--sm">メールで査定を依頼</a>
-          <a href="#line" class="btn btn--line btn--sm">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.9 3 2.8 6.4 2.8 10.6c0 3.8 3.3 7 7.7 7.6.3.1.7.2.8.5.1.3.1.7 0 1l-.1.8c0 .2-.2.9.8.5s5.3-3.1 7.2-5.3c1.3-1.4 1.9-2.9 1.9-5.1C21.1 6.4 17 3 12 3z"/></svg>
-            LINE査定
-          </a>
+        <div class="reveal">
+          <h3>買取できないもの</h3>
+          <p>明らかな処分目的のもの、当店で取り扱いができないブランドやアイテム、著しい状態不良のもの。ただしヴィンテージや雰囲気として捉えることができるものは除きます。</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="section section--deep" id="instagram" style="padding-top:0;">
+    <div class="wrap">
+      <div class="ig__head">
+        <div>
+          <span class="label">Instagram</span>
+          <h2 style="margin-top:14px;font-size:var(--f-h2);">扱っている服を、着てみる。</h2>
+        </div>
+        <a class="ig__account" href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener">
+          <span>@august_shop_sgn</span>
+          <span class="btn btn--primary btn--sm">フォローする</span>
+        </a>
+      </div>
+      <div class="ig__grid" id="igGrid">
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-1.jpg" alt="デニムジャケットを着たスタイリング。" loading="lazy" width="600" height="600"></a>
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-2.jpg" alt="デニムのバックポケットのステッチのディテール。" loading="lazy" width="600" height="600"></a>
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-3.jpg" alt="レザーブルゾンにワイドデニムを合わせたスタイリング。" loading="lazy" width="600" height="600"></a>
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-4.jpg" alt="ボアつきデニムジャケットのディテール。" loading="lazy" width="600" height="600"></a>
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-5.jpg" alt="白壁に掛けたデニムジャケット。" loading="lazy" width="600" height="600"></a>
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-6.jpg" alt="レザーブルゾンのスタイリングの歩きカット。" loading="lazy" width="600" height="600"></a>
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-7.jpg" alt="ラックに並んだデニムジャケット。" loading="lazy" width="600" height="600"></a>
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-8.jpg" alt="タンのチョアジャケットのスタイリング。" loading="lazy" width="600" height="600"></a>
+      </div>
+      <p class="ig__more"><a class="link u" href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener">Instagramで投稿をすべて見る</a></p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section--rule" id="restore">
+    <div class="wrap services">
+      <article class="service reveal">
+        <img src="assets/img/restore.jpg" alt="ミシンに向かって手縫いで仕上げるスタッフの手元。" loading="lazy" width="1000" height="800">
+        <h2 class="service__name">restore</h2>
+        <p>スタッフ高瀬によるリペア、裾上げを承っています。買った服も、もともとお持ちの服も。作業金額はご相談のうえお見積りします。</p>
+        <p class="service__foot"><a class="link u" href="#form">リペアを相談する</a><span class="soon">PAGE COMING SOON</span></p>
+      </article>
+      <article class="service reveal" id="original">
+        <img src="assets/img/original.jpg" alt="石をあしらったハンドメイドのシルバーリング。" loading="lazy" width="560" height="380">
+        <h2 class="service__name">original</h2>
+        <p>オリジナルのシルバーアクセサリーとベルトを店頭でご用意しています。日々の装いに添える、長く使える小物です。</p>
+        <p class="service__foot"><a class="link u" href="#store">店頭でご覧いただけます</a><span class="soon">PAGE COMING SOON</span></p>
       </article>
     </div>
+  </section>
 
-    <p class="method__term reveal">
-      <span>査定の有効期限</span>
-      査定金額の有効期限は <b>1週間</b> です（対面買取・宅配買取ともに適用されます）。
-    </p>
-  </div>
-</section>
-
-<!-- ============ FLOW ============ -->
-<section class="flow" id="flow">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <span class="sechead__en">FLOW</span>
-      <h2 class="sechead__ja">LINE査定の流れ</h2>
-      <p class="sechead__desc">お申し込みから最短3営業日でお振込みまで完了します。</p>
-    </div>
-
-    <ol class="flowList">
-      <li class="flowItem reveal">
-        <div class="flowItem__no"><span>STEP</span><em>01</em></div>
-        <div class="flowItem__body">
-          <h3>LINEで友だち追加</h3>
-          <p>QRコードを読み取るか、ID「<b>@776yyqfq</b>」で検索してください。</p>
-        </div>
-        <div class="flowItem__side">
-          <img src="assets/line-qr.png" alt="LINE QRコード" class="flowItem__qr" width="100" height="100" loading="lazy" decoding="async">
-        </div>
-      </li>
-      <li class="flowItem reveal">
-        <div class="flowItem__no"><span>STEP</span><em>02</em></div>
-        <div class="flowItem__body">
-          <h3>アイテムの写真を送る</h3>
-          <ul class="flowItem__ul">
-            <li>アイテム全体の写真</li>
-            <li>ブランドタグ／品質表示</li>
-            <li>付属品（あれば）</li>
-          </ul>
-          <p class="flowItem__note">キズや汚れがある場合は、その箇所が分かる写真もあわせてお送りください。状態など詳細はメッセージでお知らせいただけるとスムーズです。</p>
-        </div>
-        <div class="flowItem__side">
-          <img src="assets/line-shot.png" alt="LINE査定画面" class="flowItem__shot" width="370" height="800" loading="lazy" decoding="async">
-        </div>
-      </li>
-      <li class="flowItem reveal">
-        <div class="flowItem__no"><span>STEP</span><em>03</em></div>
-        <div class="flowItem__body">
-          <h3>査定が届いたら商品発送</h3>
-          <p>写真ご送付後、<b>24時間以内</b>に概算査定をお送りします。金額にご納得いただけたらアイテムをご発送ください。</p>
-          <ul class="flowItem__ul flowItem__ul--dot">
-            <li>着払いでの発送、または<b>無料の配送キット</b>をお送りします</li>
-            <li>本人確認書類（免許証等）のコピーを同封、またはLINEで画像送付</li>
-            <li>現品確認後、あらためて確定査定金額をご連絡します</li>
-          </ul>
-        </div>
-        <div class="flowItem__side">
-          <img src="assets/delivery_kit.jpg" alt="配送キット" class="flowItem__img" width="1200" height="896" loading="lazy" decoding="async">
-        </div>
-      </li>
-      <li class="flowItem reveal">
-        <div class="flowItem__no"><span>STEP</span><em>04</em></div>
-        <div class="flowItem__body">
-          <h3>ご指定口座へお支払い</h3>
-          <p>確定査定金額にご納得いただけましたら、買取成立後<b>3営業日以内</b>にご指定の口座へお振込みいたします。</p>
-          <p class="flowItem__note">※ 査定金額にご納得いただけなかった場合は、無料でアイテムを返送いたします。<br>※ ご依頼人と名義の異なる口座へはお振込みできません。</p>
-        </div>
-        <div class="flowItem__side flowItem__side--empty"></div>
-      </li>
-    </ol>
-
-    <!-- 買取不可なもの -->
-    <div class="notice reveal">
-      <div class="notice__head">
-        <span class="notice__en">NOTICE</span>
-        <h3>買取をお受けできないもの</h3>
+  <!-- STORE -->
+  <section class="section section--rule" id="store">
+    <div class="wrap store">
+      <div class="store__intro">
+        <h2>販売について</h2>
+        <p>店頭のほか、ヤフオク・楽天市場・メルカリShops・BASEでも販売しています。</p>
       </div>
-      <ul class="notice__list">
-        <li>明らかな処分目的とお見受けできるもの</li>
-        <li>当店で取り扱いができないブランド・アイテム</li>
-        <li>著しい状態不良のもの</li>
-      </ul>
-      <p class="notice__foot">※ ヴィンテージ品など、経年変化を「雰囲気」として捉えることができるものは対象外（買取可能）です。判断に迷われる場合は、まずはお気軽にご相談ください。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LINE CTA ============ -->
-<section class="lineCta" id="line">
-  <div class="wrap lineCta__inner reveal">
-    <p class="lineCta__en">LINE ASSESSMENT</p>
-    <h2 class="lineCta__title">＼ 写真を送るだけ、かんたん査定 ／</h2>
-    <p class="lineCta__lead">査定は無料。まずは気軽にお送りください。<br>24時間以内に査定金額をご案内します。</p>
-    <div class="lineCta__row">
-      <a href="https://line.me/R/ti/p/%40776yyqfq" target="_blank" rel="noopener" class="btn btn--line btn--lg">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.9 3 2.8 6.4 2.8 10.6c0 3.8 3.3 7 7.7 7.6.3.1.7.2.8.5.1.3.1.7 0 1l-.1.8c0 .2-.2.9.8.5s5.3-3.1 7.2-5.3c1.3-1.4 1.9-2.9 1.9-5.1C21.1 6.4 17 3 12 3z"/></svg>
-        LINEで友だち追加して査定
-      </a>
-      <div class="lineCta__id">
-        <img src="assets/line-qr.png" alt="LINE QRコード" width="100" height="100" loading="lazy" decoding="async">
-        <span>LINE ID<br><b>@776yyqfq</b></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ONLINE STORE ============ -->
-<section class="store" id="shop">
-  <div class="wrap">
-    <div class="sechead sechead--light reveal">
-      <span class="sechead__en">ONLINE STORE</span>
-      <h2 class="sechead__ja">出品中アイテム</h2>
-      <p class="sechead__desc">上質なブランド古着・服飾雑貨・レザークラフト素材等を、<br class="sp">各モールにて販売しております。</p>
-    </div>
-
-    <!-- TODO: 各モールの出店URLに差し替えてください（target="_blank" rel="noopener" 付与済みの形で） -->
-    <div class="storeGrid">
-      <a class="storeCard reveal" href="#">
-        <span class="storeCard__en">YAHUOKU!</span>
-        <h3>ヤフオク</h3>
-        <p>週替わりで希少アイテムを出品中</p>
-        <i class="storeCard__arrow"></i>
-      </a>
-      <a class="storeCard reveal" href="#">
-        <span class="storeCard__en">RAKUTEN</span>
-        <h3>楽天市場</h3>
-        <p>スーパーSALE 期間限定価格</p>
-        <i class="storeCard__arrow"></i>
-      </a>
-      <a class="storeCard reveal" href="#">
-        <span class="storeCard__en">MERCARI</span>
-        <h3>メルカリ</h3>
-        <p>タイムセール実施中</p>
-        <i class="storeCard__arrow"></i>
-      </a>
-      <a class="storeCard reveal" href="#">
-        <span class="storeCard__en">BASE / PAY ID</span>
-        <h3>公式オンラインストア</h3>
-        <p>WEEKLY SALE 開催中</p>
-        <i class="storeCard__arrow"></i>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ INSTAGRAM ============ -->
-<section class="insta">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <span class="sechead__en">INSTAGRAM</span>
-      <h2 class="sechead__ja">@august_shop</h2>
-      <p class="sechead__desc">新着アイテムやスタッフスタイリングを毎日更新中。</p>
-    </div>
-  </div>
-  <div class="instaGrid reveal">
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="instaCell"><img src="assets/cat_wear.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"><span>staff styling</span></a>
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="instaCell"><img src="assets/cat_outer.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"><span>new arrival</span></a>
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="instaCell"><img src="assets/cat_denim.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"><span>vintage denim</span></a>
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="instaCell"><img src="assets/cat_boots.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"><span>boots</span></a>
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="instaCell"><img src="assets/cat_accessory.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"><span>silver</span></a>
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="instaCell"><img src="assets/cat_sneakers.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"><span>sneakers</span></a>
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="instaCell"><img src="assets/cat_bag.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"><span>leather</span></a>
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="instaCell"><img src="assets/cat_glasses.jpg" alt="" width="896" height="1200" loading="lazy" decoding="async"><span>eyewear</span></a>
-  </div>
-  <div class="wrap insta__btn reveal">
-    <a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener" class="btn btn--outline">Instagram でフォロー</a>
-  </div>
-</section>
-
-<!-- ============ SERVICE / COMING SOON ============ -->
-<section class="service" id="service">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <span class="sechead__en">SERVICE</span>
-      <h2 class="sechead__ja">リペア &amp; オリジナルアイテム</h2>
-      <p class="sechead__desc">お手持ちの一着を、さらに長く愛せるように。<br class="sp">専用ページを準備中です。</p>
-    </div>
-
-    <div class="soonGrid">
-      <article class="soonCard reveal">
-        <span class="soonCard__badge">COMING SOON</span>
-        <div class="soonCard__body">
-          <span class="soonCard__en">RESTORE</span>
-          <h3>リペア / 裾上げ</h3>
-          <p>スタッフ高瀬によるリペア・裾上げを承っております。傷んでしまった一着も、もう一度袖を通せる状態へ。</p>
-          <p class="soonCard__note">作業金額は内容に応じてのお見積りとなります（応相談）。まずはお気軽にご相談ください。</p>
-        </div>
-        <div class="soonCard__foot"><span>準備中</span></div>
-      </article>
-
-      <article class="soonCard reveal">
-        <span class="soonCard__badge">COMING SOON</span>
-        <div class="soonCard__body">
-          <span class="soonCard__en">ORIGINAL</span>
-          <h3>オリジナルアイテム</h3>
-          <p>オリジナルのシルバーアクセサリーやベルトをご用意しております。日常の装いに添える、長く愛せる一点を。</p>
-          <p class="soonCard__note">ラインナップの詳細ページは準備中です。店頭にて実物をご覧いただけます。</p>
-        </div>
-        <div class="soonCard__foot"><span>準備中</span></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SHOP INFO / 販売について ============ -->
-<section class="shopinfo" id="shopinfo">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <span class="sechead__en">SHOP INFORMATION</span>
-      <h2 class="sechead__ja">店舗情報</h2>
-      <p class="sechead__desc">店頭では販売・対面買取を承っております。<br class="sp">ご来店をお待ちしております。</p>
-    </div>
-
-    <div class="shopinfoGrid">
-      <div class="shopinfoCards reveal">
-        <div class="infoCard">
-          <span class="infoCard__en">OPEN</span>
-          <h3>営業時間</h3>
-          <p class="infoCard__main">13:00 <i>-</i> 19:00</p>
-        </div>
-        <div class="infoCard">
-          <span class="infoCard__en">CLOSED</span>
-          <h3>定休日</h3>
-          <p class="infoCard__main">水曜 <i>・</i> 木曜</p>
-        </div>
-        <div class="infoCard">
-          <span class="infoCard__en">PAYMENT</span>
-          <h3>決済方法</h3>
-          <p class="infoCard__sub">現金 / 各種クレジットカード<br>電子マネー / QRコード決済</p>
-        </div>
-        <div class="infoCard">
-          <span class="infoCard__en">ACCESS</span>
-          <h3>アクセス</h3>
-          <p class="infoCard__sub">店舗所在地・最寄駅からの<br>ルートはお問い合わせください</p>
-        </div>
-      </div>
-
-      <div class="shopinfoMap reveal">
-        <div class="shopinfoMap__inner">
-          <span class="shopinfoMap__en">MAP</span>
-          <p>地図を掲載予定</p>
-        </div>
-        <p class="shopinfoMap__note">※ 実装時は Google マップの埋め込みに差し替えます。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ COMPANY ============ -->
-<section class="company" id="company">
-  <div class="wrap company__grid">
-    <div class="company__media reveal">
-      <img src="assets/delivery_kit.jpg" alt="梱包イメージ" width="1200" height="896" loading="lazy" decoding="async">
-    </div>
-    <div class="company__text reveal">
-      <div class="sechead sechead--left">
-        <span class="sechead__en">COMPANY</span>
-        <h2 class="sechead__ja">会社概要</h2>
-      </div>
-      <dl class="company__dl">
-        <div><dt>屋号</dt><dd>August Shop（オーガストショップ）</dd></div>
-        <div><dt>運営会社</dt><dd>SGN Co., Ltd.</dd></div>
-        <div><dt>事業内容</dt><dd>アメカジ・ブランド古着の販売および買取</dd></div>
-        <div><dt>買取方法</dt><dd>対面買取 / 宅配買取（全国対応・送料無料）/ LINE査定</dd></div>
-        <div><dt>営業時間</dt><dd>13:00 - 19:00</dd></div>
-        <div><dt>定休日</dt><dd>水曜・木曜</dd></div>
-        <div><dt>買取専用メール</dt><dd>kaitori@august-shop.net</dd></div>
-        <div><dt>LINE ID</dt><dd>@776yyqfq</dd></div>
+      <dl>
+        <dt>営業日</dt><dd>定休日 水曜・木曜</dd>
+        <dt>営業時間</dt><dd>13:00 - 19:00</dd>
+        <dt>アクセス</dt><dd>[住所を差し込み]<br>[最寄駅からの案内を差し込み]</dd>
+        <dt>決済方法</dt><dd>[対応している決済方法を差し込み]</dd>
       </dl>
-      <div class="company__links">
-        <a href="#contact" class="link-arrow">お問い合わせ</a>
-        <a href="privacy.html" class="link-arrow">プライバシーポリシー</a>
+      <div class="store__photo">
+        <img src="assets/img/shop-store.jpg" alt="アーチ型のフロアランプとレザーの一人掛けソファ。" loading="lazy" width="548" height="794">
       </div>
-      <figure class="company__logo">
-        <img src="assets/logo.png" alt="August Shop by SGN Co., Ltd." width="500" height="253" loading="lazy" decoding="async">
-      </figure>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ CONTACT BAND ============ -->
-<section class="band" id="contact">
-  <div class="band__media"><img src="assets/hero_atelier.jpg" alt="" width="1200" height="670" loading="lazy" decoding="async"></div>
-  <div class="wrap band__inner reveal">
-    <p class="band__en">CONTACT</p>
-    <h2 class="band__title">アメカジ・ブランド古着の買取は、<br>AUGUST SHOP にお任せください。</h2>
-    <div class="band__btns">
-      <a href="#line" class="btn btn--line btn--lg">LINEで無料査定</a>
-      <a href="mailto:kaitori@august-shop.net" class="btn btn--outline-light btn--lg">メールで買取相談</a>
+  <!-- FORM -->
+  <section class="section formsec" id="form">
+    <div class="wrap">
+      <span class="label">Buy &amp; Sell</span>
+      <h2 style="margin-top:14px;font-size:var(--f-h2);">買取フォーム</h2>
+      <p class="lede" style="margin-top:16px;max-width:44em;">宅配買取・対面買取のどちらもこちらから承ります。お見積り、配送キットすべて無料です。入力いただいた内容をもとに、担当より折り返しご連絡いたします。</p>
+
+      <div class="formgrid">
+        <!-- 送信先が決まったら action / method を設定してください（例：PHP、フォーム送信サービスなど） -->
+        <form id="buyform" novalidate action="" method="post" enctype="multipart/form-data">
+          <div class="row">
+            <div class="field" data-field>
+              <label for="f-name">お名前<span class="req">必須</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="例 高瀬 一郎" required>
+              <p class="err" data-err hidden></p>
+            </div>
+            <div class="field" data-field>
+              <label for="f-kana">フリガナ<span class="req">必須</span></label>
+              <input id="f-kana" name="kana" type="text" placeholder="例 タカセ イチロウ" required>
+              <p class="err" data-err hidden></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field" data-field>
+              <label for="f-tel">電話番号<span class="req">必須</span></label>
+              <input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="例 090-0000-0000" required>
+              <p class="err" data-err hidden></p>
+            </div>
+            <div class="field" data-field>
+              <label for="f-mail">メールアドレス<span class="req">必須</span></label>
+              <input id="f-mail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="例 name@example.com" required>
+              <p class="err" data-err hidden></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field" data-field>
+              <label for="f-zip">郵便番号<span class="req">必須</span></label>
+              <input id="f-zip" name="zip" type="text" autocomplete="postal-code" inputmode="numeric" placeholder="例 100-0001" required>
+              <p class="err" data-err hidden></p>
+            </div>
+            <div class="field" data-field>
+              <label for="f-addr">ご住所<span class="req">必須</span></label>
+              <input id="f-addr" name="address" type="text" autocomplete="street-address" placeholder="番地・建物名まで" required>
+              <p class="err" data-err hidden></p>
+            </div>
+          </div>
+
+          <fieldset class="fieldset" data-field>
+            <legend>買取方法<span class="req">必須</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="method" value="宅配買取" required> 宅配買取</label>
+              <label class="choice"><input type="radio" name="method" value="対面買取"> 対面買取</label>
+            </div>
+            <p class="err" data-err hidden></p>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend>配送キット<span class="opt">宅配買取の方のみ</span></legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="kit" value="希望する"> 希望する</label>
+              <label class="choice"><input type="radio" name="kit" value="自分で用意する"> 自分で用意する</label>
+            </div>
+          </fieldset>
+
+          <div class="field" data-field>
+            <label for="f-items">ブランド・アイテム<span class="req">必須</span></label>
+            <textarea id="f-items" name="items" placeholder="例 Levi&#39;s 501 66前期 / Patagonia レトロX ほか" required></textarea>
+            <p class="hint">わかる範囲で構いません。年式や状態など、お気づきの点もあわせてご記入ください。</p>
+            <p class="err" data-err hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="f-count">点数</label>
+            <select id="f-count" name="count">
+              <option value="">選択してください</option>
+              <option>1 - 5点</option>
+              <option>6 - 10点</option>
+              <option>11 - 20点</option>
+              <option>21点以上</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="f-photo">写真の添付<span class="opt">任意</span></label>
+            <div class="drop">
+              <input id="f-photo" name="photos" type="file" accept="image/*" multiple>
+              <p class="hint" style="margin-top:10px;">全体と、タグ・気になる箇所のアップがあると査定が早くなります。</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-note">備考<span class="opt">任意</span></label>
+            <textarea id="f-note" name="note" placeholder="ご希望の連絡時間帯など"></textarea>
+          </div>
+
+          <div class="field" data-field>
+            <label class="agree" for="f-agree">
+              <input id="f-agree" name="agree" type="checkbox" required>
+              <span>買取できないものと査定の有効期限について確認しました。</span>
+            </label>
+            <p class="err" data-err hidden></p>
+          </div>
+
+          <div class="form__submit">
+            <button class="btn btn--primary btn--lg" type="submit">この内容で申し込む</button>
+            <p class="form__note">入力内容を確認のうえ、担当より折り返しご連絡いたします。</p>
+          </div>
+          <p class="formstatus" id="formStatus" hidden role="status"></p>
+        </form>
+
+        <aside class="aside">
+          <div class="card card--line" id="line">
+            <h3>LINE査定</h3>
+            <p>写真を送るだけで、先に買取金額の目安をお伝えします。</p>
+            <ol>
+              <li>友だち追加する</li>
+              <li>アイテムの写真を送る</li>
+              <li>査定金額をご返信</li>
+            </ol>
+            <p class="id">LINE ID [LINE IDを差し込み]</p>
+          </div>
+          <div class="card">
+            <h3>買取できないもの</h3>
+            <p>明らかな処分目的のもの、当店で取り扱いができないブランドやアイテム、著しい状態不良のもの。ただしヴィンテージや雰囲気として捉えることができるものは除きます。</p>
+          </div>
+          <div class="card">
+            <h3>査定の有効期限</h3>
+            <p>査定の有効期限は1週間です。対面買取、対面以外の買取ともに適用されます。</p>
+          </div>
+          <div class="card">
+            <h3>買取専用のご連絡先</h3>
+            <p>[買取専用メールアドレスを差し込み]<br>お電話でのご相談も承っています。</p>
+          </div>
+        </aside>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap cta__inner">
+      <div>
+        <h2>一点一点、丁寧に<br>査定させていただきます。</h2>
+        <p>お見積り、配送キットすべて無料。遠方のお客様も是非ご利用ください。</p>
+      </div>
+      <div class="cta__buttons">
+        <a class="btn btn--light btn--lg" href="#form">買取フォーム</a>
+        <a class="btn btn--outline-light btn--lg" href="#line">LINE査定</a>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <div class="wrap footer__inner">
-    <div class="footer__brand">
-      <span class="footer__mark">AUGUST SHOP</span>
-      <p class="footer__desc">アメカジ・ブランド古着を中心に、アーカイブ品から本格ヴィンテージまで。<br>オリジナルのシルバーアクセサリー・ベルトも取り扱っております。</p>
-      <p class="footer__hours">営業時間 13:00 - 19:00 ／ 定休日 水・木</p>
-      <!-- TODO: ヤフオク / 楽天市場 / メルカリ / BASE の各URLに差し替え -->
-      <ul class="footer__sns">
-        <li><a href="https://www.instagram.com/august_shop/" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="#">ヤフオク</a></li>
-        <li><a href="#">楽天市場</a></li>
-        <li><a href="#">メルカリ</a></li>
-        <li><a href="#">BASE</a></li>
-      </ul>
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <p class="footer__name">AUGUST SHOP</p>
+        <address>
+          アメカジ・ブランド古着の買取と販売<br>
+          [住所を差し込み]<br>
+          古物商許可番号 [許可番号を差し込み]
+        </address>
+      </div>
+      <nav class="footer__links" aria-label="フッターメニュー">
+        <a href="#buy">買取について</a>
+        <a href="#form">買取フォーム</a>
+        <a href="#line">LINE査定</a>
+        <a href="#brands">取り扱いブランド</a>
+        <a href="#restore">restore</a>
+        <a href="#store">販売について</a>
+        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#form">お問い合せ</a>
+      </nav>
     </div>
-    <nav class="footer__nav">
-      <div>
-        <h4>BUY</h4>
-        <ul>
-          <li><a href="#method">買取方法</a></li>
-          <li><a href="#flow">LINE査定の流れ</a></li>
-          <li><a href="#category">取扱ブランド</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>SHOP</h4>
-        <ul>
-          <li><a href="#shopinfo">店舗情報</a></li>
-          <li><a href="#shop">出品中アイテム</a></li>
-          <li><a href="#service">リペア / 裾上げ</a></li>
-          <li><a href="#service">オリジナルアイテム</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>INFORMATION</h4>
-        <ul>
-          <li><a href="#about">店舗紹介</a></li>
-          <li><a href="#company">会社概要</a></li>
-          <li><a href="#contact">お問い合せ</a></li>
-          <li><a href="privacy.html">プライバシーポリシー</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-  <div class="footer__copy">
-    <div class="wrap">
-      <small>Copyright © August Shop All Rights Reserved.</small>
-      <a href="#top" class="footer__top">PAGE TOP</a>
-    </div>
+    <p class="footer__bottom">© AUGUST SHOP</p>
   </div>
 </footer>
 
-<!-- ============ FIXED SP BAR ============ -->
-<div class="spBar" id="spBar">
-  <a href="#line" class="spBar__item spBar__item--line">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.9 3 2.8 6.4 2.8 10.6c0 3.8 3.3 7 7.7 7.6.3.1.7.2.8.5.1.3.1.7 0 1l-.1.8c0 .2-.2.9.8.5s5.3-3.1 7.2-5.3c1.3-1.4 1.9-2.9 1.9-5.1C21.1 6.4 17 3 12 3z"/></svg>
-    LINE査定
-  </a>
-  <a href="#method" class="spBar__item">宅配買取</a>
-  <a href="#shopinfo" class="spBar__item">店舗情報</a>
+<div class="dock" id="dock">
+  <a class="btn btn--white" href="#form">買取フォーム</a>
+  <a class="btn btn--wire" href="#line">LINE査定</a>
 </div>
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ClothingStore",
+  "name":"AUGUST SHOP",
+  "description":"アメカジ・ブランド古着の買取と販売",
+  "url":"https://august-shop.net/",
+  "image":"https://august-shop.net/assets/img/og.jpg",
+  "address":{"@type":"PostalAddress","addressCountry":"JP","streetAddress":"[住所を差し込み]"},
+  "openingHoursSpecification":[{
+    "@type":"OpeningHoursSpecification",
+    "dayOfWeek":["Monday","Tuesday","Friday","Saturday","Sunday"],
+    "opens":"13:00","closes":"19:00"
+  }],
+  "sameAs":["https://www.instagram.com/august_shop_sgn/"]
+}
+</script>
 
-<script src="assets/app.js"></script>
+<script>
+document.documentElement.classList.add('js');
+
+/* header: solid once past the hero */
+(function(){
+  var header = document.getElementById('siteHeader');
+  var dock = document.getElementById('dock');
+  var hero = document.getElementById('top');
+  if(!header || !hero) return;
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        header.classList.toggle('is-solid', !e.isIntersecting);
+        if(dock) dock.classList.toggle('is-on', !e.isIntersecting);
+      });
+    }, {rootMargin: '-72px 0px 0px 0px', threshold: 0});
+    io.observe(hero);
+  } else {
+    header.classList.add('is-solid');
+    if(dock) dock.classList.add('is-on');
+  }
+})();
+
+/* mobile menu */
+(function(){
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu');
+  if(!burger || !menu) return;
+  function setOpen(open){
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    menu.hidden = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){
+    setOpen(burger.getAttribute('aria-expanded') !== 'true');
+  });
+  menu.addEventListener('click', function(e){
+    if(e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') setOpen(false);
+  });
+})();
+
+/* reveal on scroll */
+(function(){
+  var items = document.querySelectorAll('.reveal');
+  if(!items.length) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('is-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, {rootMargin: '0px 0px -12% 0px', threshold: 0.05});
+  items.forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight){ el.classList.add('is-in'); }
+    else { io.observe(el); }
+  });
+})();
+
+/* form validation */
+(function(){
+  var form = document.getElementById('buyform');
+  var status = document.getElementById('formStatus');
+  if(!form) return;
+
+  var messages = {
+    'f-name':'お名前を入力してください。',
+    'f-kana':'フリガナを入力してください。',
+    'f-tel':'ご連絡のつく電話番号を入力してください。',
+    'f-mail':'メールアドレスの形式で入力してください。',
+    'f-zip':'郵便番号を入力してください。',
+    'f-addr':'番地・建物名まで入力してください。',
+    'f-items':'ブランドやアイテムをわかる範囲で入力してください。',
+    'f-agree':'確認のうえ、チェックを入れてください。'
+  };
+
+  function wrapOf(el){ return el.closest('[data-field]'); }
+
+  function showError(el, msg){
+    var box = wrapOf(el);
+    if(!box) return;
+    box.setAttribute('data-invalid','true');
+    var p = box.querySelector('[data-err]');
+    if(p){ p.textContent = msg; p.hidden = false; }
+    el.setAttribute('aria-invalid','true');
+  }
+  function clearError(el){
+    var box = wrapOf(el);
+    if(!box) return;
+    box.removeAttribute('data-invalid');
+    var p = box.querySelector('[data-err]');
+    if(p){ p.hidden = true; p.textContent = ''; }
+    el.removeAttribute('aria-invalid');
+  }
+
+  function validateField(el){
+    if(el.type === 'checkbox'){
+      if(!el.checked){ showError(el, messages[el.id] || '確認してください。'); return false; }
+      clearError(el); return true;
+    }
+    if(el.type === 'radio'){
+      var group = form.querySelectorAll('input[name="' + el.name + '"]');
+      var checked = Array.prototype.some.call(group, function(r){ return r.checked; });
+      if(!checked){ showError(el, '買取方法を選んでください。'); return false; }
+      clearError(el); return true;
+    }
+    var v = (el.value || '').trim();
+    if(!v){ showError(el, messages[el.id] || '入力してください。'); return false; }
+    if(el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){
+      showError(el, messages['f-mail']); return false;
+    }
+    clearError(el); return true;
+  }
+
+  form.addEventListener('input', function(e){
+    var el = e.target;
+    if(el.hasAttribute('required') && wrapOf(el) && wrapOf(el).getAttribute('data-invalid') === 'true'){
+      validateField(el);
+    }
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var required = form.querySelectorAll('[required]');
+    var first = null;
+    var seenRadio = {};
+    Array.prototype.forEach.call(required, function(el){
+      if(el.type === 'radio'){
+        if(seenRadio[el.name]) return;
+        seenRadio[el.name] = true;
+      }
+      if(!validateField(el) && !first){ first = el; }
+    });
+
+    if(first){
+      if(status){
+        status.hidden = false;
+        status.textContent = '入力内容をご確認ください。赤く表示されている項目が未入力です。';
+      }
+      first.focus();
+      return;
+    }
+
+    if(status){
+      status.hidden = false;
+      if(form.getAttribute('action')){
+        form.submit();
+        return;
+      }
+      status.innerHTML = '入力内容の確認が完了しました。<br>このサイトはまだ送信先（メールまたはフォーム送信サービス）が設定されていないため、実際の送信は行われていません。お急ぎの場合はLINE査定をご利用ください。';
+      status.scrollIntoView({block:'center', behavior:'smooth'});
+    }
+  });
+})();
+</script>
 </body>
 </html>
