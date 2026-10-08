@@ -1,0 +1,110 @@
+[
+  {
+    "date": "2026-10-03",
+    "brand": "Levi's",
+    "item": "501 66前期（サンプル）",
+    "size": "W32",
+    "condition": "使用感あり",
+    "price": 38000,
+    "image": "results/2026-10-03-levi-s.jpg"
+  },
+  {
+    "date": "2026-10-02",
+    "brand": "Ralph Lauren",
+    "item": "カントリー ダウンベスト（サンプル）",
+    "size": "M",
+    "condition": "美品",
+    "price": 9800,
+    "image": "results/2026-10-02-ralph-lauren.jpg"
+  },
+  {
+    "date": "2026-09-30",
+    "brand": "PORTER CLASSIC",
+    "item": "PC KENDO シャツジャケット（サンプル）",
+    "size": "2",
+    "condition": "美品",
+    "price": 42000,
+    "image": "results/2026-09-30-porter-classic.jpg"
+  },
+  {
+    "date": "2026-09-29",
+    "brand": "Patagonia",
+    "item": "レトロX ジャケット（サンプル）",
+    "size": "L",
+    "condition": "使用感あり",
+    "price": 15000,
+    "image": "results/2026-09-29-patagonia.jpg"
+  },
+  {
+    "date": "2026-09-27",
+    "brand": "Levi's",
+    "item": "70505 デニムジャケット（サンプル）",
+    "size": "40",
+    "condition": "ダメージあり",
+    "price": 12000,
+    "image": "results/2026-09-27-levi-s.jpg"
+  },
+  {
+    "date": "2026-09-26",
+    "brand": "45R",
+    "item": "藍染 カバーオール（サンプル）",
+    "size": "3",
+    "condition": "美品",
+    "price": 18500,
+    "image": "results/2026-09-26-45r.jpg"
+  },
+  {
+    "date": "2026-09-24",
+    "brand": "STÜSSY",
+    "item": "OLD STÜSSY ワールドツアーTee（サンプル）",
+    "size": "L",
+    "condition": "使用感あり",
+    "price": 8000,
+    "image": "results/2026-09-24-stussy.jpg"
+  },
+  {
+    "date": "2026-09-22",
+    "brand": "C.P. COMPANY",
+    "item": "ゴーグルジャケット（サンプル）",
+    "size": "50",
+    "condition": "新品同様",
+    "price": 36000,
+    "image": "results/2026-09-22-c-p-company.jpg"
+  },
+  {
+    "date": "2026-09-20",
+    "brand": "ACRONYM",
+    "item": "J1A-GT（サンプル）",
+    "size": "M",
+    "condition": "美品",
+    "price": 98000,
+    "image": "results/2026-09-20-acronym.jpg"
+  },
+  {
+    "date": "2026-09-18",
+    "brand": "TEATORA",
+    "item": "Wallet Coat Packable（サンプル）",
+    "size": "3",
+    "condition": "新品同様",
+    "price": 30000,
+    "image": "results/2026-09-18-teatora.jpg"
+  },
+  {
+    "date": "2026-09-15",
+    "brand": "COMME des GARÇONS HOMME",
+    "item": "田中オム ウールジャケット（サンプル）",
+    "size": "M",
+    "condition": "使用感あり",
+    "price": 22000,
+    "image": "results/2026-09-15-comme-des-garcons-homme.jpg"
+  },
+  {
+    "date": "2026-09-12",
+    "brand": "ISAMU KATAYAMA BACKLASH",
+    "item": "ダブルショルダー ライダース（サンプル）",
+    "size": "S",
+    "condition": "美品",
+    "price": 65000,
+    "image": "results/2026-09-12-isamu-katayama-backlash.jpg"
+  }
+]

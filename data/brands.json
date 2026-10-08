@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Levi's",
+    "kana": "リーバイス",
+    "marquee": 1
+  },
+  {
+    "name": "Ralph Lauren",
+    "kana": "ラルフローレン",
+    "marquee": 1
+  },
+  {
+    "name": "Patagonia",
+    "kana": "パタゴニア",
+    "marquee": 1
+  },
+  {
+    "name": "STÜSSY",
+    "kana": "ステューシー",
+    "marquee": 1
+  },
+  {
+    "name": "PORTER CLASSIC",
+    "kana": "ポータークラシック",
+    "marquee": 1
+  },
+  {
+    "name": "45R",
+    "kana": "フォーティファイブアール",
+    "marquee": 1
+  },
+  {
+    "name": "C.P. COMPANY",
+    "kana": "シーピーカンパニー",
+    "marquee": 1
+  },
+  {
+    "name": "COMME des GARÇONS HOMME",
+    "kana": "コム デ ギャルソン オム",
+    "marquee": 2
+  },
+  {
+    "name": "ISAMU KATAYAMA BACKLASH",
+    "kana": "イサムカタヤマ バックラッシュ",
+    "marquee": 2
+  },
+  {
+    "name": "ACRONYM",
+    "kana": "アクロニウム",
+    "marquee": 2
+  },
+  {
+    "name": "TEATORA",
+    "kana": "テアトラ",
+    "marquee": 2
+  }
+]
