@@ -16,7 +16,7 @@
 <meta name="theme-color" content="#1C2438">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Zen+Kaku+Gothic+New:wght@400;700&family=Zen+Old+Mincho:wght@600&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -45,6 +45,29 @@
     </div>
   </section>
 
+  <!-- INTRO -->
+  <section class="cta cta--intro">
+    <div class="wrap cta__inner">
+      <div class="cta__text">
+        <h2>一点一点、丁寧に<br>査定させていただきます。</h2>
+        <ul class="points">
+          <li>アメカジ・ブランド古着から、アーカイブ品・本格ヴィンテージまで</li>
+          <li>経験と知識のあるスタッフが査定するから、高額査定が可能</li>
+          <li>宅配買取・LINE査定で、遠方からもご利用いただけます</li>
+          <li>オリジナルのシルバーアクセサリー・ベルトもご用意</li>
+        </ul>
+        <div class="cta__more" id="introMore">
+          <p>当店ではアメカジやブランド古着を中心にアーカイブ品から本格ヴィンテージまで幅広く取り扱っております。<br>日常の装いに添えるアイテムを取り揃え、長く愛せる一着に出会える場所を目指しています。<br>洋服だけではなく、オリジナルのシルバーアクセサリーやベルトもご用意しております。</p>
+          <p>買取は経験と知識のあるスタッフが一点一点丁寧に査定させていただきますので、高額査定が可能です。<br>宅配買取やLINE査定サービスも行っておりますので、遠方のお客様も是非ご利用ください。</p>
+        </div>
+        <button class="readmore" type="button" aria-expanded="false" aria-controls="introMore">お店について詳しく読む</button>
+      </div>
+      <div class="cta__buttons">
+        <a class="btn btn--light btn--lg btn--arrow" href="buy/">買取について</a>
+      </div>
+    </div>
+  </section>
+
   <!-- RESULTS -->
   <section class="section" id="results">
     <div class="wrap">
@@ -53,7 +76,6 @@
           <span class="label">Results</span>
           <h2 style="margin-top:14px;">最近の買取実績</h2>
         </div>
-        <a class="link u" href="results/">すべての実績を見る</a>
       </div>
       <div class="results results--5" data-results data-limit="10" aria-live="polite"><p class="datastate">読み込み中…</p></div>
       <div class="more">
@@ -81,6 +103,7 @@
           <span class="label">Web form</span>
           <h3>買取フォーム</h3>
           <p>サイト上でお申し込みまで完結。写真も添付できます。宅配買取の配送キットは無料です。</p>
+          <div class="method__cta"><a class="btn btn--primary btn--arrow" href="buy/#form">買取フォーム</a></div>
         </article>
         <article class="method reveal">
           <div class="method__panel" aria-hidden="true"><b>LINE</b><span>写真を送るだけ</span></div>
@@ -90,9 +113,8 @@
         </article>
       </div>
       <div class="more">
-        <a class="btn btn--primary btn--arrow" href="buy/">買取について詳しく見る</a>
-        <a class="btn btn--ghost" href="buy/#form">買取フォームへ</a>
-        <a class="link u more__link" href="buy/#flow">宅配買取の流れ・よくある質問</a>
+        <a class="btn btn--primary" href="buy/#line">LINE査定</a>
+        <p class="more__next"><a class="link u" href="buy/">買取について詳しく見る</a></p>
       </div>
     </div>
   </section>
@@ -140,28 +162,14 @@
         <img src="assets/img/restore.jpg" alt="ミシンに向かって手縫いで仕上げるスタッフの手元。" loading="lazy" width="1000" height="800">
         <h2 class="service__name">restore</h2>
         <p>スタッフ高瀬によるリペア、裾上げを承っています。買った服も、もともとお持ちの服も。作業金額はご相談のうえお見積りします。</p>
-        <p class="service__foot"><a class="link u" href="buy/#form">リペアを相談する</a><span class="soon">PAGE COMING SOON</span></p>
+        <p class="service__foot"><span class="soon soon--tag">リペアのご相談　COMING SOON</span></p>
       </article>
       <article class="service reveal" id="original">
         <img src="assets/img/original.jpg" alt="石をあしらったハンドメイドのシルバーリング。" loading="lazy" width="560" height="380">
         <h2 class="service__name">original</h2>
         <p>オリジナルのシルバーアクセサリーとベルトを店頭でご用意しています。日々の装いに添える、長く使える小物です。</p>
-        <p class="service__foot"><a class="link u" href="store/">店頭でご覧いただけます</a><span class="soon">PAGE COMING SOON</span></p>
+        <p class="service__foot"><a class="link u" href="store/#shop-info">店頭でご覧いただけます</a></p>
       </article>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="on-ink">
-    <div class="about">
-      <div class="wrap about__text">
-        <h2>日常の装いに、添える一着を。</h2>
-        <p>日常の装いに添えるアイテムを取り揃え、長く愛せる一着に出会える場所を目指しています。洋服だけではなく、オリジナルのシルバーアクセサリーやベルトもご用意しております。</p>
-        <p>買取は経験と知識のあるスタッフが一点一点丁寧に査定させていただきますので、高額査定が可能です。宅配買取やLINE査定サービスも行っておりますので、遠方のお客様も是非ご利用ください。</p>
-      </div>
-      <div class="about__media">
-        <img src="assets/img/shop-about.jpg" alt="ガラス戸のエントランスと、木のカウンター什器。" loading="lazy" width="900" height="967">
-      </div>
     </div>
   </section>
 
@@ -169,9 +177,9 @@
   <section class="section section--rule" id="store">
     <div class="wrap store">
       <div class="store__intro">
-        <h2>販売について</h2>
+        <h2>ショップ・通販</h2>
         <p>店頭のほか、BASE・ヤフオク！・メルカリShops・楽天市場・ラクマでも販売しています。</p>
-        <p style="margin-top:24px;"><a class="btn btn--primary btn--arrow" href="store/">販売・店舗情報を見る</a></p>
+        <p style="margin-top:24px;"><a class="btn btn--primary btn--arrow" href="store/">ショップ・店舗情報を見る</a></p>
       </div>
       <dl>
         <dt>営業日</dt><dd>定休日 水曜・木曜</dd>
@@ -180,56 +188,6 @@
       </dl>
       <div class="store__photo">
         <img src="assets/img/shop-store.jpg" alt="アーチ型のフロアランプとレザーの一人掛けソファ。" loading="lazy" width="548" height="794">
-      </div>
-    </div>
-  </section>
-
-  <!-- INSTAGRAM -->
-  <section class="section section--deep" id="instagram">
-    <div class="wrap">
-      <div class="ig__head">
-        <div>
-          <span class="label">Instagram</span>
-          <h2 style="margin-top:14px;font-size:var(--f-h2);">扱っている服を、着てみる。</h2>
-        </div>
-        <a class="ig__account" href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener">
-          <span>@august_shop_sgn</span>
-          <span class="btn btn--primary btn--sm">フォローする</span>
-        </a>
-      </div>
-      <div class="ig__grid" id="igGrid">
-        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-1.jpg" alt="デニムジャケットを着たスタイリング。" loading="lazy" width="600" height="600"></a>
-        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-2.jpg" alt="デニムのバックポケットのステッチのディテール。" loading="lazy" width="600" height="600"></a>
-        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-3.jpg" alt="レザーブルゾンにワイドデニムを合わせたスタイリング。" loading="lazy" width="600" height="600"></a>
-        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-4.jpg" alt="ボアつきデニムジャケットのディテール。" loading="lazy" width="600" height="600"></a>
-        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-5.jpg" alt="白壁に掛けたデニムジャケット。" loading="lazy" width="600" height="600"></a>
-        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-6.jpg" alt="レザーブルゾンのスタイリングの歩きカット。" loading="lazy" width="600" height="600"></a>
-        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-7.jpg" alt="ラックに並んだデニムジャケット。" loading="lazy" width="600" height="600"></a>
-        <a href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener"><img src="assets/img/ig-8.jpg" alt="タンのチョアジャケットのスタイリング。" loading="lazy" width="600" height="600"></a>
-      </div>
-      <p class="ig__more"><a class="link u" href="https://www.instagram.com/august_shop_sgn/" target="_blank" rel="noopener">Instagramで投稿をすべて見る</a></p>
-    </div>
-  </section>
-
-  <!-- STATEMENT -->
-  <section class="statement">
-    <div class="statement__media"><img src="assets/img/statement.jpg" alt="" aria-hidden="true" loading="lazy" width="1400" height="930"></div>
-    <div class="wrap statement__inner">
-      <h2>一点一点、<br class="br-sp">手に取って確かめる。</h2>
-      <p>年式、生地、縫製、状態。相場だけでは決まらないところまで見たうえで、値段をお伝えします。</p>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="wrap cta__inner">
-      <div>
-        <h2>一点一点、丁寧に<br>査定させていただきます。</h2>
-        <p>お見積り、配送キットすべて無料。遠方のお客様も是非ご利用ください。</p>
-      </div>
-      <div class="cta__buttons">
-        <a class="btn btn--light btn--lg btn--arrow" href="buy/#methods">買取査定</a>
-        <a class="btn btn--outline-light btn--lg" href="buy/#line">LINE査定</a>
       </div>
     </div>
   </section>

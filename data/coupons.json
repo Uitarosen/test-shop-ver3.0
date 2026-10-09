@@ -13,58 +13,5 @@
     "end": "",
     "featured": true,
     "active": true
-  },
-  {
-    "id": "LINE500",
-    "title": "LINE査定 買取価格500円UP（サンプル）",
-    "rate": "500円UP",
-    "description": "LINE査定からお申し込みいただいたお客様は、買取金額から500円アップします。",
-    "notes": [
-      "1回のお取引につき1回まで",
-      "他クーポンとの併用不可"
-    ],
-    "image": "",
-    "start": "2026-10-01",
-    "end": "2026-12-31",
-    "featured": false,
-    "active": true
-  },
-  {
-    "id": "SET10",
-    "title": "まとめ売り 5点以上で10%UP（サンプル）",
-    "rate": "10%UP",
-    "description": "一度に5点以上お売りいただくと、合計買取金額を10%アップします。",
-    "notes": [
-      "5点以上のお取引で有効"
-    ],
-    "image": "",
-    "start": "2026-10-01",
-    "end": "2026-11-30",
-    "featured": false,
-    "active": true
-  },
-  {
-    "id": "SUMMER",
-    "title": "【表示されない例】期限切れのクーポン",
-    "rate": "15%UP",
-    "description": "終了日を過ぎたため、自動で非表示になります。",
-    "notes": [],
-    "image": "",
-    "start": "2026-07-01",
-    "end": "2026-09-30",
-    "featured": false,
-    "active": true
-  },
-  {
-    "id": "PAUSED",
-    "title": "【表示されない例】停止中のクーポン",
-    "rate": "5%UP",
-    "description": "active が false のため非表示になります。",
-    "notes": [],
-    "image": "",
-    "start": "2026-10-01",
-    "end": "",
-    "featured": false,
-    "active": false
   }
 ]

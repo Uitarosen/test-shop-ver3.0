@@ -23,6 +23,7 @@
         }).join('') + '</ul></section>';
     }).join('');
     if(bar) bar.innerHTML = order.map(function(g){ return '<a href="#az-' + g + '">' + g + '</a>'; }).join('');
+    if(AUG.realignHash) AUG.realignHash();
   }).catch(function(){
     box.innerHTML = '<p class="datastate">ブランド一覧を読み込めませんでした。時間をおいて再度お試しください。</p>';
   });

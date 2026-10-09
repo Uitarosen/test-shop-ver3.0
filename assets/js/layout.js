@@ -18,7 +18,7 @@
     {key:'buy',     label:'買取について', href:'buy/'},
     {key:'results', label:'買取実績',     href:'results/'},
     {key:'brands',  label:'取扱ブランド', href:'brands/'},
-    {key:'store',   label:'販売について', href:'store/'}
+    {key:'store',   label:'ショップ・通販', href:'store/'}
   ];
   var FOOTER_LINKS = [
     {key:'home',    label:'トップ',       href:''},
@@ -27,7 +27,7 @@
     {key:'',        label:'LINE査定',     href:'buy/#line'},
     {key:'results', label:'買取実績',     href:'results/'},
     {key:'brands',  label:'取扱ブランド', href:'brands/'},
-    {key:'store',   label:'販売について', href:'store/'},
+    {key:'store',   label:'ショップ・通販', href:'store/'},
     {key:'',        label:'restore',      href:'#restore'},
     {key:'',        label:'Instagram',    href:C.instagram, ext:true}
   ];

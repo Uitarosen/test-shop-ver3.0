@@ -66,6 +66,44 @@
       .map(function(x){ return x.r; });
   };
 
+  /* ページ内リンク（#form など）で開いたとき、クーポンや実績の読み込みで
+     ページが伸びて位置がずれるので、読み込み後に目的の位置へ合わせ直す。
+     ユーザーが自分でスクロールし始めたら合わせ直さない。 */
+  var userMoved = false;
+  ['wheel','touchmove','keydown','mousedown'].forEach(function(ev){
+    window.addEventListener(ev, function(){ userMoved = true; }, {passive:true, once:true});
+  });
+  AUG.realignHash = function(){
+    if(userMoved || !location.hash || location.hash.length < 2) return;
+    var id; try{ id = decodeURIComponent(location.hash.slice(1)); }catch(_){ return; }
+    var el = document.getElementById(id);
+    if(!el || el.id === 'main') return;
+    /* 表示アニメーション（transform）の影響を受けないよう、レイアウト上の位置で計算 */
+    var y = 0, n = el;
+    while(n){ y += n.offsetTop; n = n.offsetParent; }
+    var margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+    window.scrollTo({top: Math.max(0, y - margin), behavior:'instant'});
+  };
+  /* ページを開いたときの位置を整える
+     - #付きのリンク（#form など）：目的の見出しの位置へ
+     - #なしのリンク：必ずページの先頭へ（プレビュー環境などで直前のスクロール位置が
+       引き継がれてしまうのを防ぐ）。再読み込み・戻るボタンのときは元の位置のまま */
+  var navType = '';
+  try{ var ne = performance.getEntriesByType('navigation')[0]; navType = ne ? ne.type : ''; }catch(_){}
+  AUG.settleScroll = function(){
+    if(userMoved) return;
+    if(location.hash && location.hash.length > 1){ AUG.realignHash(); return; }
+    if(navType === 'reload' || navType === 'back_forward') return;
+    if(window.scrollY !== 0) window.scrollTo({top:0, behavior:'instant'});
+  };
+  if('scrollRestoration' in history && navType === 'navigate') history.scrollRestoration = 'manual';
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', AUG.settleScroll);
+  else AUG.settleScroll();
+  window.addEventListener('load', AUG.settleScroll);
+  window.addEventListener('pageshow', function(e){ if(!e.persisted) AUG.settleScroll(); });
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(AUG.settleScroll);
+  [150, 500, 1200, 2000].forEach(function(ms){ setTimeout(AUG.settleScroll, ms); });
+
   function state(el, msg){ el.innerHTML = '<p class="datastate">' + msg + '</p>'; }
 
   /* ---------------- coupons ---------------- */
@@ -107,6 +145,7 @@
         '<div><dt>LINE査定</dt><dd>最初のメッセージでクーポンIDを送信</dd></div>' +
         '<div><dt>店頭買取</dt><dd>クーポンの画面をスタッフにご提示</dd></div></dl>';
       document.dispatchEvent(new CustomEvent('aug:coupons', {detail:act}));
+      AUG.realignHash();
     }).catch(function(){ state(el, 'クーポン情報を読み込めませんでした。時間をおいて再度お試しください。'); });
   };
 
@@ -154,6 +193,7 @@
       if(limit) rows = rows.slice(0, limit);
       if(!rows.length){ state(el, '買取実績は準備中です。'); return; }
       el.innerHTML = rows.map(AUG.resultHTML).join('');
+      AUG.realignHash();
     }).catch(function(){ state(el, '買取実績を読み込めませんでした。時間をおいて再度お試しください。'); });
   };
 
@@ -237,6 +277,18 @@
         });
       }
     }
+
+    /* 紹介文の「詳しく読む」（スマホのみ折りたたみ） */
+    document.querySelectorAll('.readmore').forEach(function(btn){
+      var box = document.getElementById(btn.getAttribute('aria-controls'));
+      if(!box) return;
+      btn.addEventListener('click', function(){
+        var open = btn.getAttribute('aria-expanded') !== 'true';
+        btn.setAttribute('aria-expanded', String(open));
+        box.classList.toggle('is-open', open);
+        btn.textContent = open ? '閉じる' : 'お店について詳しく読む';
+      });
+    });
 
     /* data blocks */
     document.querySelectorAll('[data-coupons]').forEach(AUG.renderCoupons);
