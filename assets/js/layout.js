@@ -65,7 +65,7 @@
         '<div class="footer__top">' +
           '<div>' +
             '<p class="footer__name"><img src="' + ROOT + 'assets/img/logo-ivory.png" alt="August Buy&amp;Sell" width="642" height="211"></p>' +
-            '<address>アメカジ・ブランド古着の買取と販売<br>' + (C.address || '') + '<br>古物商許可番号 ' + (C.license || '') + '</address>' +
+            '<address>アメカジ・ブランド古着の買取と販売<br>' + (C.address || '') + '<br>' + (C.license || '') + '</address>' +
           '</div>' +
           '<nav class="footer__links" aria-label="フッターメニュー">' +
             FOOTER_LINKS.map(function(l){
@@ -103,6 +103,14 @@
       if(C.lineUrl){ el.href = C.lineUrl; el.hidden = false; }
       else { el.hidden = true; }
     });
+    /* 「LINE査定」ボタン（buy/#line へのリンク）と LINE ID の表記は、LINE の友だち追加へ直接リンクする */
+    if(C.lineUrl){
+      document.querySelectorAll('a[href$="#line"], a[data-line-href]').forEach(function(el){
+        el.href = C.lineUrl;
+        el.target = '_blank';
+        el.rel = 'noopener';
+      });
+    }
   }
 
   /* ヘッダーはこのスクリプトの直前のスロットへ即時に描画（ちらつき防止） */

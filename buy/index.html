@@ -70,7 +70,7 @@
             <li>アイテムの写真を送る</li>
             <li>査定金額をご返信</li>
           </ol>
-          <p class="line-id">LINE ID <span data-cfg="lineId">[LINE IDを差し込み]</span></p>
+          <p class="line-id">LINE ID <a class="u" data-cfg="lineId" data-line-href href="#line">[LINE IDを差し込み]</a></p>
           <div class="method__cta"><a class="btn btn--primary" href="#" data-line-link target="_blank" rel="noopener" hidden>LINEで友だち追加</a></div>
         </article>
       </div>
@@ -169,6 +169,14 @@
       <p class="lede" style="margin-top:16px;max-width:44em;">宅配買取・店頭買取のどちらもこちらから承ります。お見積り、配送キットすべて無料です。入力いただいた内容をもとに、担当より折り返しご連絡いたします。</p>
 
       <div class="formgrid">
+        <div class="formdone" id="formDone" hidden tabindex="-1" role="status" aria-live="polite">
+          <p class="formdone__mark" aria-hidden="true">&#10003;</p>
+          <h3 class="formdone__title">送信が完了しました</h3>
+          <p class="formdone__id">受付番号 <strong id="formDoneId"></strong></p>
+          <p>お申し込みいただき、ありがとうございます。<br>ご入力いただいたメールアドレスに、受付内容の確認メールをお送りしました。内容を確認のうえ、担当スタッフよりご連絡いたします。</p>
+          <p class="formdone__note">確認メールが届かない場合は、迷惑メールフォルダをご確認いただくか、LINE査定またはお電話でお問い合わせください。</p>
+          <button class="btn btn--primary" type="button" id="formAgain">続けて別のお申し込みをする</button>
+        </div>
         <form id="buyform" novalidate>
           <div class="hp" aria-hidden="true"><label>この欄は空のままにしてください<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 
@@ -312,7 +320,7 @@
               <li>アイテムの写真を送る</li>
               <li>査定金額をご返信</li>
             </ol>
-            <p class="id">LINE ID <span data-cfg="lineId">[LINE IDを差し込み]</span></p>
+            <p class="id">LINE ID <a class="u" data-cfg="lineId" data-line-href href="#line">[LINE IDを差し込み]</a></p>
           </div>
           <div class="card">
             <h3>宅配買取の流れ・よくある質問</h3>

@@ -22,6 +22,7 @@
   var status = document.getElementById('formStatus');
   var submitBtn = document.getElementById('submitBtn');
   var couponSel = document.getElementById('f-coupon');
+  var done = document.getElementById('formDone');
   var seq = 0;
   var sending = false;
 
@@ -403,13 +404,13 @@
         .then(function(r){ return r.json(); })
         .then(function(res){
           if(!res || !res.ok) throw new Error((res && res.error) || 'server');
-          setStatus('ok', '<strong>お申し込みを受け付けました。</strong><br>受付番号：' + AUG.esc(res.id || '') + '<br>内容を確認のうえ、担当より折り返しご連絡いたします。');
           form.reset();
           applyMethod();
           items().forEach(function(b){ (b._photos || []).forEach(function(p){ if(p.url) URL.revokeObjectURL(p.url); }); b.remove(); });
           addItem(false);
           lock(false);
-          status.focus();
+          status.hidden = true;
+          showDone(res.id || '');
         });
     }).catch(function(err){
       lock(false);
@@ -419,6 +420,29 @@
         '<br>うまくいかない場合は、LINE査定またはお電話でご連絡ください。');
       status.focus();
     });
+  });
+
+  /* ---------------- 送信完了 ---------------- */
+  function showDone(id){
+    if(!done){
+      setStatus('ok', '<strong>送信が完了しました。</strong><br>受付番号：' + AUG.esc(id) + '<br>内容を確認のうえ、担当より折り返しご連絡いたします。');
+      status.focus();
+      return;
+    }
+    document.getElementById('formDoneId').textContent = id;
+    form.hidden = true;
+    done.hidden = false;
+    var top = document.getElementById('form') || done;
+    top.scrollIntoView({block:'start', behavior:'smooth'});
+    done.focus({preventScroll:true});
+  }
+  var again = document.getElementById('formAgain');
+  if(again) again.addEventListener('click', function(){
+    done.hidden = true;
+    form.hidden = false;
+    form.scrollIntoView({block:'start', behavior:'smooth'});
+    var first = form.querySelector('input[name="method"]');
+    if(first) first.focus({preventScroll:true});
   });
 
   applyMethod();

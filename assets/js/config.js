@@ -9,14 +9,14 @@ window.AUGUST_CONFIG = {
   formEndpoint: "https://script.google.com/macros/s/AKfycbys2lGrQ7DOiyn3kh_FncOBILSiyayI3snK1ABE_oL7dJDLfhh2BXRJQp29ljMQOsnE/exec",
 
   /* LINE公式アカウント */
-  lineId: "[LINE IDを差し込み]",
-  lineUrl: "",            /* 友だち追加URL（例: https://line.me/R/ti/p/@xxxx）。空ならボタンは出ません */
+  lineId: "@776yyqfq",
+  lineUrl: "https://line.me/R/ti/p/@776yyqfq", /* 友だち追加URL。「LINE査定」ボタン・LINE ID の表記はすべてここへリンクします */
 
   /* 店舗情報（ヘッダー・フッター・販売ページで使用） */
   address: "[住所を差し込み]",
   access: "[最寄駅からの案内を差し込み]",
   payment: "[対応している決済方法を差し込み]",
-  license: "[許可番号を差し込み]",
+  license: "古物商許可証 第452740013242号／神奈川県公安委員会",
   buyMail: "[買取専用メールアドレスを差し込み]",
 
   instagram: "https://www.instagram.com/august_shop_sgn/",
