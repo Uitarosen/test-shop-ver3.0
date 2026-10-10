@@ -117,11 +117,12 @@ function handle_(d) {
     replyStatus = '送信失敗';
   }
 
+  // 受付日時はシートのタイムゾーン設定に左右されないよう、日本時間の文字列で記録する
   var row = [
-    now, id, d.name, d.tel, d.email, d.method,
-    d.zip, d.address, d.kit, d.visit, d.couponLabel || d.coupon,
+    Utilities.formatDate(now, TZ, 'yyyy/MM/dd HH:mm:ss'), id, d.name, d.tel, d.email, d.method,
+    d.zip, d.address, d.kit, ymd_(d.visit), d.couponLabel || d.coupon,
     items.length, detail, photoCount, folderUrl, d.note, replyStatus, '未対応'
-  ].map(function (v, i) { return i === 0 ? v : safe_(v); });
+  ].map(safe_);
 
   var sheet = getSheet_();
   sheet.appendRow(row);
@@ -164,7 +165,7 @@ function autoReply_(id, now, d, items) {
     '買取方法：' + str_(d.method)
   ];
   if (str_(d.method) === '店頭買取') {
-    lines.push('来店予定日：' + (str_(d.visit) || '未定'));
+    lines.push('来店予定日：' + (ymd_(d.visit) || '未定'));
   } else {
     lines.push('郵便番号：' + str_(d.zip));
     lines.push('ご住所：' + str_(d.address));
@@ -205,7 +206,7 @@ function notify_(id, d, detail, photoCount, folderUrl, sheetUrl) {
     'メール：' + str_(d.email),
     '買取方法：' + str_(d.method),
     str_(d.method) === '店頭買取'
-      ? '来店予定日：' + (str_(d.visit) || '未定')
+      ? '来店予定日：' + (ymd_(d.visit) || '未定')
       : '住所：' + [str_(d.zip), str_(d.address)].join(' ') + '（配送キット：' + (str_(d.kit) || '指定なし') + '）',
     'クーポン：' + (str_(d.couponLabel) || 'なし'),
     '',
@@ -260,6 +261,9 @@ function getFolder_() {
   props.setProperty('FOLDER_ID', folder.getId());
   return folder;
 }
+
+/* 2026-10-17 → 2026/10/17 */
+function ymd_(v) { return str_(v).replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$1/$2/$3'); }
 
 function str_(v) { return v == null ? '' : String(v).trim().slice(0, 2000); }
 
