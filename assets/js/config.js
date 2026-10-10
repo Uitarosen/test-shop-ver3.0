@@ -6,7 +6,7 @@ window.AUGUST_CONFIG = {
   /* 買取フォームの送信先（Google Apps Script の WebアプリURL）
      例: "https://script.google.com/macros/s/xxxxxxxx/exec"
      空のままだと「送信先未設定」と表示され、実際の送信は行われません。 */
-  formEndpoint: "",
+  formEndpoint: "https://script.google.com/macros/s/AKfycbys2lGrQ7DOiyn3kh_FncOBILSiyayI3snK1ABE_oL7dJDLfhh2BXRJQp29ljMQOsnE/exec",
 
   /* LINE公式アカウント */
   lineId: "[LINE IDを差し込み]",
