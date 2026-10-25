@@ -918,3 +918,12 @@ h1,h2,h3{font-family:var(--heading);font-weight:700;letter-spacing:.02em;}
 .visit[data-invalid="true"] input,.visit[data-invalid="true"] select{border:2px solid var(--error);}
 /* 写真が必須のときの枠 */
 .field[data-invalid="true"] .photos__pick label.btn{border-color:var(--error);color:var(--error);}
+
+/* 店舗情報の見出しを言葉の途中で折らない／トップは写真のかわりに地図 */
+.store__intro h2{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance;}
+.store dl{align-content:start;}
+@media (min-width:860px){.store{grid-template-columns:320px minmax(0,1fr);}}
+@media (min-width:1180px){.store{grid-template-columns:320px minmax(0,1fr) 360px;}}
+.store--home .map{margin-top:0;}
+@media (min-width:860px) and (max-width:1179px){.store--home .store__map{grid-column:1 / -1;}.store--home .map{aspect-ratio:21 / 9;}}
+@media (min-width:1180px){.store--home{grid-template-columns:320px minmax(0,1fr) minmax(0,420px);}.store--home .map{aspect-ratio:1 / 1;}}
