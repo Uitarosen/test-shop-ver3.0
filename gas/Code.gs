@@ -22,7 +22,7 @@ var TZ = 'Asia/Tokyo';
 
 var HEADERS = [
   '受付日時', '受付番号', 'お名前', '電話番号', 'メールアドレス', '買取方法',
-  '郵便番号', 'ご住所', '配送キット', '来店予定日', 'クーポン',
+  '郵便番号', 'ご住所', '配送キット', '来店希望日', 'クーポン',
   'アイテム数', 'アイテム詳細', '写真枚数', '写真フォルダ', '備考', '自動返信', '対応状況'
 ];
 
@@ -120,7 +120,7 @@ function handle_(d) {
   // 受付日時はシートのタイムゾーン設定に左右されないよう、日本時間の文字列で記録する
   var row = [
     Utilities.formatDate(now, TZ, 'yyyy/MM/dd HH:mm:ss'), id, d.name, d.tel, d.email, d.method,
-    d.zip, d.address, d.kit, ymd_(d.visit), d.couponLabel || d.coupon,
+    d.zip, d.address, d.kit, visitText_(d, '\n'), d.couponLabel || d.coupon,
     items.length, detail, photoCount, folderUrl, d.note, replyStatus, '未対応'
   ].map(safe_);
 
@@ -165,7 +165,8 @@ function autoReply_(id, now, d, items) {
     '買取方法：' + str_(d.method)
   ];
   if (str_(d.method) === '店頭買取') {
-    lines.push('来店予定日：' + (ymd_(d.visit) || '未定'));
+    lines.push('来店希望日：');
+    lines.push(visitText_(d, '\n') || '未定');
   } else {
     lines.push('郵便番号：' + str_(d.zip));
     lines.push('ご住所：' + str_(d.address));
@@ -206,7 +207,7 @@ function notify_(id, d, detail, photoCount, folderUrl, sheetUrl) {
     'メール：' + str_(d.email),
     '買取方法：' + str_(d.method),
     str_(d.method) === '店頭買取'
-      ? '来店予定日：' + (ymd_(d.visit) || '未定')
+      ? '来店希望日：\n' + (visitText_(d, '\n') || '未定')
       : '住所：' + [str_(d.zip), str_(d.address)].join(' ') + '（配送キット：' + (str_(d.kit) || '指定なし') + '）',
     'クーポン：' + (str_(d.couponLabel) || 'なし'),
     '',
@@ -260,6 +261,18 @@ function getFolder_() {
   var folder = DriveApp.createFolder(FOLDER_NAME);
   props.setProperty('FOLDER_ID', folder.getId());
   return folder;
+}
+
+/* 来店希望日（第1〜第3希望）を文字列に。
+   新しいフォームは visits:[{no, date:'2026-10-30', time:'14:00'}] を送る。古い形式（visit のみ）にも対応 */
+function visitText_(d, sep) {
+  var list = Array.isArray(d.visits) ? d.visits : [];
+  var out = list.filter(function (v) { return v && str_(v.date); }).slice(0, 3).map(function (v, i) {
+    var date = str_(v.date);
+    var w = /^\d{4}-\d{2}-\d{2}$/.test(date) ? '（' + '日月火水木金土'.charAt(new Date(date + 'T00:00:00Z').getUTCDay()) + '）' : '';
+    return '第' + (Number(v.no) || i + 1) + '希望 ' + ymd_(date) + w + (str_(v.time) ? ' ' + str_(v.time) : '');
+  });
+  return out.length ? out.join(sep) : ymd_(d.visit);
 }
 
 /* 2026-10-17 → 2026/10/17 */

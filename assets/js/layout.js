@@ -25,6 +25,7 @@
     {key:'buy',     label:'買取について', href:'buy/'},
     {key:'',        label:'買取フォーム', href:'buy/#form'},
     {key:'',        label:'LINE査定',     href:'buy/#line'},
+    {key:'',        label:'よくある質問', href:'buy/#faq'},
     {key:'results', label:'買取実績',     href:'results/'},
     {key:'brands',  label:'取扱ブランド', href:'brands/'},
     {key:'store',   label:'ショップ・通販', href:'store/'},

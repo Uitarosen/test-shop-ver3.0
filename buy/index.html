@@ -34,7 +34,7 @@
       <nav class="crumbs" aria-label="パンくず"><a href="../">トップ</a><span aria-hidden="true">/</span><span aria-current="page">買取について</span></nav>
       <span class="label">Buy</span>
       <h1>買取について</h1>
-      <p class="pagehero__lede">店頭・フォーム・LINE。ご都合にあわせて、3つの方法からお選びください。</p>
+      <p class="pagehero__lede">買取は経験と知識のあるスタッフが一点一点丁寧に査定させていただきますので、高額査定が可能です。店頭・フォーム・LINE。ご都合にあわせて、3つの方法からお選びください。</p>
     </div>
   </section>
 
@@ -129,7 +129,7 @@
         </details>
         <details class="faq__item">
           <summary>査定額に納得できなかった場合は？</summary>
-          <p>キャンセルいただけます。お品物はご返送いたします（返送料：<span data-cfg="cancelFee">[返送料の扱い]</span>）。</p>
+          <p>キャンセルいただけます。その場合、配送費弊社負担でお品物をご返送いたします。</p>
         </details>
         <details class="faq__item">
           <summary>本人確認書類は必要ですか？</summary>
@@ -248,11 +248,42 @@
 
             <div class="branch" id="visitSet" data-branch="店頭買取" hidden>
               <p class="branch__label">店頭買取の方</p>
-              <div class="field">
-                <label for="f-visit">ご来店予定日<span class="opt">任意</span></label>
-                <input id="f-visit" name="visit" type="date">
-                <p class="hint">営業時間 13:00 - 19:00／定休日 水曜・木曜</p>
-              </div>
+              <fieldset class="fieldset visits">
+                <legend>来店希望日</legend>
+                <p class="hint" id="visitHint">第3希望までご入力いただけます。来店時間は13:00〜18:00の30分単位でお選びください（営業時間 13:00 - 19:00／定休日 水曜・木曜）。</p>
+                <div class="visits__list">
+                  <div class="visit" data-field data-visit="1">
+                    <span class="visit__no" id="visit1-label">第1希望<span class="req">必須</span></span>
+                    <div class="visit__inputs">
+                      <input id="f-visit1" name="visit1" type="date" aria-labelledby="visit1-label" aria-describedby="visitHint" data-visit-date>
+                      <select id="f-time1" name="time1" aria-label="第1希望の来店時間" data-visit-time>
+                        <option value="">時間を選択</option>
+                      </select>
+                    </div>
+                    <p class="err" data-err hidden></p>
+                  </div>
+                  <div class="visit" data-field data-visit="2">
+                    <span class="visit__no" id="visit2-label">第2希望<span class="opt">任意</span></span>
+                    <div class="visit__inputs">
+                      <input id="f-visit2" name="visit2" type="date" aria-labelledby="visit2-label" aria-describedby="visitHint" data-visit-date>
+                      <select id="f-time2" name="time2" aria-label="第2希望の来店時間" data-visit-time>
+                        <option value="">時間を選択</option>
+                      </select>
+                    </div>
+                    <p class="err" data-err hidden></p>
+                  </div>
+                  <div class="visit" data-field data-visit="3">
+                    <span class="visit__no" id="visit3-label">第3希望<span class="opt">任意</span></span>
+                    <div class="visit__inputs">
+                      <input id="f-visit3" name="visit3" type="date" aria-labelledby="visit3-label" aria-describedby="visitHint" data-visit-date>
+                      <select id="f-time3" name="time3" aria-label="第3希望の来店時間" data-visit-time>
+                        <option value="">時間を選択</option>
+                      </select>
+                    </div>
+                    <p class="err" data-err hidden></p>
+                  </div>
+                </div>
+              </fieldset>
             </div>
           </div>
 
@@ -344,7 +375,7 @@
       <div class="row">
         <div class="field" data-field>
           <label data-for="brand">ブランド<span class="req">必須</span></label>
-          <input type="text" data-k="brand" list="brandList" placeholder="例 Levi's" required>
+          <input type="text" data-k="brand" list="brandList" placeholder="例 リーバイス" required>
           <p class="err" data-err hidden></p>
         </div>
         <div class="field">
@@ -353,27 +384,31 @@
         </div>
       </div>
       <div class="row">
-        <div class="field">
-          <label data-for="size">サイズ<span class="opt">任意</span></label>
-          <input type="text" data-k="size" placeholder="例 M / W32 / 40">
+        <div class="field" data-field>
+          <label data-for="size">サイズ<span class="req">必須</span></label>
+          <input type="text" data-k="size" placeholder="例 M / W32 / 40" required>
+          <p class="err" data-err hidden></p>
         </div>
-        <div class="field">
-          <label data-for="condition">状態<span class="opt">任意</span></label>
-          <select data-k="condition">
+        <div class="field" data-field>
+          <label data-for="condition">状態<span class="req">必須</span></label>
+          <select data-k="condition" required>
             <option value="">選択してください</option>
             <option>新品同様</option>
             <option>美品</option>
             <option>使用感あり</option>
             <option>ダメージあり</option>
           </select>
+          <p class="err" data-err hidden></p>
         </div>
       </div>
-      <div class="field">
-        <label data-for="memo">状態の補足<span class="opt">任意</span></label>
+      <div class="field" data-field>
+        <label data-for="memo">状態の補足<span class="opt" data-need="memo">任意</span></label>
         <input type="text" data-k="memo" placeholder="例 裾にほつれあり、タグ欠品 など">
+        <p class="hint" data-damage-hint hidden>「ダメージあり」の場合は、ダメージの箇所と内容をご記入ください。</p>
+        <p class="err" data-err hidden></p>
       </div>
-      <div class="field">
-        <span style="font-size:14px;font-weight:700;">写真<span class="opt">任意・<span data-max>5</span>枚まで</span></span>
+      <div class="field" data-field>
+        <span style="font-size:14px;font-weight:700;">写真<span class="opt" data-need="photo"><span data-need-word>任意</span>・<span data-max>5</span>枚まで</span></span>
         <div class="photos__pick">
           <input type="file" accept="image/*" multiple data-file>
           <label class="btn btn--ghost btn--sm" data-for="file">写真を選ぶ</label>
@@ -381,6 +416,7 @@
         </div>
         <div class="thumbs" data-thumbs></div>
         <p class="photos__msg" data-photomsg hidden></p>
+        <p class="err" data-err hidden></p>
       </div>
     </div>
   </template>

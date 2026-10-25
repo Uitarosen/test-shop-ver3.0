@@ -2,6 +2,7 @@
   {
     "date": "2026-10-03",
     "brand": "Levi's",
+    "category": "ヴィンテージ",
     "item": "501 66前期（サンプル）",
     "size": "W32",
     "condition": "使用感あり",
@@ -11,6 +12,7 @@
   {
     "date": "2026-10-02",
     "brand": "Ralph Lauren",
+    "category": "アメカジ",
     "item": "カントリー ダウンベスト（サンプル）",
     "size": "M",
     "condition": "美品",
@@ -20,6 +22,7 @@
   {
     "date": "2026-09-30",
     "brand": "PORTER CLASSIC",
+    "category": "ドメスティック",
     "item": "PC KENDO シャツジャケット（サンプル）",
     "size": "2",
     "condition": "美品",
@@ -29,6 +32,7 @@
   {
     "date": "2026-09-29",
     "brand": "Patagonia",
+    "category": "アウトドア",
     "item": "レトロX ジャケット（サンプル）",
     "size": "L",
     "condition": "使用感あり",
@@ -38,6 +42,7 @@
   {
     "date": "2026-09-27",
     "brand": "Levi's",
+    "category": "ヴィンテージ",
     "item": "70505 デニムジャケット（サンプル）",
     "size": "40",
     "condition": "ダメージあり",
@@ -47,6 +52,7 @@
   {
     "date": "2026-09-26",
     "brand": "45R",
+    "category": "ドメスティック",
     "item": "藍染 カバーオール（サンプル）",
     "size": "3",
     "condition": "美品",
@@ -56,6 +62,7 @@
   {
     "date": "2026-09-24",
     "brand": "STÜSSY",
+    "category": "アメカジ",
     "item": "OLD STÜSSY ワールドツアーTee（サンプル）",
     "size": "L",
     "condition": "使用感あり",
@@ -65,6 +72,7 @@
   {
     "date": "2026-09-22",
     "brand": "C.P. COMPANY",
+    "category": "ハイブラインポートデザイナーズ",
     "item": "ゴーグルジャケット（サンプル）",
     "size": "50",
     "condition": "新品同様",
@@ -74,6 +82,7 @@
   {
     "date": "2026-09-20",
     "brand": "ACRONYM",
+    "category": "ハイブラインポートデザイナーズ",
     "item": "J1A-GT（サンプル）",
     "size": "M",
     "condition": "美品",
@@ -83,6 +92,7 @@
   {
     "date": "2026-09-18",
     "brand": "TEATORA",
+    "category": "ドメスティック",
     "item": "Wallet Coat Packable（サンプル）",
     "size": "3",
     "condition": "新品同様",
@@ -92,6 +102,7 @@
   {
     "date": "2026-09-15",
     "brand": "COMME des GARÇONS HOMME",
+    "category": "ドメスティック",
     "item": "田中オム ウールジャケット（サンプル）",
     "size": "M",
     "condition": "使用感あり",
@@ -101,6 +112,7 @@
   {
     "date": "2026-09-12",
     "brand": "ISAMU KATAYAMA BACKLASH",
+    "category": "ドメスティック",
     "item": "ダブルショルダー ライダース（サンプル）",
     "size": "S",
     "condition": "美品",

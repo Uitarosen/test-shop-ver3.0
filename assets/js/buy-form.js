@@ -137,6 +137,7 @@
       msg.hidden = false;
       files = files.slice(0, Math.max(0, room));
     }
+    if(files.length) clearError(input);
     files.forEach(function(file){
       var id = 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
       var entry = {id:id, name:file.name, blob:null, url:null, busy:true};
@@ -211,9 +212,60 @@
   }
   form.addEventListener('change', function(e){ if(e.target.name === 'method') applyMethod(); });
 
-  /* 来店予定日は今日以降 */
-  var visit = document.getElementById('f-visit');
-  if(visit) visit.min = AUG.today();
+  /* ---------------- 来店希望日（第1〜第3希望・時間は13:00〜18:00の30分刻み） ---------------- */
+  var VISIT_FROM = 13 * 60, VISIT_TO = 18 * 60, VISIT_STEP = 30;
+  var CLOSED = [3, 4]; /* 定休日：水曜・木曜（0=日曜） */
+  var visitRows = Array.prototype.slice.call(form.querySelectorAll('[data-visit]'));
+  var timeOpts = '';
+  for(var t = VISIT_FROM; t <= VISIT_TO; t += VISIT_STEP){
+    var hm = Math.floor(t / 60) + ':' + ('0' + (t % 60)).slice(-2);
+    timeOpts += '<option value="' + hm + '">' + hm + '</option>';
+  }
+  visitRows.forEach(function(row){
+    row.querySelector('[data-visit-date]').min = AUG.today();
+    row.querySelector('[data-visit-time]').insertAdjacentHTML('beforeend', timeOpts);
+  });
+  function visitError(row){
+    var d = row.querySelector('[data-visit-date]').value;
+    var t = row.querySelector('[data-visit-time]').value;
+    var no = row.getAttribute('data-visit');
+    if(!d && !t) return no === '1' ? '第1希望の日付と来店時間を選んでください。' : '';
+    if(!d) return '日付を選んでください。';
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return '日付を正しく入力してください。';
+    if(d < AUG.today()) return '本日以降の日付をお選びください。';
+    if(CLOSED.indexOf(new Date(d + 'T00:00:00Z').getUTCDay()) >= 0) return '水曜・木曜は定休日です。別の日をお選びください。';
+    if(!t) return '来店時間を選んでください。';
+    return '';
+  }
+  function validateVisit(row){
+    var msg = visitError(row);
+    var els = row.querySelectorAll('input, select');
+    if(msg){
+      row.setAttribute('data-invalid', 'true');
+      var p = row.querySelector('[data-err]'); p.textContent = msg; p.hidden = false;
+      els.forEach(function(el){ el.setAttribute('aria-invalid', 'true'); });
+      return false;
+    }
+    row.removeAttribute('data-invalid');
+    var q = row.querySelector('[data-err]'); q.hidden = true; q.textContent = '';
+    els.forEach(function(el){ el.removeAttribute('aria-invalid'); });
+    return true;
+  }
+  form.addEventListener('change', function(e){
+    var row = e.target.closest('[data-visit]');
+    if(row) validateVisit(row);
+  });
+  function weekday(d){ return '日月火水木金土'.charAt(new Date(d + 'T00:00:00Z').getUTCDay()); }
+  function visitList(){
+    return visitRows.map(function(row){
+      return {no:Number(row.getAttribute('data-visit')), date:row.querySelector('[data-visit-date]').value, time:row.querySelector('[data-visit-time]').value};
+    }).filter(function(v){ return v.date; });
+  }
+  function visitText(list){
+    return list.map(function(v){
+      return '第' + v.no + '希望 ' + v.date.replace(/-/g, '/') + '（' + weekday(v.date) + '）' + (v.time ? ' ' + v.time : '');
+    }).join('／');
+  }
 
   /* 郵便番号から住所を自動入力（zipcloud・JSONP。失敗しても手入力できます） */
   var zip = document.getElementById('f-zip');
@@ -249,6 +301,41 @@
     });
   }
 
+  /* ---------------- 状態「ダメージあり」：状態の補足と写真を必須にする ---------------- */
+  function isDamaged(block){ return block.querySelector('[data-k="condition"]').value === 'ダメージあり'; }
+  function photoCount(block){ return (block._photos || []).length; }
+  function setNeed(tag, on){
+    tag.classList.toggle('req', on);
+    tag.classList.toggle('opt', !on);
+  }
+  function applyDamage(block){
+    var on = isDamaged(block);
+    var memo = block.querySelector('[data-k="memo"]');
+    memo.required = on;
+    var mt = block.querySelector('[data-need="memo"]');
+    mt.textContent = on ? '必須' : '任意';
+    setNeed(mt, on);
+    setNeed(block.querySelector('[data-need="photo"]'), on);
+    block.querySelector('[data-need-word]').textContent = on ? '必須' : '任意';
+    block.querySelector('[data-damage-hint]').hidden = !on;
+    if(!on){
+      clearError(memo);
+      clearError(block.querySelector('[data-file]'));
+    }
+  }
+  function validatePhotos(block){
+    var file = block.querySelector('[data-file]');
+    if(isDamaged(block) && !photoCount(block)){ showError(file, messages.photo); return false; }
+    clearError(file); return true;
+  }
+  list.addEventListener('change', function(e){
+    if(e.target.matches('[data-k="condition"]')){
+      var block = e.target.closest('[data-item]');
+      applyDamage(block);
+      if(block.getAttribute('data-invalid') === 'true' || block.querySelector('[aria-invalid="true"]')) validatePhotos(block);
+    }
+  });
+
   /* ---------------- validation ---------------- */
   var messages = {
     'f-name':'お名前を入力してください。',
@@ -257,7 +344,11 @@
     'f-addr':'ご住所を番地・建物名まで入力してください。',
     'f-zip':'郵便番号を7桁で入力してください。',
     'f-agree':'内容をご確認のうえ、チェックを入れてください。',
-    brand:'ブランドを入力してください。わからない場合は「不明」とご記入ください。'
+    brand:'ブランドを入力してください。わからない場合は「不明」とご記入ください。',
+    size:'サイズを入力してください。わからない場合は「不明」とご記入ください。',
+    condition:'状態を選んでください。',
+    memo:'ダメージの箇所と内容をご記入ください。',
+    photo:'「ダメージあり」の場合は、ダメージの箇所がわかる写真を1枚以上添付してください。'
   };
   function wrapOf(el){ return el.closest('[data-field]'); }
   function showError(el, msg){
@@ -285,7 +376,7 @@
       clearError(el); return true;
     }
     var v = (el.value || '').trim();
-    if(!v){ showError(el, messages[el.id] || messages[el.getAttribute('data-k')] || '入力してください。'); return false; }
+    if(!v){ showError(el, messages[el.id] || messages[el.getAttribute('data-k')] || (el.tagName === 'SELECT' ? '選んでください。' : '入力してください。')); return false; }
     if(el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ showError(el, messages['f-mail']); return false; }
     if(el.id === 'f-zip' && v.replace(/[０-９]/g, function(c){ return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }).replace(/[^\d]/g, '').length !== 7){ showError(el, messages['f-zip']); return false; }
     if(el.type === 'tel' && v.replace(/[^\d]/g, '').length < 10){ showError(el, '電話番号は市外局番から入力してください。'); return false; }
@@ -326,12 +417,12 @@
     var radio = function(n){ var el = form.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; };
     var payload = {
       method:radio('method'),
-      name:fd('name'), tel:fd('tel'), email:fd('email'), zip:'', address:'', kit:'', visit:'',
+      name:fd('name'), tel:fd('tel'), email:fd('email'), zip:'', address:'', kit:'', visit:'', visits:[],
       coupon:couponSel.value, couponLabel:couponSel.value ? couponSel.options[couponSel.selectedIndex].text : '',
       note:fd('note'), page:location.href, items:[]
     };
     if(payload.method === '宅配買取'){ payload.zip = fd('zip'); payload.address = fd('address'); payload.kit = radio('kit'); }
-    if(payload.method === '店頭買取'){ payload.visit = fd('visit'); }
+    if(payload.method === '店頭買取'){ payload.visits = visitList(); payload.visit = visitText(payload.visits); }
     var jobs = [];
     items().forEach(function(block, i){
       var get = function(k){ return String(block.querySelector('[data-k="' + k + '"]').value || '').trim(); };
@@ -365,7 +456,17 @@
       if(el.type === 'radio'){ if(seen[el.name]) return; seen[el.name] = true; }
       if(!validateField(el) && !first) first = el;
     });
+    if(currentMethod() === '店頭買取'){
+      visitRows.forEach(function(row){
+        if(!validateVisit(row) && !first) first = row.querySelector('[aria-invalid="true"]');
+      });
+    }
+    items().forEach(function(b){
+      if(!validatePhotos(b) && !first) first = b.querySelector('[data-file]');
+    });
     items().forEach(function(b){ b.toggleAttribute('data-invalid', !!b.querySelector('[aria-invalid="true"]')); });
+    /* 画面の上にある項目から順に案内する */
+    if(first) first = form.querySelector('[aria-invalid="true"]:not([disabled])') || first;
     if(!items().length){ itemsErr.textContent = 'アイテムを1点以上追加してください。'; itemsErr.hidden = false; first = first || addBtn; }
 
     if(first){

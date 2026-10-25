@@ -32,6 +32,11 @@
     var d = AUG.normDate(s);
     return d ? d.replace(/-/g, '.') : '';
   };
+  /* 年月だけ（2026-10-03 → 2026.10）：買取実績の買取時期に使用 */
+  AUG.dispMonth = function(s){
+    var d = AUG.normDate(s);
+    return d ? d.slice(0, 7).replace('-', '.') : '';
+  };
 
   var cache = {};
   AUG.load = function(name){
@@ -170,7 +175,7 @@
     if(r.size) meta.push('サイズ ' + E(r.size));
     if(r.condition) meta.push(E(r.condition));
     return '<article class="result">' +
-      '<div class="result__img">' + img + (r.date ? '<span class="result__date">' + AUG.dispDate(r.date) + '</span>' : '') + '</div>' +
+      '<div class="result__img">' + img + (r.date ? '<span class="result__date">' + AUG.dispMonth(r.date) + '</span>' : '') + '</div>' +
       '<div class="result__body">' +
         '<p class="result__brand">' + E(r.brand || '') + '</p>' +
         (r.item ? '<p class="result__item">' + E(r.item) + '</p>' : '') +
