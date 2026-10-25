@@ -927,3 +927,4 @@ h1,h2,h3{font-family:var(--heading);font-weight:700;letter-spacing:.02em;}
 .store--home .map{margin-top:0;}
 @media (min-width:860px) and (max-width:1179px){.store--home .store__map{grid-column:1 / -1;}.store--home .map{aspect-ratio:21 / 9;}}
 @media (min-width:1180px){.store--home{grid-template-columns:320px minmax(0,1fr) minmax(0,420px);}.store--home .map{aspect-ratio:1 / 1;}}
+.more__next:first-child{margin-top:0;}
