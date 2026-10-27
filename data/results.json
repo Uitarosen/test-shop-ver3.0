@@ -7,7 +7,12 @@
     "size": "W32",
     "condition": "使用感あり",
     "price": 38000,
-    "image": "results/2026-10-03-levi-s.jpg"
+    "coupon": true,
+    "images": [
+      "results/2026-10-03-levi-s.jpg",
+      "results/2026-09-27-levi-s.jpg",
+      "results/2026-09-29-patagonia.jpg"
+    ]
   },
   {
     "date": "2026-10-02",

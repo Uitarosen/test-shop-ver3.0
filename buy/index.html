@@ -17,14 +17,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Zen+Kaku+Gothic+New:wght@400;700&family=Zen+Old+Mincho:wght@600&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=3.4.2">
+<link rel="stylesheet" href="../assets/css/style.css?v=3.4.3">
 </head>
 <body>
 <a class="skip" href="#main">本文へスキップ</a>
 
 <div data-include="header"></div>
-<script src="../assets/js/config.js?v=3.4.2"></script>
-<script src="../assets/js/layout.js?v=3.4.2"></script>
+<script src="../assets/js/config.js?v=3.4.3"></script>
+<script src="../assets/js/layout.js?v=3.4.3"></script>
 <noscript><p style="padding:100px 20px 0;"><a href="../">トップ</a> / <a href="../buy/">買取について</a> / <a href="../results/">買取実績</a> / <a href="../brands/">取扱ブランド</a> / <a href="../store/">ショップ・通販</a></p></noscript>
 
 <main id="main">
@@ -85,7 +85,7 @@
           <span class="label">Flow</span>
           <h2 style="margin-top:14px;">宅配買取の流れ</h2>
         </div>
-        <p class="lede" style="font-size:14px;max-width:30em;">ご自宅から送るだけ。査定額にご納得いただけない場合は、キャンセルもできます。</p>
+        <p class="lede" style="font-size:14px;max-width:30em;">ご自宅から送るだけ。査定額にご納得いただけない場合は、キャンセルもできます。お品物到着後、不成立となったお品物の返送費用は弊社負担となります。</p>
       </div>
       <ol class="flow">
         <li class="flow__step">
@@ -137,7 +137,7 @@
         </details>
         <details class="faq__item">
           <summary>査定の有効期限はありますか？</summary>
-          <p>査定の有効期限は1週間です。店頭買取、店頭以外の買取ともに適用されます。</p>
+          <p>概算査定算出日の翌日から1週間です。店頭買取、店頭以外の買取ともに適用されます。</p>
         </details>
         <details class="faq__item">
           <summary>買取できないものはありますか？</summary>
@@ -250,7 +250,7 @@
               <p class="branch__label">店頭買取の方</p>
               <fieldset class="fieldset visits">
                 <legend>来店希望日</legend>
-                <p class="hint" id="visitHint">第3希望までご入力いただけます。来店時間は13:00〜18:00の30分単位でお選びください（営業時間 13:00 - 19:00／定休日 水曜・木曜）。</p>
+                <p class="hint" id="visitHint">第3希望までご入力いただけます。お申し込み日の2日後から選べます（水曜・木曜は定休日のため選べません）。来店時間は13:00〜18:00の30分単位でお選びください。</p>
                 <div class="visits__list">
                   <div class="visit" data-field data-visit="1">
                     <span class="visit__no" id="visit1-label">第1希望<span class="req">必須</span></span>
@@ -320,7 +320,9 @@
                 <dt>買取できないもの</dt>
                 <dd>明らかな処分目的のもの、当店で取り扱いができないブランドやアイテム、著しい状態不良のもの（ヴィンテージや雰囲気として捉えることができるものは除きます）。</dd>
                 <dt>査定の有効期限</dt>
-                <dd>1週間です。店頭買取、店頭以外の買取ともに適用されます。</dd>
+                <dd>概算査定算出日の翌日から1週間です。店頭買取、店頭以外の買取ともに適用されます。</dd>
+                <dt data-confirm-branch="宅配買取" hidden>キャンセルについて</dt>
+                <dd data-confirm-branch="宅配買取" hidden>品物到着後、不成立となったお品物の返送費用は弊社負担となります。</dd>
                 <dt>個人情報の取り扱い</dt>
                 <dd>ご入力いただいた個人情報は、買取のお申し込みへの対応（ご連絡・査定・配送キットの発送・古物営業法に基づく記録）にのみ使用し、法令に基づく場合を除き第三者に提供することはありません。</dd>
               </dl>
@@ -424,7 +426,7 @@
 </main>
 
 <div data-include="footer"></div>
-<script src="../assets/js/site.js?v=3.4.2"></script>
-<script src="../assets/js/buy-form.js?v=3.4.2"></script>
+<script src="../assets/js/site.js?v=3.4.3"></script>
+<script src="../assets/js/buy-form.js?v=3.4.3"></script>
 </body>
 </html>

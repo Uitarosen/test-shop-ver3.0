@@ -198,6 +198,10 @@
   function currentMethod(){ var r = form.querySelector('input[name="method"]:checked'); return r ? r.value : ''; }
   function applyMethod(){
     var m = currentMethod();
+    /* 「確認して申し込む」の注意事項：宅配買取のときだけ出す項目（キャンセルについて など） */
+    form.querySelectorAll('[data-confirm-branch]').forEach(function(el){
+      el.hidden = el.getAttribute('data-confirm-branch') !== m;
+    });
     branches.forEach(function(b){
       var on = b.getAttribute('data-branch') === m;
       b.hidden = !on;
@@ -215,6 +219,14 @@
   /* ---------------- 来店希望日（第1〜第3希望・時間は13:00〜18:00の30分刻み） ---------------- */
   var VISIT_FROM = 13 * 60, VISIT_TO = 18 * 60, VISIT_STEP = 30;
   var CLOSED = [3, 4]; /* 定休日：水曜・木曜（0=日曜） */
+  var LEAD_DAYS = 2;   /* 申込日の何日後から選べるか */
+  function addDays(ymd, n){
+    var d = new Date(ymd + 'T00:00:00Z');
+    d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0, 10);
+  }
+  var EARLIEST = addDays(AUG.today(), LEAD_DAYS);
+  function mdw(ymd){ var d = new Date(ymd + 'T00:00:00Z'); return (d.getUTCMonth() + 1) + '/' + d.getUTCDate() + '（' + '日月火水木金土'.charAt(d.getUTCDay()) + '）'; }
   var visitRows = Array.prototype.slice.call(form.querySelectorAll('[data-visit]'));
   var timeOpts = '';
   for(var t = VISIT_FROM; t <= VISIT_TO; t += VISIT_STEP){
@@ -222,7 +234,7 @@
     timeOpts += '<option value="' + hm + '">' + hm + '</option>';
   }
   visitRows.forEach(function(row){
-    row.querySelector('[data-visit-date]').min = AUG.today();
+    row.querySelector('[data-visit-date]').min = EARLIEST;
     row.querySelector('[data-visit-time]').insertAdjacentHTML('beforeend', timeOpts);
   });
   function visitError(row){
@@ -232,7 +244,7 @@
     if(!d && !t) return no === '1' ? '第1希望の日付と来店時間を選んでください。' : '';
     if(!d) return '日付を選んでください。';
     if(!/^\d{4}-\d{2}-\d{2}$/.test(d)) return '日付を正しく入力してください。';
-    if(d < AUG.today()) return '本日以降の日付をお選びください。';
+    if(d < EARLIEST) return mdw(EARLIEST) + '以降の日付をお選びください（お申し込み日の' + LEAD_DAYS + '日後から選べます）。';
     if(CLOSED.indexOf(new Date(d + 'T00:00:00Z').getUTCDay()) >= 0) return '水曜・木曜は定休日です。別の日をお選びください。';
     if(!t) return '来店時間を選んでください。';
     return '';

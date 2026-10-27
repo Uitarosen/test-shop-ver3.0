@@ -24,6 +24,11 @@ if (results) results.forEach((r, i) => {
   if (!date.test(r.date || '')) err('data/results.json', `${i + 1}件目: date は 2026-10-12 の形で書いてください`);
   if (r.price !== '' && typeof r.price !== 'number') err('data/results.json', `${i + 1}件目: price は数字だけで書いてください（例 38000）`);
   img('data/results.json', r.image, i);
+  if ('images' in r) {
+    if (!Array.isArray(r.images)) err('data/results.json', `${i + 1}件目: images は ["results/a.jpg", "results/b.jpg"] のように [ ] で囲んで書いてください`);
+    else r.images.forEach((x) => img('data/results.json', x, i));
+  }
+  if ('coupon' in r && typeof r.coupon !== 'boolean') err('data/results.json', `${i + 1}件目: coupon は true / false（" で囲まない）`);
 });
 const coupons = load('data/coupons.json');
 if (coupons) {

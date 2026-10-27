@@ -166,23 +166,144 @@
   };
 
   /* ---------------- results ---------------- */
+  /* 写真の一覧："images"（複数）を優先。従来の "image"（1枚）もそのまま使える */
+  AUG.resultPhotos = function(r){
+    var list = Array.isArray(r.images) ? r.images : (r.image ? [r.image] : []);
+    return list.map(function(x){ return String(x || '').trim(); }).filter(Boolean);
+  };
+  var resultStore = [];
   AUG.resultHTML = function(r){
     var E = AUG.esc;
-    var img = r.image
-      ? '<img src="' + E(AUG.img(r.image)) + '" alt="' + E((r.brand || '') + ' ' + (r.item || '')) + '" data-brand="' + E(r.brand || '') + '" loading="lazy" onerror="AUG.noimg(this)">'
+    var photos = AUG.resultPhotos(r);
+    var label = ((r.brand || '') + ' ' + (r.item || '')).trim();
+    var idx = -1;
+    if(photos.length){ idx = resultStore.indexOf(r); if(idx < 0){ idx = resultStore.length; resultStore.push(r); } }
+    var img = photos.length
+      ? '<img src="' + E(AUG.img(photos[0])) + '" alt="' + E(label) + '" data-brand="' + E(r.brand || '') + '" loading="lazy" onerror="AUG.noimg(this)">'
       : '<span class="result__noimg">' + E(r.brand || '') + '</span>';
+    var count = photos.length > 1 ? '<span class="result__count" aria-hidden="true">' + photos.length + '枚</span>' : '';
+    var media = '<div class="result__img">' + img + (r.date ? '<span class="result__date">' + AUG.dispMonth(r.date) + '</span>' : '') + count + '</div>';
+    if(idx >= 0){
+      media = '<button class="result__open" type="button" data-result-open="' + idx + '" aria-label="' + E(label + 'の写真を見る' + (photos.length > 1 ? '（' + photos.length + '枚）' : '')) + '">' + media + '</button>';
+    }
     var meta = [];
     if(r.size) meta.push('サイズ ' + E(r.size));
     if(r.condition) meta.push(E(r.condition));
-    return '<article class="result">' +
-      '<div class="result__img">' + img + (r.date ? '<span class="result__date">' + AUG.dispMonth(r.date) + '</span>' : '') + '</div>' +
+    var coupon = r.coupon === true ? '<span class="result__coupon">クーポン利用</span>' : '';
+    return '<article class="result">' + media +
       '<div class="result__body">' +
         '<p class="result__brand">' + E(r.brand || '') + '</p>' +
         (r.item ? '<p class="result__item">' + E(r.item) + '</p>' : '') +
-        (AUG.yen(r.price) ? '<p class="result__price"><small>買取価格</small>' + AUG.yen(r.price) + '</p>' : '') +
+        (AUG.yen(r.price) ? '<p class="result__price"><small>買取価格</small>' + AUG.yen(r.price) + coupon + '</p>' : '') +
         (meta.length ? '<p class="result__meta">' + meta.map(function(m){ return '<span>' + m + '</span>'; }).join('') + '</p>' : '') +
       '</div></article>';
   };
+
+  /* 買取実績の写真の拡大表示（矢印・スワイプ・←→キーで切り替え、×・Esc・背景で閉じる） */
+  var lb = null, lbRow = null, lbPhotos = [], lbAt = 0, lbBack = null;
+  function lbBuild(){
+    lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.hidden = true;
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-labelledby', 'lbTitle');
+    lb.innerHTML =
+      '<div class="lightbox__bar">' +
+        '<p class="lightbox__title" id="lbTitle"></p>' +
+        '<button class="lightbox__close" type="button" data-lb="close" aria-label="閉じる">×</button>' +
+      '</div>' +
+      '<div class="lightbox__stage" data-lb="stage">' +
+        '<img class="lightbox__img" alt="">' +
+        '<button class="lightbox__nav lightbox__nav--prev" type="button" data-lb="prev" aria-label="前の写真">‹</button>' +
+        '<button class="lightbox__nav lightbox__nav--next" type="button" data-lb="next" aria-label="次の写真">›</button>' +
+      '</div>' +
+      '<div class="lightbox__foot">' +
+        '<p class="lightbox__meta"></p>' +
+        '<p class="lightbox__count" aria-live="polite"></p>' +
+        '<div class="lightbox__dots" data-lb="dots"></div>' +
+      '</div>';
+    document.body.appendChild(lb);
+    lb.addEventListener('click', function(e){
+      if(swiped){ swiped = false; return; } /* スワイプの直後のクリックでは閉じない */
+      var t = e.target.closest('[data-lb]');
+      var k = t ? t.getAttribute('data-lb') : '';
+      if(k === 'close' || e.target === lb || (k === 'stage' && e.target === t)) return lbClose();
+      if(k === 'prev') return lbGo(lbAt - 1);
+      if(k === 'next') return lbGo(lbAt + 1);
+      var dot = e.target.closest('[data-lb-dot]');
+      if(dot) lbGo(Number(dot.getAttribute('data-lb-dot')));
+    });
+    /* スワイプ */
+    var sx = null, sy = 0, swiped = false;
+    var stage = lb.querySelector('.lightbox__stage');
+    stage.addEventListener('pointerdown', function(e){ sx = e.clientX; sy = e.clientY; });
+    stage.addEventListener('pointerup', function(e){
+      if(sx === null) return;
+      var dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+      swiped = Math.abs(dx) > 10 || Math.abs(dy) > 10;
+      if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) lbGo(lbAt + (dx < 0 ? 1 : -1));
+      if(swiped) setTimeout(function(){ swiped = false; }, 400);
+    });
+    document.addEventListener('keydown', function(e){
+      if(!lb || lb.hidden) return;
+      if(e.key === 'Escape'){ e.preventDefault(); lbClose(); }
+      else if(e.key === 'ArrowLeft') lbGo(lbAt - 1);
+      else if(e.key === 'ArrowRight') lbGo(lbAt + 1);
+      else if(e.key === 'Tab'){
+        var f = Array.prototype.filter.call(lb.querySelectorAll('button'), function(b){ return !b.hidden && b.offsetParent !== null; });
+        if(!f.length) return;
+        var i = f.indexOf(document.activeElement);
+        if(e.shiftKey && i <= 0){ e.preventDefault(); f[f.length - 1].focus(); }
+        else if(!e.shiftKey && i === f.length - 1){ e.preventDefault(); f[0].focus(); }
+      }
+    });
+  }
+  function lbGo(n){
+    if(!lbPhotos.length) return;
+    lbAt = (n + lbPhotos.length) % lbPhotos.length;
+    var img = lb.querySelector('.lightbox__img');
+    img.src = AUG.img(lbPhotos[lbAt]);
+    img.alt = ((lbRow.brand || '') + ' ' + (lbRow.item || '')).trim() + '（' + (lbAt + 1) + '枚目）';
+    var many = lbPhotos.length > 1;
+    lb.querySelectorAll('.lightbox__nav').forEach(function(b){ b.hidden = !many; });
+    lb.querySelector('.lightbox__count').textContent = many ? (lbAt + 1) + ' / ' + lbPhotos.length : '';
+    lb.querySelectorAll('[data-lb-dot]').forEach(function(d, i){ d.setAttribute('aria-current', String(i === lbAt)); });
+    /* 次の写真を先に読み込む */
+    if(many){ var pre = new Image(); pre.src = AUG.img(lbPhotos[(lbAt + 1) % lbPhotos.length]); }
+  }
+  function lbOpen(r, from){
+    if(!lb) lbBuild();
+    lbRow = r; lbPhotos = AUG.resultPhotos(r); lbBack = from || null;
+    var E = AUG.esc;
+    lb.querySelector('.lightbox__title').innerHTML = '<b>' + E(r.brand || '') + '</b>' + (r.item ? '<span>' + E(r.item) + '</span>' : '');
+    var meta = [];
+    if(AUG.yen(r.price)) meta.push('<span class="lightbox__price">買取価格 ' + AUG.yen(r.price) + '</span>' + (r.coupon === true ? '<span class="result__coupon">クーポン利用</span>' : ''));
+    if(r.date) meta.push('<span>' + AUG.dispMonth(r.date) + '</span>');
+    if(r.size) meta.push('<span>サイズ ' + E(r.size) + '</span>');
+    if(r.condition) meta.push('<span>' + E(r.condition) + '</span>');
+    lb.querySelector('.lightbox__meta').innerHTML = meta.join('');
+    lb.querySelector('[data-lb="dots"]').innerHTML = lbPhotos.length > 1 ? lbPhotos.map(function(_, i){
+      return '<button type="button" data-lb-dot="' + i + '" aria-label="' + (i + 1) + '枚目を表示"></button>';
+    }).join('') : '';
+    lb.hidden = false;
+    document.documentElement.classList.add('is-lightbox');
+    lbGo(0);
+    lb.querySelector('.lightbox__close').focus();
+  }
+  function lbClose(){
+    if(!lb) return;
+    lb.hidden = true;
+    document.documentElement.classList.remove('is-lightbox');
+    lb.querySelector('.lightbox__img').removeAttribute('src');
+    if(lbBack && document.contains(lbBack)) lbBack.focus({preventScroll:true});
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-result-open]');
+    if(!b) return;
+    var r = resultStore[Number(b.getAttribute('data-result-open'))];
+    if(r) lbOpen(r, b);
+  });
 
   AUG.noimg = function(img){
     var s = document.createElement('span');

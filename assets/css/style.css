@@ -928,3 +928,58 @@ h1,h2,h3{font-family:var(--heading);font-weight:700;letter-spacing:.02em;}
 @media (min-width:860px) and (max-width:1179px){.store--home .store__map{grid-column:1 / -1;}.store--home .map{aspect-ratio:21 / 9;}}
 @media (min-width:1180px){.store--home{grid-template-columns:320px minmax(0,1fr) minmax(0,420px);}.store--home .map{aspect-ratio:1 / 1;}}
 .more__next:first-child{margin-top:0;}
+
+/* =========================================================
+   ver3.4.3: 買取実績の写真（複数枚・拡大表示）とクーポン利用の表示
+   ========================================================= */
+.result__open{display:block;width:100%;padding:0;margin:0;border:0;background:none;cursor:zoom-in;text-align:left;color:inherit;font:inherit;}
+.result__open:focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+.result:hover .result__open .result__img img{transform:scale(1.03);}
+.result__count{position:absolute;right:8px;bottom:8px;display:inline-flex;align-items:center;gap:5px;
+  background:rgba(28,36,56,.82);color:var(--on-dark);font-size:11px;font-weight:700;letter-spacing:.06em;padding:4px 8px;line-height:1.3;}
+.result__count::before{content:"";width:10px;height:8px;border:1.5px solid currentColor;border-radius:1px;box-shadow:2px -2px 0 -0.5px rgba(28,36,56,.82),2px -2px 0 1px currentColor;}
+.result__price{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:0;row-gap:4px;}
+.result__coupon{display:inline-block;margin-left:8px;align-self:center;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.04em;
+  line-height:1;padding:5px 7px;color:var(--brass);border:1px solid var(--brass);background:rgba(122,80,32,.06);white-space:nowrap;}
+
+/* 拡大表示 */
+html.is-lightbox{overflow:hidden;}
+.lightbox{position:fixed;inset:0;z-index:200;display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+  background:#0E121E;color:var(--on-dark);
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);}
+.lightbox[hidden]{display:none;}
+.lightbox__bar{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:14px 16px 10px 20px;}
+.lightbox__title{display:flex;flex-direction:column;gap:2px;line-height:1.5;min-width:0;}
+.lightbox__title b{font-family:var(--serif);font-weight:700;font-size:17px;}
+.lightbox__title span{font-size:13px;color:var(--on-dark-muted);}
+.lightbox__close{flex-shrink:0;width:44px;height:44px;border:1px solid rgba(233,227,214,.4);background:none;color:var(--on-dark);font-size:24px;line-height:1;cursor:pointer;}
+.lightbox__close:hover{background:rgba(233,227,214,.12);}
+.lightbox__stage{position:relative;display:flex;align-items:center;justify-content:center;padding:0 12px;touch-action:pan-y;user-select:none;}
+.lightbox__img{max-width:100%;max-height:100%;object-fit:contain;-webkit-user-drag:none;}
+.lightbox__nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:64px;border:0;background:rgba(14,18,30,.55);color:var(--on-dark);
+  font-family:var(--serif);font-size:38px;line-height:1;cursor:pointer;}
+.lightbox__nav:hover{background:rgba(14,18,30,.8);}
+.lightbox__nav--prev{left:8px;}
+.lightbox__nav--next{right:8px;}
+.lightbox__nav[hidden]{display:none;}
+.lightbox__close:focus-visible,.lightbox__nav:focus-visible,.lightbox__dots button:focus-visible{outline:2px solid var(--brass-light);outline-offset:2px;}
+.lightbox__foot{display:grid;justify-items:center;gap:8px;padding:12px 20px 18px;text-align:center;}
+.lightbox__meta{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 14px;font-size:13px;color:var(--on-dark-muted);}
+.lightbox__price{font-family:var(--serif);font-weight:700;font-size:17px;color:var(--brass-light);}
+.lightbox__meta .result__coupon{margin-left:-6px;color:var(--brass-light);border-color:var(--brass-light);background:none;}
+.lightbox__count{font-family:var(--serif);font-size:13px;letter-spacing:.1em;min-height:1em;}
+.lightbox__dots{display:flex;gap:2px;}
+.lightbox__dots button{width:28px;height:28px;border:0;background:none;cursor:pointer;position:relative;}
+.lightbox__dots button::after{content:"";position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:rgba(233,227,214,.35);}
+.lightbox__dots button[aria-current="true"]::after{background:var(--on-dark);}
+@media (min-width:860px){
+  .lightbox__bar{padding:22px 28px 14px 40px;}
+  .lightbox__stage{padding:0 88px;}
+  .lightbox__nav{width:56px;height:72px;}
+  .lightbox__nav--prev{left:20px;}
+  .lightbox__nav--next{right:20px;}
+}
+.result__price{column-gap:6px;}
+.result__price small{margin-right:0;}
+.result__price .result__coupon{margin-left:4px;}
+@media (max-width:639px){.result__price .result__coupon{margin-left:0;flex-basis:auto;}}
