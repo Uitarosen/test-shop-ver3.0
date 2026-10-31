@@ -18,6 +18,11 @@ window.AUGUST_CONFIG = {
 
   instagram: "https://www.instagram.com/august_shop_sgn/",
 
+  /* 買取実績・クーポンをスプレッドシート（Cloudflare 経由）から読むか。false で data/*.json だけを使う */
+  liveData: true,
+  /* テスト中は、掲載した実績の下にサンプルの実績（data/results.json）も並べる。本番では false に */
+  keepSampleResults: true,
+
   /* 買取実績のカテゴリー（買取実績ページの絞り込みに、この順番で並びます）
      data/results.json の "category" には、このどれかを書いてください。 */
   resultCategories: [

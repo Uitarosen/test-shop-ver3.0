@@ -24,12 +24,16 @@ assets/img/results/     買取実績の写真
 assets/img/coupons/     クーポン画像（任意）
 
 gas/Code.gs             買取フォームの受け口（Google Apps Script）
+gas/site-sync.gs        スプレッドシート「サイト掲載データ」→ サイトへの反映（Google Apps Script）
+worker/index.js         Cloudflare の受け口（買取実績・クーポンのデータと写真を保存・配信）
+wrangler.jsonc          Cloudflare の設定／.assetsignore：公開しないファイル／_headers：セキュリティ設定
+docs/サイト掲載の仕組み.md ★ スプレッドシートからの掲載（初期設定・使い方・R2 の準備）
 docs/運用ガイド.md        ★ 実績・クーポン・ブランドの更新方法
 docs/GASデプロイ手順.md   フォーム送信先の設定方法
 scripts/check-data.mjs  data/*.json のチェック（GitHub Actions で自動実行）
 ```
 
-★ の付いたファイルを書き換えるだけで、日々の更新ができます。手順は [docs/運用ガイド.md](docs/運用ガイド.md) を参照してください。
+★ の付いたファイルを書き換えるだけで、日々の更新ができます。買取実績とクーポンは、Cloudflare 上ではスプレッドシートからの掲載が優先されます（[docs/サイト掲載の仕組み.md](docs/サイト掲載の仕組み.md)）。手順は [docs/運用ガイド.md](docs/運用ガイド.md) を参照してください。
 
 ## ローカルで確認する
 

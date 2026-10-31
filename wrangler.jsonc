@@ -1,14 +1,22 @@
-// Cloudflare Workers（静的サイト配信）の設定
+// Cloudflare Workers の設定
 // - name は Cloudflare 上のプロジェクト名と同じにする（違うと自動デプロイが失敗します）
 // - サイトのファイルはリポジトリ直下。公開しないファイルは .assetsignore に書きます
+// - /api/* と /media/* は worker/index.js が受け持ちます（買取実績・クーポンの受け口）
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "august-shop-test",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     // buy/ → buy/index.html。/buy は /buy/ へ移動
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
-  }
+  },
+  // 買取実績・クーポンのデータと写真の保存先（テストは KV。本番は R2 に切り替え予定）
+  "kv_namespaces": [
+    { "binding": "STORE", "id": "83f2919a458143c187b88b1604465ad1" }
+  ]
+  // 合言葉 SYNC_SECRET は Cloudflare の管理画面（設定 → 変数とシークレット）で「シークレット」として登録します。ここには書かないこと
 }

@@ -12,3 +12,5 @@ README.md
 docs
 gas
 scripts
+worker
+.dev.vars

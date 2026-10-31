@@ -15,7 +15,12 @@
     });
   };
   AUG.url = function(path){ return (ROOT + path) || './'; };
-  AUG.img = function(path){ return ROOT + 'assets/img/' + String(path).replace(/^\/+/, ''); };
+  AUG.img = function(path){
+    var p = String(path || '').replace(/^\/+/, '');
+    if(/^https?:\/\//.test(p)) return p;
+    if(/^media\//.test(p)) return ROOT + p;   /* スプレッドシートから掲載した写真（Cloudflare） */
+    return ROOT + 'assets/img/' + p;
+  };
   AUG.yen = function(n){
     var v = Number(String(n).replace(/[^\d.-]/g, ''));
     return isFinite(v) && String(n) !== '' ? '¥' + Math.round(v).toLocaleString('ja-JP') : '';
@@ -38,12 +43,34 @@
     return d ? d.slice(0, 7).replace('-', '.') : '';
   };
 
+  /* データの読み込み
+     - 買取実績・クーポンは、スプレッドシートから掲載したデータ（Cloudflare の /api/）を優先
+     - それが無い環境（GitHub Pages・プレビュー）や未反映のときは data/*.json を表示
+     - keepSampleResults が true のあいだは、掲載した実績の下にサンプルの実績も並べる */
   var cache = {};
+  var LIVE = { results: true, coupons: true };
+  function getJSON(url, ms){
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = ctrl && ms ? setTimeout(function(){ ctrl.abort(); }, ms) : null;
+    return fetch(url, {cache:'no-cache', signal: ctrl ? ctrl.signal : undefined})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(d){ if(timer) clearTimeout(timer); if(!Array.isArray(d)) throw new Error('not array'); return d; },
+            function(e){ if(timer) clearTimeout(timer); throw e; });
+  }
   AUG.load = function(name){
     if(!cache[name]){
-      cache[name] = fetch(ROOT + 'data/' + name + '.json', {cache:'no-cache'})
-        .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function(d){ if(!Array.isArray(d)) throw new Error('not array'); return d; });
+      var local = function(){ return getJSON(ROOT + 'data/' + name + '.json'); };
+      if(C.liveData === false || !LIVE[name]){
+        cache[name] = local();
+      } else {
+        cache[name] = getJSON(ROOT + 'api/' + name, 8000).then(function(live){
+          if(name === 'results' && C.keepSampleResults){
+            live.forEach(function(r){ r._live = true; });
+            return local().catch(function(){ return []; }).then(function(samples){ return live.concat(samples); });
+          }
+          return live;
+        }, local);
+      }
     }
     return cache[name];
   };
@@ -64,6 +91,8 @@
     return list.filter(function(r){ return r && (r.brand || r.item); })
       .map(function(r, i){ return {r:r, i:i}; })
       .sort(function(a, b){
+        /* スプレッドシートから掲載した実績を、サンプルより先に */
+        if(!!a.r._live !== !!b.r._live) return a.r._live ? -1 : 1;
         var da = AUG.normDate(a.r.date), db = AUG.normDate(b.r.date);
         if(da !== db) return da < db ? 1 : -1;
         return b.i - a.i; /* 同じ日付は後に書いたものを先に */
