@@ -359,9 +359,12 @@ function siteSyncChoicesToForm(silent) {
   var items = form.getItems();
   var find = function (pred) { for (var i = 0; i < items.length; i++) if (pred(items[i])) return items[i]; return null; };
   var uploadIndex = (function () { var u = find(function (it) { return it.getType() === FormApp.ItemType.FILE_UPLOAD; }); return u ? u.getIndex() : -1; })();
+  /* 新しく作った質問も、既存の質問と同じ「Item」として扱う（作った直後の形のままだと as〜Item が使えないため） */
+  var asItem = function (created) { return form.getItemById(created.getId()); };
   var setChoices = function (it, values) {
     if (it.getType() === FormApp.ItemType.LIST) it.asListItem().setChoiceValues(values);
     else if (it.getType() === FormApp.ItemType.MULTIPLE_CHOICE) it.asMultipleChoiceItem().setChoiceValues(values);
+    else if (it.getType() === FormApp.ItemType.CHECKBOX) it.asCheckboxItem().setChoiceValues(values);
   };
   var placeBeforeUpload = function (it) {
     if (uploadIndex >= 0 && it.getIndex() > uploadIndex) { form.moveItem(it.getIndex(), uploadIndex); uploadIndex++; }
@@ -371,15 +374,21 @@ function siteSyncChoicesToForm(silent) {
   if (st && states.length) setChoices(st, states);
 
   var cat = find(function (it) { return it.getTitle() === Q_CATEGORY; });
-  if (!cat) { cat = form.addListItem().setTitle(Q_CATEGORY).setRequired(true); placeBeforeUpload(cat); }
+  if (!cat) { cat = asItem(form.addListItem().setTitle(Q_CATEGORY).setRequired(true)); placeBeforeUpload(cat); }
   setChoices(cat, cats);
 
   var cp = find(function (it) { return it.getTitle().indexOf('クーポン') >= 0; });
   if (!cp) {
-    cp = form.addMultipleChoiceItem().setTitle(Q_COUPON).setRequired(true)
-      .setHelpText('クーポンで買取価格が上がった実績は「はい」。サイトの価格の横に「クーポン利用」と表示されます。');
-    cp.asMultipleChoiceItem().setChoiceValues(['いいえ', 'はい']);
+    cp = asItem(form.addMultipleChoiceItem().setTitle(Q_COUPON).setRequired(true)
+      .setHelpText('クーポンで買取価格が上がった実績は「はい」。サイトの価格の横に「クーポン利用」と表示されます。')
+      .setChoiceValues(['いいえ', 'はい']));
     placeBeforeUpload(cp);
+  } else {
+    /* 既にある質問でも、選択肢が「いいえ／はい」でなければ入れ直す（作りかけで「選択肢 1」のまま残った場合など） */
+    var cur = [];
+    if (cp.getType() === FormApp.ItemType.MULTIPLE_CHOICE) cur = cp.asMultipleChoiceItem().getChoices().map(function (c) { return c.getValue(); });
+    else if (cp.getType() === FormApp.ItemType.LIST) cur = cp.asListItem().getChoices().map(function (c) { return c.getValue(); });
+    if (cur.join('/') !== 'いいえ/はい') setChoices(cp, ['いいえ', 'はい']);
   }
   if (silent !== true) SpreadsheetApp.getUi().alert('フォームの選択肢を更新しました。\n状態：' + states.join('、') + '\nカテゴリー：' + cats.join('、'));
 }
