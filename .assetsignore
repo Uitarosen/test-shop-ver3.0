@@ -1,0 +1,14 @@
+# Cloudflare で公開しないファイル（サイトの表示に使わないもの）
+.git
+.github
+.claude
+.wrangler
+node_modules
+wrangler.jsonc
+.assetsignore
+.gitignore
+.nojekyll
+README.md
+docs
+gas
+scripts

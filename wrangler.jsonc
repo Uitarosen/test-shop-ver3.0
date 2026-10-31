@@ -1,0 +1,14 @@
+// Cloudflare Workers（静的サイト配信）の設定
+// - name は Cloudflare 上のプロジェクト名と同じにする（違うと自動デプロイが失敗します）
+// - サイトのファイルはリポジトリ直下。公開しないファイルは .assetsignore に書きます
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "august-shop-test",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": ".",
+    // buy/ → buy/index.html。/buy は /buy/ へ移動
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}
